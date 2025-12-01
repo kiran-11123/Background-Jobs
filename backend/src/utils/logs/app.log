@@ -1,0 +1,50 @@
+{
+  message: 'Server Started at Port 5000',
+  level: 'info',
+  timestamp: '2025-12-01T16:33:03.489Z'
+}
+{
+  message: 'MongoDB connected..',
+  level: 'info',
+  timestamp: '2025-12-01T16:33:04.227Z'
+}
+{
+  message: 'Server Started at Port 5000',
+  level: 'info',
+  timestamp: '2025-12-01T16:33:52.959Z'
+}
+{
+  message: 'MongoDB connected..',
+  level: 'info',
+  timestamp: '2025-12-01T16:33:53.655Z'
+}
+{
+  message: 'Server Started at Port 5000',
+  level: 'info',
+  timestamp: '2025-12-01T16:33:56.607Z'
+}
+{
+  message: 'MongoDB connected..',
+  level: 'info',
+  timestamp: '2025-12-01T16:33:57.337Z'
+}
+{
+  message: 'Server Started at Port 5000',
+  level: 'info',
+  timestamp: '2025-12-01T16:33:59.087Z'
+}
+{
+  message: 'MongoDB connected..',
+  level: 'info',
+  timestamp: '2025-12-01T16:33:59.614Z'
+}
+{
+  message: 'Server Started at Port 5000',
+  level: 'info',
+  timestamp: '2025-12-01T16:34:01.382Z'
+}
+{
+  message: 'MongoDB connected..',
+  level: 'info',
+  timestamp: '2025-12-01T16:34:01.785Z'
+}

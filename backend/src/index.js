@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser';
 import ConnectDB from './config/db.js';
 import app_logger from './utils/logger/App_logger.js';
 import Auth_Router from './routes/user_auth.js';
+import cron from './utils/cron-jobs/logger-cron.js';
 dotenv.config();
 const app = express();
 ConnectDB();
