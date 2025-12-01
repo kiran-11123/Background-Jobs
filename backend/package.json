@@ -13,7 +13,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@prisma/client": "^4.16.2",
+    "@prisma/client": "^7.0.1",
     "bcryptjs": "^3.0.3",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
@@ -29,6 +29,6 @@
   "devDependencies": {
     "@types/node": "^24.10.1",
     "@types/pg": "^8.15.6",
-    "prisma": "^4.16.2"
+    "prisma": "^7.0.1"
   }
 }
