@@ -1,0 +1,19 @@
+// ...existing code...
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+
+}
+
+model User{
+  userId Int @id @default(autoincrement())
+  email String @unique
+  username String @unique
+  password String 
+  resetCode String?
+  resetCodeExpires DateTime?
+  createdAt DateTime @default(now())
+}
