@@ -33,3 +33,58 @@ export const Generate_API_KEY = async(user_id , project_id)=>{
              throw er;
         }
 }
+
+
+
+export const Get_API_KEY_service = async(user_id , project_id)=>{
+    
+    app_logger.info(`Entered into  the get_api_key service to get the api_key for project : ${project_id}`)
+    try{
+
+        const find_project = await project_model.findOne({user_id : user_id , _id :project_id})
+
+        if(!find_project){
+             throw new Error(`Project Not Found`)
+
+        }
+
+        if(!find_project.api_key){
+             throw new Error(`API_KEY not found`)
+        }
+
+        return find_project.api_key ; 
+
+    }
+    catch(er){
+         throw er;
+    }
+}
+
+
+export const Delete_api_key_Service = async(user_id , project_id)=>{
+
+    app_logger.info(`Entered into Delete api_key service `)
+        
+    try{
+
+       const find_project = await project_model.findOne({user_id : user_id , _id :project_id})
+
+        if(!find_project){
+             throw new Error(`Project Not Found`)
+
+        }
+
+        await project_model.updateOne(
+            {_id:project_id},
+            {$unset :{api_key : ""}}
+        )
+
+        
+
+        return "API KEY deleted successfully.." ; 
+
+    }
+    catch(er){
+        throw er;
+    }
+}

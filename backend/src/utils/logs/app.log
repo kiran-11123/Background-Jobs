@@ -1,1345 +1,525 @@
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:00:23.469Z'
+  timestamp: '2025-12-02T16:30:08.305Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:00:23.877Z'
+  timestamp: '2025-12-02T16:30:08.709Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:01:41.460Z'
+  timestamp: '2025-12-02T16:30:09.565Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:01:41.991Z'
+  timestamp: '2025-12-02T16:30:10.025Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:01:49.297Z'
+  timestamp: '2025-12-02T16:30:11.888Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:01:49.701Z'
+  timestamp: '2025-12-02T16:30:12.334Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:02:04.878Z'
+  timestamp: '2025-12-02T16:30:14.783Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:02:05.507Z'
+  timestamp: '2025-12-02T16:30:15.202Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:02:06.460Z'
+  timestamp: '2025-12-02T16:30:25.768Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:02:06.906Z'
+  timestamp: '2025-12-02T16:30:26.178Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:02:20.655Z'
+  timestamp: '2025-12-02T16:30:29.055Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:02:23.168Z'
+  timestamp: '2025-12-02T16:30:30.043Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:02:23.564Z'
+  timestamp: '2025-12-02T16:30:30.455Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:02:31.253Z'
+  timestamp: '2025-12-02T16:30:32.629Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:02:31.670Z'
+  timestamp: '2025-12-02T16:30:33.076Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:02:34.645Z'
+  timestamp: '2025-12-02T16:30:59.296Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:02:36.333Z'
+  timestamp: '2025-12-02T16:30:59.698Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:02:38.297Z'
+  timestamp: '2025-12-02T16:31:02.657Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:02:38.681Z'
+  timestamp: '2025-12-02T16:31:03.075Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:02:40.476Z'
+  timestamp: '2025-12-02T16:31:07.501Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:02:42.938Z'
+  timestamp: '2025-12-02T16:31:07.942Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:02:44.472Z'
+  timestamp: '2025-12-02T16:31:19.618Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:02:44.848Z'
+  timestamp: '2025-12-02T16:31:20.027Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:02:48.502Z'
+  timestamp: '2025-12-02T16:31:23.926Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:02:48.894Z'
+  timestamp: '2025-12-02T16:31:24.836Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:02:51.264Z'
+  timestamp: '2025-12-02T16:31:26.588Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:02:51.675Z'
+  timestamp: '2025-12-02T16:31:27.013Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:02:53.121Z'
+  timestamp: '2025-12-02T16:31:40.147Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:02:53.999Z'
+  timestamp: '2025-12-02T16:31:40.538Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:03:13.142Z'
+  timestamp: '2025-12-02T16:32:49.335Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:03:13.545Z'
+  timestamp: '2025-12-02T16:32:49.781Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:03:18.682Z'
+  timestamp: '2025-12-02T16:32:54.704Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:03:19.100Z'
+  timestamp: '2025-12-02T16:32:55.129Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:03:21.054Z'
+  timestamp: '2025-12-02T16:33:11.873Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:03:21.681Z'
+  timestamp: '2025-12-02T16:33:12.316Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:03:22.960Z'
+  timestamp: '2025-12-02T16:33:14.433Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:03:25.442Z'
+  timestamp: '2025-12-02T16:33:14.834Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:03:35.083Z'
+  timestamp: '2025-12-02T16:33:28.440Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:03:35.471Z'
+  timestamp: '2025-12-02T16:33:28.883Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:03:40.620Z'
+  timestamp: '2025-12-02T16:33:57.462Z'
 }
 {
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:03:43.286Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:03:59.452Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:03:59.856Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:04:03.126Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:04:03.529Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:04:07.471Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:04:08.099Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:04:11.685Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:04:12.102Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:04:12.820Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:04:13.206Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:04:14.616Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:04:15.024Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:04:26.336Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:04:26.755Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:04:27.553Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:04:27.961Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:04:29.654Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:04:30.264Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:04:32.176Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:04:32.593Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:04:33.486Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:04:33.882Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:04:39.476Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:04:40.220Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:04:43.567Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:04:44.059Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:04:47.686Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:04:48.067Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:04:50.083Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:04:50.488Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:04:58.209Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:04:58.597Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:05:00.902Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:05:01.294Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:05:03.164Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:05:03.560Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:05:05.259Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:05:05.656Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:05:11.232Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:05:11.628Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:05:17.594Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:05:18.847Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:05:19.337Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:05:21.100Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:05:21.481Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:05:33.999Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:05:35.448Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:05:35.842Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:05:36.665Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:05:37.081Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:05:43.403Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:05:44.747Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:05:46.092Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:05:54.776Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:05:55.217Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:05:57.442Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:05:57.891Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:06:10.016Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:06:10.431Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:06:14.012Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:06:14.448Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:06:17.074Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:06:17.516Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:06:18.628Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:06:19.029Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:06:23.939Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:06:24.324Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:06:29.171Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:06:29.580Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:06:36.015Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:06:36.405Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:06:40.082Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:06:40.712Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:06:42.728Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:06:43.153Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:06:52.414Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:06:53.150Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:07:01.779Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:07:02.174Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:07:04.500Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:07:05.883Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:07:38.137Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:07:39.557Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:07:44.205Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:07:44.642Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:07:49.178Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:07:49.576Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:07:50.542Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:07:50.946Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:07:52.416Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:07:52.936Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:07:54.298Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:07:54.715Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:07:59.698Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:08:00.702Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:08:01.097Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:08:11.502Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:08:11.891Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:08:43.075Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:08:43.475Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:08:45.452Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:08:45.840Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:08:48.384Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:08:48.792Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:08:51.950Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:08:52.517Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:08:56.155Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:08:56.565Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:08:59.472Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:09:00.630Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:09:01.037Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:09:11.851Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:09:12.259Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:09:15.731Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:09:16.123Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:09:21.456Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:09:21.881Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:09:24.163Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:09:25.631Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:09:30.021Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:09:30.402Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:09:35.052Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:09:35.794Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:09:42.599Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:09:43.010Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:09:51.120Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:09:51.505Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:10:05.324Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:10:05.748Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:10:20.532Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:10:24.099Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:10:27.813Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:10:29.573Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:10:32.246Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:10:32.646Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:10:33.897Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:10:34.308Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:10:36.192Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:10:36.598Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:10:51.378Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:10:51.959Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:10:55.664Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:10:56.963Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:10:58.367Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:10:58.762Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:11:01.680Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:11:03.346Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:11:04.773Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:11:05.416Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:11:07.529Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:11:08.870Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:11:11.308Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:11:14.878Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:11:15.281Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:11:19.020Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:11:19.476Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:11:27.796Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:11:28.209Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:11:32.124Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:11:35.111Z'
-}
-{
-  message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:11:39.084Z'
-}
-{
-  message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:11:40.483Z'
+  message: 'Error occurred while connecting to MongoDB Error: querySrv ECONNREFUSED _mongodb._tcp.cluster0.ncbteoq.mongodb.net',
+  level: 'warn',
+  timestamp: '2025-12-02T16:35:10.112Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:11:57.984Z'
+  timestamp: '2025-12-02T16:39:58.954Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:11:59.017Z'
+  timestamp: '2025-12-02T16:39:59.952Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:11:59.406Z'
+  timestamp: '2025-12-02T16:40:00.385Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:12:05.557Z'
+  timestamp: '2025-12-02T16:40:03.725Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:12:06.270Z'
+  timestamp: '2025-12-02T16:40:04.118Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:12:24.109Z'
+  timestamp: '2025-12-02T16:40:10.270Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:12:24.522Z'
+  timestamp: '2025-12-02T16:40:10.676Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:12:37.928Z'
+  timestamp: '2025-12-02T16:40:13.102Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:12:38.624Z'
+  timestamp: '2025-12-02T16:40:13.529Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:12:50.836Z'
+  timestamp: '2025-12-02T16:40:17.241Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:12:51.211Z'
+  timestamp: '2025-12-02T16:40:17.653Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:12:54.031Z'
+  timestamp: '2025-12-02T16:40:20.330Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:12:54.431Z'
+  timestamp: '2025-12-02T16:40:20.728Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:13:02.260Z'
+  timestamp: '2025-12-02T16:40:24.290Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:13:03.639Z'
+  timestamp: '2025-12-02T16:40:24.798Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:13:09.251Z'
+  timestamp: '2025-12-02T16:40:26.767Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:13:09.679Z'
+  timestamp: '2025-12-02T16:40:27.161Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:13:11.142Z'
+  timestamp: '2025-12-02T16:40:45.554Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:13:11.567Z'
+  timestamp: '2025-12-02T16:40:46.071Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:13:13.359Z'
+  timestamp: '2025-12-02T16:41:38.241Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:13:13.740Z'
+  timestamp: '2025-12-02T16:41:38.665Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:13:17.902Z'
+  timestamp: '2025-12-02T16:41:57.243Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:13:18.687Z'
+  timestamp: '2025-12-02T16:41:57.684Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:13:23.730Z'
+  timestamp: '2025-12-02T16:42:06.556Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:13:24.375Z'
+  timestamp: '2025-12-02T16:42:06.993Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:13:44.975Z'
+  timestamp: '2025-12-02T16:42:10.488Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:13:45.415Z'
+  timestamp: '2025-12-02T16:42:10.890Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:13:48.103Z'
+  timestamp: '2025-12-02T16:42:24.019Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:13:48.499Z'
+  timestamp: '2025-12-02T16:42:24.426Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:14:19.244Z'
+  timestamp: '2025-12-02T16:42:33.006Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:14:19.708Z'
+  timestamp: '2025-12-02T16:42:33.432Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:14:38.206Z'
+  timestamp: '2025-12-02T16:43:35.171Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:14:38.666Z'
+  timestamp: '2025-12-02T16:43:35.597Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:14:48.265Z'
+  timestamp: '2025-12-02T16:43:39.832Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:14:48.968Z'
+  timestamp: '2025-12-02T16:43:40.258Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:14:56.099Z'
+  timestamp: '2025-12-02T16:43:42.339Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:14:56.495Z'
+  timestamp: '2025-12-02T16:43:42.790Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:15:02.543Z'
+  timestamp: '2025-12-02T16:43:46.337Z'
 }
 {
   message: 'MongoDB connected..',
-  level: 'info',
-  timestamp: '2025-12-02T16:15:02.990Z'
-}
-{
-  message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:15:09.877Z'
+  timestamp: '2025-12-02T16:43:46.766Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:15:11.103Z'
+  timestamp: '2025-12-02T16:43:52.665Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:15:12.033Z'
+  timestamp: '2025-12-02T16:43:53.038Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:15:15.155Z'
+  timestamp: '2025-12-02T16:44:07.435Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:15:16.192Z'
+  timestamp: '2025-12-02T16:44:07.836Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:15:20.445Z'
+  timestamp: '2025-12-02T16:44:08.543Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:15:21.010Z'
+  timestamp: '2025-12-02T16:44:08.953Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:15:29.614Z'
+  timestamp: '2025-12-02T16:44:19.472Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:15:30.040Z'
+  timestamp: '2025-12-02T16:44:19.872Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:15:32.955Z'
+  timestamp: '2025-12-02T16:44:34.779Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:15:33.868Z'
+  timestamp: '2025-12-02T16:44:35.183Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:15:43.370Z'
+  timestamp: '2025-12-02T16:44:39.296Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:15:43.744Z'
+  timestamp: '2025-12-02T16:44:39.669Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:15:48.237Z'
+  timestamp: '2025-12-02T16:44:54.908Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:15:48.607Z'
+  timestamp: '2025-12-02T16:44:55.312Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:16:09.365Z'
+  timestamp: '2025-12-02T16:45:29.944Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:16:09.746Z'
+  timestamp: '2025-12-02T16:45:30.345Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:16:12.076Z'
+  timestamp: '2025-12-02T16:45:43.919Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:16:12.702Z'
+  timestamp: '2025-12-02T16:45:44.399Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:16:28.965Z'
+  timestamp: '2025-12-02T16:45:58.642Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:16:29.355Z'
+  timestamp: '2025-12-02T16:45:59.059Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:16:38.799Z'
+  timestamp: '2025-12-02T16:46:03.865Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:16:39.176Z'
+  timestamp: '2025-12-02T16:46:04.303Z'
 }
 {
   message: 'Server Started at Port 5000',
-  level: 'info',
-  timestamp: '2025-12-02T16:16:58.341Z'
-}
-{
-  message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:16:59.752Z'
+  timestamp: '2025-12-02T16:46:06.228Z'
 }
 {
   message: 'Server Started at Port 5000',
   level: 'info',
-  timestamp: '2025-12-02T16:17:01.662Z'
+  timestamp: '2025-12-02T16:46:18.751Z'
 }
 {
   message: 'MongoDB connected..',
   level: 'info',
-  timestamp: '2025-12-02T16:17:02.091Z'
+  timestamp: '2025-12-02T16:46:19.175Z'
 }
