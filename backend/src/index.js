@@ -8,6 +8,7 @@ import app_logger from './utils/logger/App_logger.js';
 import Auth_Router from './routes/user_auth.js';
 import cron from './utils/cron-jobs/logger-cron.js';
 import redis_cron from './utils/cron-jobs/redis-cron.js';
+import Project_Router from './routes/project_auth.js';
 dotenv.config();
 const app = express();
 ConnectDB();
@@ -34,6 +35,7 @@ app.use(limiter);
 app.use(cookieParser());
 
 app.use("/api/user" , Auth_Router)
+app.use("/api/project" , Project_Router)
 
 
 
