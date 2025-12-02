@@ -21,7 +21,7 @@ async function deleteRedisLogs() {
 
     }
     catch (er) {
-        redis_logger.error("Error in cron job for Log maintenance: " + err.message);
+        redis_logger.error("Error in cron job for Log maintenance: " + er.message);
     }
 }
 

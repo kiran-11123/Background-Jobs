@@ -4,7 +4,8 @@ const projectSchema = new mongoose.Schema({
     user_id: { type: mongoose.Schema.Types.ObjectId, ref: "Users", required: true },
     title: { type: String, required: true },
     description: { type: String },
-    created_at: { type: Date, default: Date.now }
+    created_at: { type: Date, default: Date.now },
+    api_key : {type:String}
 });
 
 const project_model = mongoose.model("Projects", projectSchema);
