@@ -1,19 +1,20 @@
 import redis_cron from 'node-cron'
 import redis_logger from '../logger/redis_logger.js';
+import fs from 'fs'
+import path from 'path';
 
-async function deleteredisLogs() {
+const LOG_FILE_PATH = path.join("src", "utils", "logs", "redis.log");
+async function deleteRedisLogs() {
     // Logic to delete or archive old logs
     try {
 
         redis_logger.info("Cron Job: Log maintenance started");
 
-        fs.unlink("src/utils/logs/redis.log", (err) => {
-            if (err) {
-                console.error("Error deleting log file:", err);
-            } else {
-                console.log("Log file deleted successfully!");
-            }
-        });
+        if (fs.existsSync(LOG_FILE_PATH)) {
+            fs.unlinkSync(LOG_FILE_PATH);   // delete the file
+            app_logger.info("Log file deleted successfully");
+        }
+
 
         redis_logger.info("Cron Job: Log maintenance completed");
 
@@ -25,7 +26,7 @@ async function deleteredisLogs() {
 }
 
 redis_cron.schedule('*/30 * * * *', () => {
-    deleteredisLogs();
+    deleteRedisLogs();
     redis_logger.info("Scheduled log maintenance job executed.");
 });
 

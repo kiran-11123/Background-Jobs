@@ -43,14 +43,64 @@ export const Get_Projects_Service = async(user_id)=>{
     try{
 
         const find_projects = await project_model.find({user_id : user_id})
+
+        if(!find_projects){
+             app_logger.warn(`Error Occured while fecthing the project`)
+             throw new Error("Error Occured while Fetching the project")
+        }
   
        
         return find_projects;
 
     }
     catch(er){
-        app_logger.warn(`Error occured while Fetching the project details for user ${req.user.username}`)
+        app_logger.warn(`Error occured while Fetching the project details for user ${user_id} : ${er}`)
         throw er;
     }
+
+}
+
+export const Get_Project_By_Id_Service = async(user_id , project_id)=>{
+       
+    try{
+
+        const find_Project_with_id  = await project_model.findOne({user_id : user_id , _id : project_id})
+
+        if(!find_Project_with_id){
+             app_logger.warn(`Project Not Found with projectId ${project_id}`)
+             throw new Error(`Project Not Found`)
+        }
+
+        return find_Project_with_id;
+
+    }
+    catch(er){
+        app_logger.warn(`Error occured while Fetching the project with Id ${project_id}`)
+        throw er;
+    }
+}
+
+
+export const Delete_Project_Service = async(user_id , project_id)=>{
+
+
+    try{
+
+        const delete_Project_with_id  = await project_model.deleteOne({user_id : user_id , _id : project_id})
+
+        if(delete_Project_with_id.deletedCount===0){
+             app_logger.warn(`Project Not Found with projectId ${project_id} for Deletion`)
+             throw new Error(`Project Not Found for Deletion`)
+        }
+        return delete_Project_with_id;
+
+    }
+    catch(er){
+
+        app_logger.warn(`Error occured while Deleting the project with Id ${project_id}`)
+        throw er;
+
+    }
+       
 
 }

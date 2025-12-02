@@ -1,5 +1,9 @@
 import cron from 'node-cron'
 import app_logger from '../logger/App_logger.js';
+import fs from 'fs'
+import path from 'path';
+
+const LOG_FILE_PATH = path.join("src", "utils", "logs", "app.log");
 
 async function deleteOldLogs() {
     // Logic to delete or archive old logs
@@ -7,13 +11,10 @@ async function deleteOldLogs() {
 
         app_logger.info("Cron Job: Log maintenance started");
 
-        fs.unlink("src/utils/logs/app.log", (err) => {
-            if (err) {
-                console.error("Error deleting log file:", err);
-            } else {
-                console.log("Log file deleted successfully!");
-            }
-        });
+       if (fs.existsSync(LOG_FILE_PATH)) {
+            fs.unlinkSync(LOG_FILE_PATH);   // delete the file
+            app_logger.info("Log file deleted successfully");
+        }
 
         app_logger.info("Cron Job: Log maintenance completed");
 
