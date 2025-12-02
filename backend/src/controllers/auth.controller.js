@@ -55,7 +55,7 @@ export const Signup = async (req, res) => {
         const { email, username, password } = req.body;
 
         // Call service
-        await SignUpService(email, username, password);
+        const user = await SignUpService(email, username, password);
 
         app_logger.info(`Registration successful for user: ${username}`);
 
