@@ -1,89 +1,78 @@
-import express from 'express'
-import issueJWT from '../utils/jwt.js'
-import bcrypt from 'bcryptjs'
-import app_logger from '../utils/logger/App_logger.js'
-import user_model from '../models/users.js'
+import issueJWT from '../utils/jwt.js';
+import bcrypt from 'bcryptjs';
+import app_logger from '../utils/logger/App_logger.js';
+import user_model from '../models/users.js';
 
+
+// ---------------------- SIGN-UP SERVICE ----------------------
 export const SignUpService = async (email, username, password) => {
-
     try {
+        app_logger.info(`SignUp Attempt for email ${email}`);
 
-        app_logger.info(`SignUp Attempt for email ${email}`)
-
-        const existinguser = await user_model.findOne({ email: email })
-
+        // Check email
+        const existinguser = await user_model.findOne({ email });
         if (existinguser) {
-            app_logger.warn(`Attempt to register already existing email: ${email}`)
-            throw new Error("Email already registered")
+            app_logger.warn(`Attempt to register already existing email: ${email}`);
+            throw new Error("Email already registered");
         }
 
-        const username_check = await user_model.findOne({
-
-            username: username
-
-        })
-
+        // Check username
+        const username_check = await user_model.findOne({ username });
         if (username_check) {
-            app_logger.warn(`Attempt to register already existing username: ${username}`)
-            throw new Error("Username already taken")
+            app_logger.warn(`Attempt to register already existing username: ${username}`);
+            throw new Error("Username already taken");
         }
 
+        // Hash password
         const hashedPassword = await bcrypt.hash(password, 10);
 
+        // Create user
         const user = await user_model.create({
             email,
             username,
-            password: hashedPassword
+            password: hashedPassword,
         });
 
-        logger.info(`User created successfully: ${user.id}`);
-
+        app_logger.info(`User registration successful: ${user._id}`);
 
         return { user };
-
     }
     catch (er) {
-
-        throw new Error("Error Occured ", er)
-
+        app_logger.error(`SignUpService Error: ${er.message}`);
+        throw er;       // Controller will handle message
     }
+};
 
-}
 
+
+// ---------------------- SIGN-IN SERVICE ----------------------
 export const SignInService = async (email, password) => {
-
     try {
+        app_logger.info(`SignIn Attempt for email ${email}`);
 
-        app_logger.info(`SingIn Attempt for email ${email}`)
-
-        const check_email = await user_model.findOne( { email: email } );
-
-        if (!check_email) {
-            throw new Error(`Email Not found`)
+        // Check email
+        const user = await user_model.findOne({ email });
+        if (!user) {
+            throw new Error("Email Not found");   // EXACT message used in controller
         }
 
-        const check_password = await bcrypt.compare(password, check_email.password);
-
-        if (!check_password) {
-
-            throw new Error(`Password is Wrong for the email`)
-
+        // Check password
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            throw new Error("Password is Wrong for the email");  // EXACT message used in controller
         }
 
-        const token = issueJWT({ user_id: user.id, username: username, email: email });
+        // Generate JWT
+        const token = issueJWT({
+            user_id: user._id,
+            username: user.username,
+            email: user.email,
+        });
 
-        return { user, token }
-
-
-
-
-
+        return { user, token };
     }
     catch (er) {
-
-        logger.error(`SignInService error for email ${email}: ${er.message}`);
-
-        throw new Error("Error Occured ", er)
-
+        app_logger.error(`SignInService Error for ${email}: ${er.message}`);
+        throw er;       // Controller will handle message
     }
-}
+};

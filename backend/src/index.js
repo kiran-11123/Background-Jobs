@@ -33,7 +33,7 @@ app.use(express.json());
 app.use(limiter);
 app.use(cookieParser());
 
-app.use("/user" , Auth_Router)
+app.use("/api/user" , Auth_Router)
 
 
 
@@ -45,7 +45,7 @@ app.use("/user" , Auth_Router)
 
 
 app.use((err, req, res, next) => {
-    app_logger.info("Error occurred while connctcting " , err.message)
+    app_logger.info("Error occurred while connecting " + err.message)
   res.status(500).json({ message: "Internal Server Error" });
 });
 

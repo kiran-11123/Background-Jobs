@@ -1,5 +1,5 @@
 import redis_cron from 'node-cron'
-import redis_logger from '../logger/redis_logger';
+import redis_logger from '../logger/redis_logger.js';
 
 async function deleteredisLogs() {
     // Logic to delete or archive old logs
