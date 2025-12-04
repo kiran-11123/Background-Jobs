@@ -70,3 +70,105 @@ export const GetJobsServiceForId = async(queueId , jobId)=>{
     }
 
 }
+
+export const  retryJobService = async(jobId)=>{
+
+    app_logger.info(`Entered into retryJobService` )
+      
+    try{
+         
+        const new_jobId = new mongoose.Types.ObjectId(jobId)
+        const find_job = await Jobs_model.findOne({_id :new_jobId })
+
+        
+    if (!job) throw new Error("Job not found");
+
+    job.status = "waiting";
+    job.attempts = 0;
+    job.failedReason = null;
+
+    return await job.save();
+
+    }
+    catch(er){
+          
+        throw er;
+    }
+}
+
+export const UpdateJobService = async(jobId , data)=>{
+     app_logger.info(`Entered into UpdateJobService`) 
+    try{
+        
+          const new_jobId = new mongoose.Types.ObjectId(jobId)
+        const find_job = await Jobs_model.findOne({_id :new_jobId })
+
+        
+    if (!job) throw new Error("Job not found");
+
+         return await Job_model.findByIdAndUpdate(
+        jobId,
+        {
+            priority: data.priority,
+            delay: data.delay,
+            payload: data.payload,
+        },
+        { new: true }
+    );
+
+    }
+    catch(er){
+        throw er;
+    }
+}
+
+export const DeleteJobService = async(jobId)=>{
+     app_logger.info(`Entered into DeleteJobService`)
+
+
+     try{
+
+        const new_job_id = new mongoose.Types.ObjectId(jobId);
+
+        const find_job = await Jobs_model.findOne({_id : new_job_id});
+
+        if(!find_job){
+            throw new Error(`Job Not found`)
+        }
+
+
+     return await Job_model.findByIdAndDelete(new_job_id);
+
+
+     }
+     catch(er){
+        throw er;
+     }
+}
+
+
+export const JobCountSummaryService = async(queueId)=>{
+     app_logger.info(`Entered into JobCountSummaryService`)
+
+     try{
+
+        const new_queue_id = new mongoose.Types.ObjectId;
+
+        const find_queue = await Queue_model.findOne({_id : new_queue_id})
+
+        if(!find_queue){
+            throw new Error(`Queue not found`)
+        }
+
+       return {
+        waiting: await Job_model.countDocuments({ queueId : new_queue_id, status: "waiting" }),
+        delayed: await Job_model.countDocuments({ queueId : new_queue_id, status: "delayed" }),
+        inProgress: await Job_model.countDocuments({ qqueueId : new_queue_id, status: "in-progress" }),
+        completed: await Job_model.countDocuments({ queueId : new_queue_id, status: "completed" }),
+        failed: await Job_model.countDocuments({ queueId : new_queue_id, status: "failed" })
+    };
+     }
+     catch(er){
+         
+     }
+}
