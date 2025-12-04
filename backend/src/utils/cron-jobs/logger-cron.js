@@ -27,7 +27,7 @@ async function deleteOldLogs() {
 
 cron.schedule('*/30 * * * *', () => {
     deleteOldLogs();
-    logger.info("Scheduled log maintenance job executed.");
+    app_logger.info("Scheduled log maintenance job executed.");
 });
 
 export default cron;

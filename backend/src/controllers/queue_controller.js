@@ -1,13 +1,13 @@
 import express from 'express'
-import { createQueueService , GetQueueService , getSpecificQueueDetailsService , DeleteQueueService} from '../services/queue_services.js'
+import { createQueueService , GetQueueService , getSpecificQueueDetailsService , DeleteQueueService , updateQueueSettingsService} from '../services/queue_services.js'
 import app_logger from '../utils/logger/App_logger.js';
 
 export const CreateQueueController = async(req,res)=>{
     app_logger.info(`Entered into CreateQueueController for the projectId : ${req.projectId}`)
     try{
          
-        const projectId = req.projectId;
-        const data = req.data;
+        const projectId = req.body.projectId;
+        const data = req.body.data;
 
         const CreateQueue = await createQueueService(projectId , data);
         
@@ -28,7 +28,7 @@ export const CreateQueueController = async(req,res)=>{
              })
         }
          
-        return req.status(500).json({
+        return res.status(500).json({
             message:"Internal Server Error...",
             error:er
         })
@@ -41,7 +41,7 @@ export const GetQueueContoller = async(req,res)=>{
     app_logger.info(`Entered into the GetQueueController for the projectid ${req.projectId}`)
     try{
 
-        const projectId  = req.projectId;
+        const projectId  = req.body.projectId;
 
         const GetQueues = await GetQueueService(projectId);
        
@@ -66,7 +66,7 @@ export const getSpecificQueueDetailContoller = async(req,res)=>{
        
     try{
           
-        const queue = req.queue_id;
+        const queue = req.body.queue_id;
 
         const Queue_data = await getSpecificQueueDetailsService(queue);
 
@@ -103,10 +103,10 @@ export const DeleteQueueController = async(req,res)=>{
        
     try{
 
-        const queue = await req.queue_id;
-        const project = await req.projectId;
+        const queue = await req.body.queue_id;
+        const project = await req.body.projectId;
 
-        const data = DeleteQueueService(project , queue);
+        const data = await DeleteQueueService(project , queue);
 
         return res.status(200).json({
             message : "Queue Deleted successfully.."
@@ -117,8 +117,52 @@ export const DeleteQueueController = async(req,res)=>{
     catch(er){
         
         app_logger.info(`Error While deleting the Queue`)
+
+        if(er.message === 'Queue Not found'){
+            return res.status(400).json({
+                message : "Queue Not found.."
+            })
+        }
         return res.status(500).json({
             message : "Internal Server Error..",
+            error:er
+        })
+    }
+}
+
+export const updateQueueSettingsContoller = async(req,res)=>{
+       
+    try{
+
+        const queue_id =req.body.queueId;
+        const data = req.body.data;
+
+      
+
+
+        const queue_update = await updateQueueSettingsService(queue_id , data);
+
+        return res.status(200).json({
+            message : "Queue Updated Sucessfully.."
+        })
+
+    }
+    catch(er){
+
+        if(er.message ==='Concurrency must be >= 1'){
+            return res.status(400).json({
+                message : "Concurrency must be greater than 0"
+            })
+        }
+
+        else if (er.message === 'Retry limit must be >= 0'){
+            return res.status(400).json({
+                message : "Retry limit must be greater than 0"
+            })
+        }
+         
+        return res.status(500).json({
+            message : "Internal Server Error...",
             error:er
         })
     }
