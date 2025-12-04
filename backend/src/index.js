@@ -11,6 +11,7 @@ import redis_cron from './utils/cron-jobs/redis-cron.js';
 import Project_Router from './routes/project_auth.js';
 import API_KEY_ROUTER from './routes/api_key.js';
 import Queue_Router from './routes/queue.js';
+import Job_Router from './routes/jobs.js';
 dotenv.config();
 const app = express();
 ConnectDB();
@@ -40,6 +41,7 @@ app.use("/api/user" , Auth_Router)
 app.use("/api/project" , Project_Router)
 app.use("/api/keys" , API_KEY_ROUTER)
 app.use("/api/queue" , Queue_Router);
+app.use("/api/jobs" , Job_Router);
 
 
 
