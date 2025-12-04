@@ -34,19 +34,61 @@ export const createQueueService = async(projectId , data)=>{
 
 
 
+
 export const GetQueueService = async(projectId)=>{
     
     app_logger.info(`Entered into the GetQueueService for projectID ${projectId}`)
     try{
 
-        const projectId = new mongoose.Types.ObjectId(projectId);
+        const projectId_new = new mongoose.Types.ObjectId(projectId);
 
-        const find_queues = await Queue_model.find({projectId : projectId})
+        const find_queues = await Queue_model.find({projectId : projectId_new})
 
         return find_queues;
 
     }
     catch(er){
          throw er;
+    }
+}
+
+export const getSpecificQueueDetailsService = async(queue_id)=>{
+    
+    app_logger.info(`Entering into the getSpecificQueueDetailService`)
+    try{
+        
+        const queue_id_new = new mongoose.Types.ObjectId(queue_id)
+        const queue_data = await Queue_model.findOne({_id : queue_id_new});
+
+        if(!queue_data){
+            throw new Error(`queue not found` )
+        }
+
+        return queue_data;
+
+    }
+    catch(er){
+        throw er;
+    }
+}
+
+export const DeleteQueueService = async(projectId , queue_id)=>{
+      
+    try{
+
+        const new_queue_id  = new mongoose.Types.ObjectId(queue_id);
+
+        //delete the queue and all the jobs related to the queue
+        
+        await Jobs_model.deleteMany({new_queue_id});
+
+        await Queue_model.findByIdAndDelete({new_queue_id})
+
+
+
+
+    }
+    catch(er){
+        throw er
     }
 }
