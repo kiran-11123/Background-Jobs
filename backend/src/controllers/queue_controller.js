@@ -1,6 +1,7 @@
 import express from 'express'
 import { createQueueService , GetQueueService , getSpecificQueueDetailsService , DeleteQueueService , updateQueueSettingsService} from '../services/queue_services.js'
 import app_logger from '../utils/logger/App_logger.js';
+import { getOrCreateQueue } from '../utils/bullmq/queue.js';
 
 export const CreateQueueController = async(req,res)=>{
     app_logger.info(`Entered into CreateQueueController for the projectId : ${req.projectId}`)
@@ -13,6 +14,8 @@ export const CreateQueueController = async(req,res)=>{
         
         
         app_logger.info(`Queue For the project is created successfully`)
+
+      
         return res.status(200).json({
             message : "Queue Created Successfully.."
         })

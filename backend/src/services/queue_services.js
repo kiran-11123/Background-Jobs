@@ -17,7 +17,7 @@ export const createQueueService = async(projectId , data)=>{
         }
 
 
-        const queue = new Queue_model({
+        const queue = await Queue_model.create({
              name :queue_name,
              projectId,
              concurrency : data.concurrency || 5,
@@ -25,7 +25,14 @@ export const createQueueService = async(projectId , data)=>{
              rateLimit : data.rateLimit || null
         })
 
-        return await queue.save();
+
+
+        getOrCreateQueue(data.name);
+        app_logger.info(`Created the bullMq queue dynamically`)
+
+        return queue;
+
+         
 
     }
     catch(er){

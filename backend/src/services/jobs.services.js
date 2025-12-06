@@ -2,13 +2,13 @@ import mongoose from "mongoose";
 import Jobs_model from "../models/jobs.js";
 import Queue_model from "../models/queue.js";
 import app_logger from "../utils/logger/App_logger.js";
-
+import { getOrCreateQueue } from "../utils/bullmq/queue.js";
 
 export const CreateJobService = async(data)=>{
     app_logger.info(`Entered into CreateJobService.`)  
     try{
 
-        const job  = new Jobs_model({
+        const job  = await  Jobs_model.create({
              queueId : data.queueId,
              name :data.name ,
              payload : data.payload || {},
@@ -17,7 +17,20 @@ export const CreateJobService = async(data)=>{
         attemptsLimit: data.attemptsLimit || 3
         })
 
-        return await job.save();
+        const get_queue_name = await Queue_model.findById(data.queueId);
+
+         const bullQueue = getOrCreateQueue(get_queue_name.name);
+        await bullQueue.add(
+            data.name,
+            data.payload,
+            {
+                delay: data.delay || 0,
+                priority: data.priority || 5,
+                attempts: data.attemptsLimit || 3
+            }
+        );
+         return job;
+
 
     }
     catch(er){ 
