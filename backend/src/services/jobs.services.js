@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { mongo } from "mongoose";
 import Jobs_model from "../models/jobs.js";
 import Queue_model from "../models/queue.js";
 import app_logger from "../utils/logger/App_logger.js";
@@ -8,8 +8,10 @@ export const CreateJobService = async(data)=>{
     app_logger.info(`Entered into CreateJobService.`)  
     try{
 
+        const queue_id =new mongoose.Types.ObjectId(data.queueId);
+
         const job  = await  Jobs_model.create({
-             queueId : data.queueId,
+             queueId : queue_id,
              name :data.name ,
              payload : data.payload || {},
              delay : data.delay,
@@ -17,18 +19,21 @@ export const CreateJobService = async(data)=>{
         attemptsLimit: data.attemptsLimit || 3
         })
 
-        const get_queue_name = await Queue_model.findById(data.queueId);
+        const get_queue_name = await Queue_model.findById(queue_id);
 
          const bullQueue = getOrCreateQueue(get_queue_name.name);
-        await bullQueue.add(
-            data.name,
-            data.payload,
-            {
-                delay: data.delay || 0,
-                priority: data.priority || 5,
-                attempts: data.attemptsLimit || 3
-            }
-        );
+       await bullQueue.add(
+    data.name,                     // Job name
+    {                              // Job data (this is what the worker receives as job.data)
+        dbJobId: job._id,          // MongoDB job reference
+        payload: data.payload || {} // Actual payload
+    },
+    {
+        delay: data.delay || 0,
+        priority: data.priority || 5,
+        attempts: data.attemptsLimit || 3
+    }
+);
          return job;
 
 

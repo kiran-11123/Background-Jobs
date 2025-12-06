@@ -1,7 +1,7 @@
 import {Queue , Worker , QueueScheduler  } from 'bullmq'
 import IORedis from 'ioredis'
 import redis_logger from '../logger/redis_logger.js';
-
+import Jobs_model from '../../models/jobs.js';
 export const connection =  new IORedis(process.env.REDIS_URL || "redis://localhost:6379")
 
 //store all queues in the map
@@ -55,9 +55,20 @@ function createWorker(queueName){
             
             //simulate doing work
 
-            await new Promise(resolve=>setTimeout(resolve , 2000))
+             const dbJob = await Jobs_model.findById(job.data.dbJobId);
+                if (dbJob) {
+                    dbJob.status = "in-progress";
+                    await dbJob.save();
+                }
 
-            redis_logger.info(`Job ${job.id} Completed!`);
+            await new Promise(resolve=>setTimeout(resolve , 2000))
+ if (dbJob) {
+                    dbJob.status = "completed";
+                    dbJob.progress = 100;
+                    await dbJob.save();
+                }
+
+                redis_logger.info(`Job ${job.id} Completed!`);
 
         return { success: true };
         },{connection})
