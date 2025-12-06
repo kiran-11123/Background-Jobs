@@ -1,0 +1,40 @@
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:00:07.896Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:00:08.045Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:00:10.254Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:00:10.404Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:00:15.066Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:00:15.200Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:00:18.128Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:00:18.266Z'
+}
