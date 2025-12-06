@@ -1,4 +1,4 @@
-import {Queue , Worker , QueueScheduler  } from 'bullmq'
+import {Queue , Worker   } from 'bullmq'
 import IORedis from 'ioredis'
 import redis_logger from '../logger/redis_logger.js';
 import Jobs_model from '../../models/jobs.js';
@@ -24,7 +24,6 @@ export function getOrCreateQueue(queueName){
 
     const queue = new Queue(queueName , {connection});
      
-    new QueueScheduler(queueName , {connection});
 
      redis_logger.info("BullMQ Queue Created:", queueName);
 
@@ -44,6 +43,27 @@ catch(er){
 
 }
 
+const jobProcessors = {
+     sendEmail : async(payload)=>{
+           
+        if(!payload.to){
+             throw new Error(`No recipient email provided`)
+        }
+        redis_logger.info(`Sending Email to ${to} account`)
+
+        return true;
+     },
+
+     SendReports :async(payload)=>{
+
+          if (!payload.userId) throw new Error("No userId for report");
+    
+    redis_logger.info("Generating report for user:", payload.userId);
+    return true;
+
+     }
+}
+
 function createWorker(queueName){
     
     redis_logger.info(`Entered into the createWorker function`)
@@ -56,27 +76,67 @@ function createWorker(queueName){
             //simulate doing work
 
              const dbJob = await Jobs_model.findById(job.data.dbJobId);
+
+             if(!dbJob){
+                return ;
+             }
+
+
+             try{
+
+             
                 if (dbJob) {
                     dbJob.status = "in-progress";
                     await dbJob.save();
                 }
 
-            await new Promise(resolve=>setTimeout(resolve , 2000))
- if (dbJob) {
-                    dbJob.status = "completed";
-                    dbJob.progress = 100;
-                    await dbJob.save();
-                }
+                const { type, payload } = job.data;
+
+               if (!jobProcessors[type]) {
+          throw new Error(`No processor defined for job type: ${type}`);
+        }
+
+           await jobProcessors[type](payload);
+
+        dbJob.status = "completed";
+        dbJob.progress = 100;
+        await dbJob.save();
 
                 redis_logger.info(`Job ${job.id} Completed!`);
 
         return { success: true };
-        },{connection})
-
-        redis_logger.info(`Worker Started for the queue ${queueName}`)
 
     }
     catch(er){
 
+        redis_logger.info(`Error occured in the job Processing rescheduling the job`)
+         dbJob.attempts += 1;
+        dbJob.failedReason = err.message;
+
+        if (dbJob.attempts < dbJob.attemptsLimit) {
+          dbJob.status = "waiting"; // reschedule
+          await dbJob.save();
+
+          await job.queue.add(
+            job.name,
+            job.data,
+            { delay: 5000, attempts: dbJob.attemptsLimit - dbJob.attempts }
+          );
+        } else {
+          dbJob.status = "failed";
+          await dbJob.save();
+        }
+
+        throw err;
+    }
+        
+        },{connection})
+
+        redis_logger.info(`Worker Started for the queue ${queueName}`)
+    }
+   
+    
+    catch(er){
+          redis_logger.info(`Error Occured for Worker job ${er}`)
     }
 }
