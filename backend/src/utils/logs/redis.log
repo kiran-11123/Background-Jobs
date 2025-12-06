@@ -38,3 +38,453 @@
   level: 'info',
   timestamp: '2025-12-06T18:00:18.266Z'
 }
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:01:20.266Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:01:20.447Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:01:43.425Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:01:43.680Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:01:47.846Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:01:48.011Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:01:53.628Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:01:53.925Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:02:13.958Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:02:14.120Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:02:28.830Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:02:28.993Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:02:33.905Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:02:34.044Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:02:37.487Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:02:37.616Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:02:45.541Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:02:45.734Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:02:55.650Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:02:55.797Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:03:13.025Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:03:13.241Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:03:29.359Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:03:29.581Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:03:33.641Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:03:33.809Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:03:35.514Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:03:35.659Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:03:41.877Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:03:42.014Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:03:46.576Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:03:46.719Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:03:50.493Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:03:50.715Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:03:52.938Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:03:53.128Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:03:55.879Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:03:56.048Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:03:59.162Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:03:59.324Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:04:18.783Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:04:18.974Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:04:24.660Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:04:24.851Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:04:34.952Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:04:35.191Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:04:39.939Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:04:40.072Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:04:52.088Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:04:52.311Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:04:56.289Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:04:56.428Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:05:01.267Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:05:01.424Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:05:03.072Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:05:03.224Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:05:05.818Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:05:05.951Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:05:14.432Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:05:14.671Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:05:16.995Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:05:17.148Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:05:20.737Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:05:20.960Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:05:31.250Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:05:31.386Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:05:48.757Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:05:48.948Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:06:00.035Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:06:00.221Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:06:55.739Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:06:57.320Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:06:59.508Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:06:59.665Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:07:04.766Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:07:04.997Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:07:08.414Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:07:08.543Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:07:16.243Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:07:16.513Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:07:36.237Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:07:36.434Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:07:41.176Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:07:41.357Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:07:43.040Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:07:43.196Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:07:47.975Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:07:48.148Z'
+}
+{
+  message: 'Connecting to Redis....',
+  level: 'info',
+  timestamp: '2025-12-06T18:08:23.604Z'
+}
+{
+  message: 'Redis connected successfully.',
+  level: 'info',
+  timestamp: '2025-12-06T18:08:23.750Z'
+}

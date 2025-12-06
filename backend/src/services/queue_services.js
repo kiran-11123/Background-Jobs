@@ -49,8 +49,34 @@ export const GetQueueService = async(projectId)=>{
     try{
 
         const projectId_new = new mongoose.Types.ObjectId(projectId);
+          
+        try{
+
+        
+        const Cached_Data  = await redisClient.get(`queue_${projectId_new}`)
+
+        if(Cached_Data){
+              app_logger.info(`Queues Data for this project is Fetched from the Cache`);
+              return Cached_Data;
+        }
+    }
+    catch(redisErr){
+         app_logger.info("Redis cache error: " + redisErr.message)
+    }
+
 
         const find_queues = await Queue_model.find({projectId : projectId_new})
+
+          try{
+        
+                    await redisClient.setEx(`queue_${projectId_new}` , 3600 , JSON.stringify(find_queues) );
+                    app_logger.info(`Queues for the project are added into the cache..`)
+        
+                }
+                catch(redisErr){
+                             app_logger.info("Redis cache error: " + redisErr.message)
+        
+                }
 
         return find_queues;
 
@@ -66,11 +92,37 @@ export const getSpecificQueueDetailsService = async(queue_id)=>{
     try{
         
         const queue_id_new = new mongoose.Types.ObjectId(queue_id)
+        
+         try{
+
+        
+        const Cached_Data  = await redisClient.get(`queue_id_${queue_id_new}`)
+
+        if(Cached_Data){
+              app_logger.info(`Queue Data for specific queue_id is  Fetched from the Cache`);
+              return Cached_Data;
+        }
+    }
+    catch(redisErr){
+         app_logger.info("Redis cache error: " + redisErr.message)
+    }
+
         const queue_data = await Queue_model.findOne({_id : queue_id_new});
 
         if(!queue_data){
             throw new Error(`queue not found` )
         }
+
+         try{
+        
+                    await redisClient.setEx(`queue_id_${queue_id_new}` , 3600 , JSON.stringify(queue_data) );
+                    app_logger.info(`Queues data for this queue id is added into the cache..`)
+        
+                }
+                catch(redisErr){
+                             app_logger.info("Redis cache error: " + redisErr.message)
+        
+                }
 
         return queue_data;
 
@@ -85,8 +137,8 @@ export const DeleteQueueService = async(projectId , queue_id)=>{
     try{
 
         const new_queue_id  = new mongoose.Types.ObjectId(queue_id);
-         
-        const find_queue = await Queue_model.findOne({ _id: new_queue_id, projectId })
+         const projectId_new = new mongoose.Types.ObjectId(projectId)
+        const find_queue = await Queue_model.findOne({ _id: new_queue_id, projectId:projectId_new })
 
         if(!find_queue){
             throw new Error(`Queue Not found`)
@@ -98,8 +150,13 @@ export const DeleteQueueService = async(projectId , queue_id)=>{
 
         await Queue_model.findByIdAndDelete(new_queue_id);
 
-
-
+        
+        try {
+            await redis_client.del(`queue_${projectId_new}`);
+            app_logger.info("Cache deleted for the Queue");
+        } catch (redisErr) {
+            logger.warn("Redis invalidation error: " + redisErr.message);
+        }   
 
 
     }
@@ -118,6 +175,15 @@ export const updateQueueSettingsService= async(queueId , data)=>{
 
           if (data.concurrency < 1) throw new Error("Concurrency must be >= 1");
         if (data.retryLimit < 0) throw new Error("Retry limit must be >= 0");
+
+
+         try {
+            await redis_client.del(`queue_id_${queue_id}`);
+            app_logger.info("Cache deleted for the Queue");
+        } catch (redisErr) {
+            logger.warn("Redis invalidation error: " + redisErr.message);
+        }   
+
         return  await Queue_model.findByIdAndUpdate(
              
             queue_id,
@@ -131,6 +197,7 @@ export const updateQueueSettingsService= async(queueId , data)=>{
             }
         )
          
+      
         
     
 

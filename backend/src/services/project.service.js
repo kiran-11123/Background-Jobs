@@ -119,7 +119,7 @@ export const Get_Project_By_Id_Service = async(user_id , project_id)=>{
 
           try{
 
-            await redisClient.setEx(`projects_${user_id}_${project_id}` , 3600 , JSON.stringify(find_projects) );
+            await redisClient.setEx(`projects_${user_id}_${project_id}` , 3600 , JSON.stringify(find_Project_with_id) );
             app_logger.info(`Projects are added into the cache..`)
 
         }
