@@ -3,6 +3,7 @@ import Jobs_model from "../models/jobs.js";
 import Queue_model from "../models/queue.js";
 import app_logger from "../utils/logger/App_logger.js";
 import { getOrCreateQueue } from "../utils/bullmq/queue.js";
+import redisClient from "../utils/redis/redis-client.js";
 
 export const CreateJobService = async(data)=>{
     app_logger.info(`Entered into CreateJobService.`)  
@@ -50,13 +51,36 @@ export const GetJobsService = async(queueId)=>{
     try{
 
         const queue_id = new mongoose.Types.ObjectId(queueId)
-        
+
+        const Cached_Data  = await redisClient.get(`Jobs_${queue_id}`)
+    try{
+        if(Cached_Data){
+              app_logger.info(`Jobs Data Fetched from the Cache`);
+              return Cached_Data;
+        }
+    }
+
+    catch(redisErr){
+         app_logger.info("Redis cache error: " + redisErr.message)
+    }
         const find_jobs = await Jobs_model.find({
             queueId : queue_id
         })
         
         if(!find_jobs){
              throw new Error(`QueueId is wrong`)
+        }
+
+        
+        try{
+
+            await redisClient.setEx(`Jobs_${queue_id}` , 3600 , JSON.stringify(find_jobs) );
+            app_logger.info(`jobs are added into the cache..`)
+
+        }
+        catch(redisErr){
+                     app_logger.info("Redis cache error: " + redisErr.message)
+
         }
         return find_jobs;
 
@@ -79,6 +103,10 @@ export const GetJobsServiceForId = async(queueId , jobId)=>{
         if(!find_job){
             throw new Error(`Job Not found..`)
         }
+
+         
+        
+
 
         return find_job;
 
@@ -133,6 +161,8 @@ export const UpdateJobService = async(jobId , data)=>{
         },
         { new: true }
     );
+
+    
 
     }
     catch(er){

@@ -96,20 +96,7 @@ export const Get_Project_By_Id_Service = async(user_id , project_id)=>{
        
     try{
 
-         try{
-
-        
-        const Cached_Data  = await redisClient.get(`projects_${user_id}_${project_id}`)
-
-        if(Cached_Data){
-              app_logger.info(`Projects Data Fetched from the Cache`);
-              return Cached_Data;
-        }
-    }
-    catch(redisErr){
-         app_logger.info("Redis cache error: " + redisErr.message)
-    }
-
+      
         const find_Project_with_id  = await project_model.findOne({user_id : user_id , _id : project_id})
 
         if(!find_Project_with_id){
@@ -117,16 +104,6 @@ export const Get_Project_By_Id_Service = async(user_id , project_id)=>{
              throw new Error(`Project Not Found`)
         }
 
-          try{
-
-            await redisClient.setEx(`projects_${user_id}_${project_id}` , 3600 , JSON.stringify(find_Project_with_id) );
-            app_logger.info(`Projects are added into the cache..`)
-
-        }
-        catch(redisErr){
-                     app_logger.info("Redis cache error: " + redisErr.message)
-
-        }
          
 
         return find_Project_with_id;
