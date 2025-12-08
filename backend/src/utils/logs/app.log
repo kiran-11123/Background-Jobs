@@ -478,3 +478,208 @@
   level: 'info',
   timestamp: '2025-12-06T18:08:24.246Z'
 }
+{
+  message: 'Server Started at Port 5000',
+  level: 'info',
+  timestamp: '2025-12-06T18:08:29.977Z'
+}
+{
+  message: 'MongoDB connected..',
+  level: 'info',
+  timestamp: '2025-12-06T18:08:30.351Z'
+}
+{
+  message: 'Server Started at Port 5000',
+  level: 'info',
+  timestamp: '2025-12-08T08:42:36.374Z'
+}
+{
+  message: 'MongoDB connected..',
+  level: 'info',
+  timestamp: '2025-12-08T08:42:38.069Z'
+}
+{
+  message: 'SignIn Attempt for email kiran@gmail.com',
+  level: 'info',
+  timestamp: '2025-12-08T08:42:55.089Z'
+}
+{
+  message: 'SignInService Error for kiran@gmail.com: Email Not found',
+  level: 'error',
+  timestamp: '2025-12-08T08:42:55.126Z'
+}
+{
+  message: 'Signin error for kiran@gmail.com: Email Not found',
+  level: 'error',
+  timestamp: '2025-12-08T08:42:55.128Z'
+}
+{
+  message: 'SignUp Attempt for email kiran@gmail.com',
+  level: 'info',
+  timestamp: '2025-12-08T08:43:22.390Z'
+}
+{
+  message: 'User registration successful: 69368faa3c408e0dbdc84a96',
+  level: 'info',
+  timestamp: '2025-12-08T08:43:23.006Z'
+}
+{
+  message: 'Registration successful for user: kiran@1234',
+  level: 'info',
+  timestamp: '2025-12-08T08:43:23.008Z'
+}
+{
+  message: 'SignUp Attempt for email kiran@gmail.com',
+  level: 'info',
+  timestamp: '2025-12-08T08:43:28.554Z'
+}
+{
+  message: 'Attempt to register already existing email: kiran@gmail.com',
+  level: 'warn',
+  timestamp: '2025-12-08T08:43:28.583Z'
+}
+{
+  message: 'SignUpService Error: Email already registered',
+  level: 'error',
+  timestamp: '2025-12-08T08:43:28.585Z'
+}
+{
+  message: 'Signup error: Email already registered',
+  level: 'warn',
+  timestamp: '2025-12-08T08:43:28.586Z'
+}
+{
+  message: 'SignIn Attempt for email kiran@gmail.com',
+  level: 'info',
+  timestamp: '2025-12-08T08:43:34.922Z'
+}
+{
+  message: 'JWT token issued for the user successfully...',
+  level: 'info',
+  timestamp: '2025-12-08T08:43:35.120Z'
+}
+{
+  message: 'Signin successful for user: kiran@1234',
+  level: 'info',
+  timestamp: '2025-12-08T08:43:35.120Z'
+}
+{
+  message: 'Server Started at Port 5000',
+  level: 'info',
+  timestamp: '2025-12-08T08:45:27.603Z'
+}
+{
+  message: 'MongoDB connected..',
+  level: 'info',
+  timestamp: '2025-12-08T08:45:28.011Z'
+}
+{
+  message: 'Server Started at Port 5000',
+  level: 'info',
+  timestamp: '2025-12-08T08:45:53.354Z'
+}
+{
+  message: 'MongoDB connected..',
+  level: 'info',
+  timestamp: '2025-12-08T08:45:53.727Z'
+}
+{
+  message: 'Server Started at Port 5000',
+  level: 'info',
+  timestamp: '2025-12-08T08:46:04.808Z'
+}
+{
+  message: 'MongoDB connected..',
+  level: 'info',
+  timestamp: '2025-12-08T08:46:05.249Z'
+}
+{
+  message: 'Server Started at Port 5000',
+  level: 'info',
+  timestamp: '2025-12-08T08:46:18.180Z'
+}
+{
+  message: 'MongoDB connected..',
+  level: 'info',
+  timestamp: '2025-12-08T08:46:18.581Z'
+}
+{
+  message: 'Server Started at Port 5000',
+  level: 'info',
+  timestamp: '2025-12-08T08:46:21.125Z'
+}
+{
+  message: 'MongoDB connected..',
+  level: 'info',
+  timestamp: '2025-12-08T08:46:21.600Z'
+}
+{
+  message: 'Server Started at Port 5000',
+  level: 'info',
+  timestamp: '2025-12-08T08:46:44.977Z'
+}
+{
+  message: 'MongoDB connected..',
+  level: 'info',
+  timestamp: '2025-12-08T08:46:45.429Z'
+}
+{
+  message: 'SignIn Attempt for email kiran@gmail.com',
+  level: 'info',
+  timestamp: '2025-12-08T08:50:31.495Z'
+}
+{
+  message: 'SignInService Error for kiran@gmail.com: Password is Wrong for the email',
+  level: 'error',
+  timestamp: '2025-12-08T08:50:31.633Z'
+}
+{
+  message: 'Signin error for kiran@gmail.com: Password is Wrong for the email',
+  level: 'error',
+  timestamp: '2025-12-08T08:50:31.634Z'
+}
+{
+  message: 'SignIn Attempt for email kiran@gmail.com',
+  level: 'info',
+  timestamp: '2025-12-08T08:50:36.562Z'
+}
+{
+  message: 'SignInService Error for kiran@gmail.com: Password is Wrong for the email',
+  level: 'error',
+  timestamp: '2025-12-08T08:50:36.667Z'
+}
+{
+  message: 'Signin error for kiran@gmail.com: Password is Wrong for the email',
+  level: 'error',
+  timestamp: '2025-12-08T08:50:36.668Z'
+}
+{
+  message: 'SignIn Attempt for email kiran@gmail.com',
+  level: 'info',
+  timestamp: '2025-12-08T08:50:48.972Z'
+}
+{
+  message: 'SignInService Error for kiran@gmail.com: Password is Wrong for the email',
+  level: 'error',
+  timestamp: '2025-12-08T08:50:49.091Z'
+}
+{
+  message: 'Signin error for kiran@gmail.com: Password is Wrong for the email',
+  level: 'error',
+  timestamp: '2025-12-08T08:50:49.092Z'
+}
+{
+  message: 'SignIn Attempt for email kiran@gmail.com',
+  level: 'info',
+  timestamp: '2025-12-08T08:50:53.972Z'
+}
+{
+  message: 'JWT token issued for the user successfully...',
+  level: 'info',
+  timestamp: '2025-12-08T08:50:54.080Z'
+}
+{
+  message: 'Signin successful for user: kiran@1234',
+  level: 'info',
+  timestamp: '2025-12-08T08:50:54.081Z'
+}
