@@ -1,7 +1,8 @@
 import { SignInService, SignUpService } from "../services/auth.service.js";
 import app_logger from "../utils/logger/App_logger.js";
-
-
+import { ResetPassword } from "../services/auth.service.js";
+import { VerifyCodeService } from "../services/auth.service.js";
+import { ChangePassword } from "../services/auth.service.js";
 // ---------------------- SIGN-IN CONTROLLER ----------------------
 export const Signin = async (req, res) => {
     try {
@@ -80,3 +81,107 @@ export const Signup = async (req, res) => {
         });
     }
 };
+
+
+export const ResetPasswordController = async(req,res)=>{
+    
+    app_logger.info(`Entered into the ResetPasswordController `)
+    try{
+
+        const email = req.body.email;
+        const user_id = req.user.user_id;
+
+        const code  = await ResetPassword(email);
+        
+        app_logger.info(`Code sent Successfully..`)
+        return res.status(200).json({
+            message :"Code sent Successfully to the email"
+        })
+
+    }
+    catch(er){
+          
+        app_logger.info(`Error Occured while sending the reset code`)
+
+        if(er.message === 'User Not Found'){
+            return res.status(400).json({
+                message : "Email Not found.."
+            })
+        }
+
+        return res.status(500).json({
+            message: "Internal Sever Error",
+            error:er
+        })
+
+
+    }
+}
+export const VerifyCodeController = async (req, res) => {
+  try {
+    app_logger.info(`Entered into the VerifyCodeController`);
+
+    const { email, code } = req.body;
+
+    const result = await VerifyCodeService(email, code);
+
+    app_logger.info(`Code verified successfully`);
+    return res.status(200).json({
+      message: "Code Verified Successfully",
+      result,
+    });
+
+  } catch (er) {
+    app_logger.error(`Error while verifying the code: ${er.message}`);
+
+    if (er.message === "User Not Found") {
+      return res.status(400).json({ message: "Email not found" });
+    }
+
+    if (er.message === "Code Time Expired") {
+      return res.status(400).json({ message: "Code expired" });
+    }
+
+    if (er.message === "Invalid Code") {
+      return res.status(400).json({ message: "Code is wrong" });
+    }
+
+    // Unknown error
+    return res.status(500).json({
+      message: "Internal server error",
+      error: er.message,
+    });
+  }
+};
+
+
+export const ChangePasswordController = async(req,res)=>{
+      
+    try{
+          
+        app_logger.info(`Entered into  the ChangePasswordService`)
+
+        const result= await ChangePassword(req.body.email , req.body.password);
+
+     app_logger.info(`Password changed successfully`)
+     return res.status(200).json({
+        message: "Password changed successfully"
+     })
+    } 
+    catch(er){
+ 
+
+        app_logger.info(`Error Occured while changing the password   ,${er}`)
+
+        
+    if (er.message === "User Not Found") {
+      return res.status(400).json({ message: "Email not found" });
+    }
+
+    return res.status(500).json({
+        message: "Internal Server Error",
+        error:er
+    })
+         
+    }
+}
