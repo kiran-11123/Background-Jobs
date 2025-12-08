@@ -1,12 +1,7 @@
-import exress from 'express'
-import jobs_logger from '../../src/utils/logger/jobs_logger.js'
-import sgMail from "@sendgrid/mail";
+import jobs_logger from '../../../src/utils/logger/jobs_logger.js'
 import dotenv from 'dotenv'
 dotenv.config({ path: "../../.env" });
-
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-
-console.log("API KEY:", process.env.SENDGRID_API_KEY?.slice(0,5));
+import transporter from '../../../src/utils/Nodemailer.js';
 
 
 export  const EmailProcessor = async( data)=>{
@@ -61,7 +56,7 @@ export  const EmailProcessor = async( data)=>{
            jobs_logger.info(`Mail sent to ${email} by ${username}`);
 
 
-
+    
 
             return {success:true  ,message : "Email Sent"}
 
