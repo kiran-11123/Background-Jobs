@@ -12,8 +12,18 @@ export default function Signup(){
     const[message  , SetMessage] = useState('')
     const[username , setUsername]=useState('')
 
-    function SubmitForm(e:any){
+   async function SubmitForm(e:any){
         e.preventDefault();
+
+        try{
+
+        }
+        catch(er){
+
+        }
+        finally{
+
+        }
 
     }
        
