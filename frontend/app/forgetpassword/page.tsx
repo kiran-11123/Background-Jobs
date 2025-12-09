@@ -3,7 +3,7 @@
 import axios from "axios";
 import { useState } from "react";
 
-const SERVER_NAME = process.env.SERVER_NAME;
+const SERVER_NAME = process.env.NEXT_PUBLIC_SERVER_URL;
 
 export default function ForgetPassword(){
 

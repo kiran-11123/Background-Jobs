@@ -4,7 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import axios from "axios";
-const SERVER_NAME = process.env.SERVER_NAME;
+const SERVER_NAME = process.env.NEXT_PUBLIC_SERVER_URL;
 
 
 export default function Signup(){
