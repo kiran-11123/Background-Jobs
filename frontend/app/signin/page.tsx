@@ -17,7 +17,7 @@ export default function Signin(){
         e.preventDefault();
 
         try{
-          const response  = await axios.post(`${SERVER_NAME}/user/signin` , {
+          const response  = await axios.post(`${SERVER_NAME}/users/signin` , {
             email,
             password
           } ,{

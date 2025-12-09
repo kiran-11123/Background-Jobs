@@ -37,7 +37,7 @@ app.use(express.json());
 app.use(limiter);
 app.use(cookieParser());
 
-app.use("/api/user" , Auth_Router)
+app.use("/api/users" , Auth_Router)
 app.use("/api/project" , Project_Router)
 app.use("/api/keys" , API_KEY_ROUTER)
 app.use("/api/queue" , Queue_Router);

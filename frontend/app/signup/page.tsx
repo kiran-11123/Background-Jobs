@@ -3,6 +3,8 @@
 import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import axios from "axios";
+const SERVER_NAME = process.env.SERVER_NAME;
 
 
 export default function Signup(){
@@ -16,12 +18,53 @@ export default function Signup(){
         e.preventDefault();
 
         try{
+          
+            if(!email || !username || !password){
+                SetMessage("All fields are required");
+                return;
+            }
 
+            if(password.length <5){
+                SetMessage("Password length must be more than 5 characters")
+                return;
+            }
+
+          const response = await axios.post(`${SERVER_NAME}/users/signup` , {
+            email,
+            username,
+            password
+          },{
+            withCredentials:true
+          })
+
+          if(response){
+              SetMessage(response.data.message);
+          }
+            
         }
-        catch(er){
+        catch(er){ 
+
+           if (typeof er === "object" && er !== null && "response" in er) {
+                const error = er as any;
+                if (error.response && error.response.data && error.response.data.message) {
+                    SetMessage(error.response.data.message);
+                } else {
+                    SetMessage('error in login');
+                }
+            } else {
+                SetMessage('error in login');
+            }
 
         }
         finally{
+
+          setTimeout(()=>{
+            setEmail('');
+            setPassword('');
+            setUsername('');
+            SetMessage('');
+
+          },2000)
 
         }
 
