@@ -12,14 +12,14 @@ const AuthGuard: React.FC<AuthGuardProps> = ({ children }) => {
   const [isChecking, setIsChecking] = useState(true); 
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+  const token = localStorage.getItem("token");
 
-    if (!token) {
-      router.replace("/"); 
-    } else {
-      setIsChecking(false); 
-    }
-  }, [router]);
+  if (!token) {
+    router.replace("/login");
+  } else {
+    setIsChecking(false);
+  }
+}, []);
 
   if (isChecking) {
     

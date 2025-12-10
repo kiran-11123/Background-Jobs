@@ -41,6 +41,7 @@ export default function Home() {
         hover:bg-white/10 
         hover:border-white/40
         hover:scale-105
+        cursor-pointer
         transition-all duration-300
         shadow-sm hover:shadow-md
         ">
@@ -53,6 +54,7 @@ export default function Home() {
         hover:bg-blue-500 
         focus:ring-2 focus:ring-blue-400
         hover:scale-105
+        cursor-pointer
         transition-all duration-300 
         shadow-sm hover:shadow-lg
       ">

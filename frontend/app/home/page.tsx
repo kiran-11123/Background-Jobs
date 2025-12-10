@@ -8,8 +8,8 @@ export default function Home(){
     return(
 
         <AuthGuard>
-         <div>
-            welcome to home
+         <div className="">
+           
          </div>
 
          </AuthGuard>
