@@ -4,11 +4,20 @@ import { useState } from "react"
 import AuthGuard from "../components/AuthGuard"
 import ProjectCard from "../components/project_card"
 import { Menu , X } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 
 export default function Home(){
 
     const[isOpen , setIsOpen] = useState(false);
+    const router = useRouter();
+
+    function logout(){
+        
+        localStorage.removeItem("token");
+        router.replace("/");
+
+    }
 
       
     return(
@@ -16,7 +25,7 @@ export default function Home(){
         <AuthGuard>
           <div className="  flex  flex-col justify-between w-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#525252] via-[#a3a3a3] to-[#e5e5e5] ">
 
-            <div className="flex justify-between items-center mt-2 z-50  w-full bg-gray-500 text-white rounded-md px-6 py-4 font-bold shadow-xl ">
+            <div className="flex justify-between items-center mt-2 z-50  w-full bg-black text-white rounded-md px-6 py-4 font-bold shadow-xl ">
                   
                  <div className="px-4 py-2 rounded-lg 
                                     font-roboto
@@ -25,6 +34,10 @@ export default function Home(){
                       
                         focus:ring-2 focus:ring-blue-400
                         hover:scale-105
+                           border border-white/20 
+                         bg-white/5 
+                         hover:bg-white/10 
+                        hover:border-white/40
                         transition-all duration-300 
                         shadow-sm hover:shadow-lg">
                         Projects
@@ -43,7 +56,7 @@ export default function Home(){
                         transition-all duration-300
                         shadow-sm hover:shadow-md
                         ">
-                        Login
+                        Create
                       </button>
                 
                       <button className="
@@ -55,8 +68,8 @@ export default function Home(){
                         cursor-pointer
                         transition-all duration-300 
                         shadow-sm hover:shadow-lg
-                      ">
-                        Register
+                      " onClick={logout}>
+                        Logout
                       </button>
                 
                     </div>
