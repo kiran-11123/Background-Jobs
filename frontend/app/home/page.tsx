@@ -5,11 +5,12 @@ import AuthGuard from "../components/AuthGuard"
 import ProjectCard from "../components/project_card"
 import { Menu , X } from "lucide-react"
 import { useRouter } from "next/navigation"
-
+import CreateProjectForm from "../components/create_project_form"
 
 export default function Home(){
 
     const[isOpen , setIsOpen] = useState(false);
+    const[model , setOpenModel] = useState(false);
     const router = useRouter();
 
     function logout(){
@@ -23,7 +24,7 @@ export default function Home(){
     return(
 
         <AuthGuard>
-          <div className="  flex  flex-col justify-between w-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#525252] via-[#a3a3a3] to-[#e5e5e5] ">
+          <div className="  flex  flex-col justify-between w-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#e8e5e5] via-[#a3a3a3] to-[#e5e5e5] ">
 
             <div className="flex justify-between items-center mt-2 z-50  w-full bg-black text-white rounded-md px-6 py-4 font-bold shadow-xl ">
                   
@@ -55,9 +56,13 @@ export default function Home(){
                         cursor-pointer
                         transition-all duration-300
                         shadow-sm hover:shadow-md
-                        ">
+                        "
+                        onClick={()=>setOpenModel(true)}
+                        >
                         Create
                       </button>
+
+                       <CreateProjectForm isOpen ={model} onClose={()=>setOpenModel(false)}  /> 
                 
                       <button className="
                         px-5 py-2 rounded-lg 
