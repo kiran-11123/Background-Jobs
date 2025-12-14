@@ -16,7 +16,8 @@ export const CreateProject = async (req, res) => {
 
         app_logger.info(`Project "${title}" created successfully for user ${username}`);
         return res.status(200).json({
-            message: "Project Created Successfully"
+            message: "Project Created Successfully",
+            project: p_data
         });
 
     } catch (er) {
@@ -45,7 +46,6 @@ export const Get_Projects = async (req, res) => {
        
         let  projects  = await Get_Projects_Service(user_id);
     
-          console.log("Projects Fetched :" , projects);
 
         app_logger.info(`Fetched projects successfully for the user ${req.user.username}`)
         return res.status(200).json({

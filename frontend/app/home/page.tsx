@@ -71,7 +71,7 @@ const [data, setData] = useState<Project[]>([]);
     },[]);
 
    const handleProjectCreated = (newProject: Project) => {
-  setData(prevData => [newProject, ...prevData]); // ✅ now type-safe
+  setData(prevData => [...prevData  ,newProject]); // ✅ now type-safe
   setOpenModel(false);
 }
 

@@ -1,13 +1,40 @@
 "use client"
 
-import { Plus } from "lucide-react"
+import axios from "axios";
+import { Plus, Trash } from "lucide-react";
 
 interface CardComponents {
-    id:string,
-  title: string
+  id: string;
+  title: string;
+  onDelete?: (id: string) => void; // optional callback for deletion
 }
 
-export default function ProjectCard({ id, title }: CardComponents) {
+export default function ProjectCard({ id, title, onDelete }: CardComponents) {
+
+   async function handleDelete(id: string) {
+
+    try{
+      
+        const response = await axios.delete(`${process.env.NEXT_PUBLIC_SERVER_URL}/project/delete/${id}` , {
+            withCredentials : true
+        })
+
+        if(response.status === 200 ) {
+            console.log("Project deleted successfully");
+
+        }
+          
+    }
+    catch(er){
+        console.error("Error deleting project:", er);
+    }
+
+
+
+   }
+
+
+
   return (
     <div
       className="
@@ -27,12 +54,12 @@ export default function ProjectCard({ id, title }: CardComponents) {
         </h2>
       </div>
 
-      {/* Action */}
+      {/* Open Project Button */}
       <button
         type="button"
         title="Open Project"
         className="
-          absolute bottom-4 right-4
+          absolute bottom-4 right-16
           h-11 w-11 rounded-full
           flex items-center justify-center
           bg-white text-black
@@ -43,6 +70,24 @@ export default function ProjectCard({ id, title }: CardComponents) {
       >
         <Plus className="h-5 w-5" />
       </button>
+
+      {/* Delete Button */}
+      <button
+        type="button"
+        title="Delete Project"
+        className="
+          absolute bottom-4 right-4
+          h-11 w-11 rounded-full
+          flex items-center justify-center
+          bg-red-500 text-white
+          shadow-md
+          transition-all duration-300
+          hover:scale-110 hover:bg-red-700
+        "
+        onClick={() => handleDelete(id)}
+      >
+        <Trash className="h-5 w-5" />
+      </button>
     </div>
-  )
+  );
 }

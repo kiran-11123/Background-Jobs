@@ -34,7 +34,11 @@ export default function CreateProjectForm({isOpen ,onClose, onProjectCreated}:Cr
 
         if(response.status === 200){
                SetMessage(response.data.message);
-               onProjectCreated(response.data.project);
+               setTimeout(()=>{
+                 onProjectCreated(response.data.project);
+                 onClose();
+               },1000)
+              
                 
         }
         else{
