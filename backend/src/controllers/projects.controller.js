@@ -4,6 +4,7 @@ import app_logger from '../utils/logger/App_logger.js';
 import { error } from 'console';
 import { Get_Projects_Service } from '../services/project.service.js';
 import { Get_Project_By_Id_Service } from '../services/project.service.js';
+import mongoose, { mongo } from 'mongoose';
 
 export const CreateProject = async (req, res) => {
 
@@ -46,8 +47,9 @@ export const Get_Projects = async (req, res) => {
     try {
 
         const user_id = req.user.user_id;
-
+       
         const { projects } = await Get_Projects_Service(user_id);
+    
 
 
         app_logger.info(`Fetched projects successfully for the user ${req.user.username}`)
@@ -60,7 +62,7 @@ export const Get_Projects = async (req, res) => {
     }
     catch (er) {
 
-        app_logger.warn(`Error occured while Fetching the projects`)
+        app_logger.warn(`Error occured while Fetching the projects ` , er.message)
 
         if(er.message==='Error Occured while Fetching the project'){
             return res.status(400).json({

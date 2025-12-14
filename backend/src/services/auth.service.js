@@ -63,11 +63,7 @@ export const SignInService = async (email, password) => {
         }
 
         // Generate JWT
-        const token = issueJWT({
-            user_id: user._id,
-            username: user.username,
-            email: user.email,
-        });
+        const token = issueJWT(user);
 
         return { user, token };
     }

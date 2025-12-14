@@ -1,48 +1,26 @@
-import express from 'express'
-const JWT_SECRET = process.env.JWT_SECRET
-import dotenv from 'dotenv'
-
+import dotenv from "dotenv";
 dotenv.config();
 
+import jwt from "jsonwebtoken";
 
-const Authentication_token = (req,res,next)=>{
+const JWT_SECRET = process.env.JWT_SECRET;
 
-    const token = req.cookies?.token;
-    console.log("Token in middleware :" , token);  
+const Authentication_token = (req, res, next) => {
+  const token = req.cookies?.token;
 
+  if (!token) {
+    return res.status(401).json({ message: "Token not found" });
+  }
 
-    if(!token){
-        return res.status(401).json({
-            message:"Unauthorized : Token Not found.."
-        })
-    }
-
-
-    try{
-
-        const decoded  = jwt.verify(token ,JWT_SECRET);
-
-
-        if(!decoded){
-             return res.status(401).json({
-                message:"Invalid Token payload."
-             })
-        }
-
-       
-        req.user = decoded;
-        next();
-
-
-    }
-    catch(er){
-         
-        return res.status(401).json({
-            message:"Invalid Token",
-            error:er
-        })
-    }
-
-}
+  try {
+    const decoded = jwt.verify(token, JWT_SECRET);
+    console.log("Decoded JWT:", decoded);
+    req.user = decoded;
+    next();
+  } catch (err) {
+    console.log("JWT ERROR:", err);
+    return res.status(401).json({ message: "Invalid or expired token" });
+  }
+};
 
 export default Authentication_token;

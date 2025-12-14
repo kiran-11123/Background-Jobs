@@ -59,7 +59,7 @@ export default function Home(){
 
 
 
-    },[data.length]);
+    },[]);
 
       
     return(
@@ -164,11 +164,15 @@ export default function Home(){
 
             <div className="grid grid-cols-1 sm:grid-cols-3 p-4 justify-center items-center md:grid-cols-4 gap-6 mt-5">
 
-          {data.length > 0 ? data.map((project : Components) => ( 
-                  <ProjectCard key={project._id} id={project._id} title={project.title} />
-              )) : <p className="text-white">No projects found</p>}
-
-            </div>
+       
+  {data && data.length > 0 ? (
+    data.map((project:Components) => (
+      <ProjectCard key={project._id} id={project._id} title={project.title} />
+    ))
+  ) : (
+    <p className="text-black font-roboto text-xl text-center col-span-full">No projects found</p>
+  )}
+</div>
                
          </div>
 

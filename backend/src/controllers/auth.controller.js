@@ -14,11 +14,11 @@ export const Signin = async (req, res) => {
         app_logger.info(`Signin successful for user: ${user.username}`);
 
         // Set cookie token
-        res.cookie("token", token, {
-            httpOnly: true,
-            secure: true,
-            sameSite: "none",
-        });
+       res.cookie("token", token, {
+  httpOnly: true,
+  secure: false,          // true in production
+  sameSite: "lax",        // or "none" if cross-site
+})
 
         return res.status(200).json({
             message: "Login Successful",
