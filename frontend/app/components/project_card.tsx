@@ -6,32 +6,11 @@ import { Plus, Trash } from "lucide-react";
 interface CardComponents {
   id: string;
   title: string;
-  onDelete?: (id: string) => void; // optional callback for deletion
+    onDelete?: (id: string) => void;
 }
 
 export default function ProjectCard({ id, title, onDelete }: CardComponents) {
 
-   async function handleDelete(id: string) {
-
-    try{
-      
-        const response = await axios.delete(`${process.env.NEXT_PUBLIC_SERVER_URL}/project/delete/${id}` , {
-            withCredentials : true
-        })
-
-        if(response.status === 200 ) {
-            console.log("Project deleted successfully");
-
-        }
-          
-    }
-    catch(er){
-        console.error("Error deleting project:", er);
-    }
-
-
-
-   }
 
 
 
@@ -84,7 +63,7 @@ export default function ProjectCard({ id, title, onDelete }: CardComponents) {
           transition-all duration-300
           hover:scale-110 hover:bg-red-700
         "
-        onClick={() => handleDelete(id)}
+        onClick={() => onDelete && onDelete(id)}
       >
         <Trash className="h-5 w-5" />
       </button>

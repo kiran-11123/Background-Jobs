@@ -1,7 +1,7 @@
 import app_logger from '../utils/logger/App_logger.js'
 import project_model from '../models/projects.js'
 import redisClient from '../utils/redis/redis-client.js'
-import mongoose, { Mongoose } from 'mongoose'
+import mongoose from 'mongoose'
 export const Project_creation = async(user_id, title, description) => {
     app_logger.info(`Entered into Project_Creation service for user ${user_id}`);
 
@@ -90,8 +90,8 @@ export const Get_Projects_Service = async(user_id)=>{
 
 export const Get_Project_By_Id_Service = async(user_id , project_id)=>{
 
-    user_id = new Mongoose.Types.ObjectId(user_id)
-    project_id = new Mongoose.Types.ObjectId(project_id)
+    user_id = new mongoose.Types.ObjectId(user_id)
+    project_id = new mongoose.Types.ObjectId(project_id)
        
     try{
 
@@ -113,38 +113,32 @@ export const Get_Project_By_Id_Service = async(user_id , project_id)=>{
         throw er;
     }
 }
+export const Delete_Project_Service = async (user_id , project_id) => {
+  app_logger.info(`Entered into Delete_Project_Service for the user ${user_id}`);
 
+  try {
+    // Keep _id as ObjectId
+    const project_id_new = new mongoose.Types.ObjectId(project_id);
 
-export const Delete_Project_Service = async(user_id , project_id)=>{
+    // Delete the project
+    const delete_Project_with_id = await project_model.deleteOne({ _id: project_id_new });
 
-
-    try{
-
-        
-
-        const delete_Project_with_id  = await project_model.deleteOne({user_id : user_id , _id : project_id})
-
-        if(delete_Project_with_id.deletedCount===0){
-             app_logger.warn(`Project Not Found with projectId ${project_id} for Deletion`)
-             throw new Error(`Project Not Found for Deletion`)
-        }
-
-         try {
-            await redisClient.del(`projects_${user_id}`);
-            app_logger.info("Cache deleted for the user");
-        } catch (redisErr) {
-            logger.warn("Redis invalidation error: " + redisErr.message);
-        }   
-  
-        return delete_Project_with_id;
-
+    if (delete_Project_with_id.deletedCount === 0) {
+      app_logger.warn(`Project Not Found with projectId ${project_id} for Deletion`);
+      throw new Error(`Project Not Found for Deletion`);
     }
-    catch(er){
 
-        app_logger.warn(`Error occured while Deleting the project with Id ${project_id}`)
-        throw er;
-
+    // Invalidate cache
+    try {
+      await redisClient.del(`projects_${user_id}`);
+      app_logger.info("Cache deleted for the user");
+    } catch (redisErr) {
+      app_logger.warn("Redis invalidation error: " + redisErr.message);
     }
-       
 
-}
+    return delete_Project_with_id;
+  } catch (er) {
+    app_logger.warn(`Error occurred while Deleting the project with Id ${project_id}: ${er.message}`);
+    throw er;
+  }
+};

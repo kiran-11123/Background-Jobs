@@ -108,11 +108,13 @@ export const Get_Project_By_Id = async(req , res)=>{
 
 
 export const deleteProject = async(req , res)=>{
-     
+     app_logger.info(`Entered into deleteProject controller for the user ${req.user.username}`)
     try{
 
         const user_id = req.user.user_id;
-        const project_id = req.params.project_id;
+        const project_id = req.params.id;
+
+    
 
         const delete_response = await Delete_Project_Service(user_id , project_id); 
 
@@ -122,17 +124,22 @@ export const deleteProject = async(req , res)=>{
 
     }
     catch(er){
-         if(er.message==='Error Occured while Deleting the project'){ 
+        app_logger.warn(`Error occured while Deleting the project`)
 
-            return res.status(400).json({
+         
+         if(er.message==='Project Not Found for Deletion'){ 
+
+            return res.status(404).json({
                 message : "Error Occured while Deleting the project"
             })
         }
 
-         }
+         
 
          return res.status(500).json({
             message : "Internal Server Error..",
             error : er
         })  
+
     }
+}

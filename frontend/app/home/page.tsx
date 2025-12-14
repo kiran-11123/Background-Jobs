@@ -13,6 +13,8 @@ interface Components {
    _id:string,
     title: string,
       onProjectCreated: (project: any) => void;
+         onDelete?: (id: string) => void;
+
 
 }
 
@@ -74,6 +76,29 @@ const [data, setData] = useState<Project[]>([]);
   setData(prevData => [...prevData  ,newProject]); // ✅ now type-safe
   setOpenModel(false);
 }
+
+  async function handleDelete(id: string) {
+
+    try{
+      
+        const response = await axios.delete(`${process.env.NEXT_PUBLIC_SERVER_URL}/project/delete_project/${id}` , {
+            withCredentials : true
+        })
+
+        if(response.status === 200 ) {
+            console.log("Project deleted successfully");
+            data && setData(prevData => prevData.filter(project => project._id !== id));
+
+        }
+          
+    }
+    catch(er){
+        console.error("Error deleting project:", er);
+    }
+
+
+
+   }
 
       
     return(
@@ -181,7 +206,7 @@ const [data, setData] = useState<Project[]>([]);
        
   {data && data.length > 0 ? (
     data.map((project:Project) => (
-      <ProjectCard key={project._id} id={project._id} title={project.title} />
+      <ProjectCard key={project._id} id={project._id} title={project.title} onDelete={handleDelete} />
     ))
   ) : (
     <p className="text-black font-roboto text-xl text-center col-span-full">No projects found</p>
