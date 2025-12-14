@@ -14,6 +14,7 @@ interface Components {
     title: string,
       onProjectCreated: (project: any) => void;
          onDelete?: (id: string) => void;
+          onClick?: () => void; // Add this
 
 
 }
@@ -37,6 +38,10 @@ const [data, setData] = useState<Project[]>([]);
         localStorage.removeItem("token");
         router.replace("/");
 
+    }
+
+    function sendToJobsPage(projectId: string , title?: string){ 
+        router.push(`/projects/${projectId}/jobs`);
     }
 
 
@@ -206,7 +211,7 @@ const [data, setData] = useState<Project[]>([]);
        
   {data && data.length > 0 ? (
     data.map((project:Project) => (
-      <ProjectCard key={project._id} id={project._id} title={project.title} onDelete={handleDelete} />
+      <ProjectCard key={project._id} id={project._id} title={project.title} onDelete={handleDelete}  onClick={() => router.push(`/jobs/${project._id}`)} />
     ))
   ) : (
     <p className="text-black font-roboto text-xl text-center col-span-full">No projects found</p>

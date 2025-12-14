@@ -7,15 +7,17 @@ interface CardComponents {
   id: string;
   title: string;
     onDelete?: (id: string) => void;
+     onClick?: () => void; // Add this
 }
 
-export default function ProjectCard({ id, title, onDelete }: CardComponents) {
-
+export default function ProjectCard({ id, title, onDelete, onClick }: CardComponents) {
 
 
 
   return (
+
     <div
+    onClick={onClick}
       className="
         group relative w-full max-w-sm h-52
         rounded-2xl p-5
@@ -42,10 +44,12 @@ export default function ProjectCard({ id, title, onDelete }: CardComponents) {
           h-11 w-11 rounded-full
           flex items-center justify-center
           bg-white text-black
+          
           shadow-md
           transition-all duration-300
           group-hover:scale-110 group-hover:rotate-90
         "
+        
       >
         <Plus className="h-5 w-5" />
       </button>
@@ -63,7 +67,10 @@ export default function ProjectCard({ id, title, onDelete }: CardComponents) {
           transition-all duration-300
           hover:scale-110 hover:bg-red-700
         "
-        onClick={() => onDelete && onDelete(id)}
+       onClick={(e) => {
+            e.stopPropagation(); // prevent triggering onClick for the card
+           onDelete && onDelete(id);
+          }}
       >
         <Trash className="h-5 w-5" />
       </button>
