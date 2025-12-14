@@ -44,7 +44,7 @@ export default function Home() {
         cursor-pointer
         transition-all duration-300
         shadow-sm hover:shadow-md
-        ">
+        " onClick={Login}>
         Login
       </button>
 
@@ -57,7 +57,7 @@ export default function Home() {
         cursor-pointer
         transition-all duration-300 
         shadow-sm hover:shadow-lg
-      ">
+      " onClick={Register}>
         Register
       </button>
 
