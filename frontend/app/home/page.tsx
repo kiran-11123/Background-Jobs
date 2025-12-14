@@ -12,14 +12,22 @@ const SERVER_NAME = process.env.NEXT_PUBLIC_SERVER_URL;
 interface Components {
    _id:string,
     title: string,
+      onProjectCreated: (project: any) => void;
 
 }
+
+interface Project {
+  _id: string;
+  title: string;
+  description: string;
+}
+
 
 export default function Home(){
 
     const[isOpen , setIsOpen] = useState(false);
     const[model , setOpenModel] = useState(false);
-    const[data , setData] = useState([]);
+const [data, setData] = useState<Project[]>([]);
     const router = useRouter();
 
     function logout(){
@@ -36,9 +44,10 @@ export default function Home(){
 
         try{
 
-          const response = await axios.post(`${SERVER_NAME}/project/get_projects` , {} , {
+          const response = await axios.get(`${SERVER_NAME}/project/get_projects` , {
             withCredentials : true
           })
+          console.log("Projects Response :" , response.data.projects);
 
           if(response.status === 200){
                setData(response.data.projects);
@@ -60,6 +69,11 @@ export default function Home(){
 
 
     },[]);
+
+   const handleProjectCreated = (newProject: Project) => {
+  setData(prevData => [newProject, ...prevData]); // ✅ now type-safe
+  setOpenModel(false);
+}
 
       
     return(
@@ -155,7 +169,7 @@ export default function Home(){
              )}
 
 
-               <CreateProjectForm isOpen ={model} onClose={()=>setOpenModel(false)}  /> 
+               <CreateProjectForm isOpen ={model} onClose={()=>setOpenModel(false)} onProjectCreated={handleProjectCreated}  /> 
 
           
                 
@@ -166,7 +180,7 @@ export default function Home(){
 
        
   {data && data.length > 0 ? (
-    data.map((project:Components) => (
+    data.map((project:Project) => (
       <ProjectCard key={project._id} id={project._id} title={project.title} />
     ))
   ) : (

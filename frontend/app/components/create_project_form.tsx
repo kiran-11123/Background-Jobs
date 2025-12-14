@@ -7,9 +7,10 @@ const SERVER_NAME = process.env.NEXT_PUBLIC_SERVER_URL;
 interface CreateProject {
   isOpen: boolean;
   onClose: () => void;
+   onProjectCreated: (project: any) => void;
 }
 
-export default function CreateProjectForm({isOpen ,onClose}:CreateProject){
+export default function CreateProjectForm({isOpen ,onClose, onProjectCreated}:CreateProject){
    
     const[message , SetMessage] = useState('');
     const[title , setTitle] = useState('');
@@ -33,6 +34,8 @@ export default function CreateProjectForm({isOpen ,onClose}:CreateProject){
 
         if(response.status === 200){
                SetMessage(response.data.message);
+               onProjectCreated(response.data.project);
+                
         }
         else{
             SetMessage(response.data.message);

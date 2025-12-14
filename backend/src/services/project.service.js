@@ -1,37 +1,35 @@
-import express from 'express'
 import app_logger from '../utils/logger/App_logger.js'
 import project_model from '../models/projects.js'
 import redisClient from '../utils/redis/redis-client.js'
 import mongoose, { Mongoose } from 'mongoose'
-export const Project_creation = async(user_id , title,description)=>{
+export const Project_creation = async(user_id, title, description) => {
+    app_logger.info(`Entered into Project_Creation service for user ${user_id}`);
 
-        app_logger.info(`Entered into the Project_Creation service for user ${user_id}`)
-       
-        try{
+    try {
+        const find_project_title = await project_model.findOne({ title });
 
-            const find_project_title = await project_model.findOne({title : title})
-
-            if(find_project_title){
-                 app_logger.info(`There is an already existing project present with current title`)
-                 throw new Error("Project is Present")
-            }
-               
-            const new_project = await project_model.create({
-                user_id : user_id,
-                title:title,
-                description : description
-            })
-
-            
-            app_logger.info(`Project created successfully for the user ${user_id}`)
-            return new_project;
-
-               
+        if (find_project_title) {
+            app_logger.info(`Project already exists with title "${title}" for user ${user_id}`);
+            throw new Error("Project is Present");
         }
-        catch(er){
-            app_logger.warn("Error Occured in Project_Creation_Service for user")
-            throw er;
+
+        const new_project = await project_model.create({ user_id, title, description });
+
+        // Redis cache invalidation
+        try {
+            await redisClient.del(`projects_${user_id}`);
+            app_logger.info(`Cache deleted for user ${user_id}`);
+        } catch (redisErr) {
+            app_logger.warn(`Redis invalidation error for user ${user_id}: ${redisErr.message}`);
         }
+
+        app_logger.info(`Project "${title}" created successfully for user ${user_id}`);
+        return new_project;
+
+    } catch (er) {
+        app_logger.warn(`Error occurred in Project_Creation service for user ${user_id}: ${er.message}`);
+        throw er; // propagate to controller
+    }
 }
 
 
@@ -53,7 +51,7 @@ export const Get_Projects_Service = async(user_id)=>{
 
         if(Cached_Data){
               app_logger.info(`Projects Data Fetched from the Cache`);
-              return Cached_Data;
+              return JSON.parse(Cached_Data);
         }
     }
     catch(redisErr){
@@ -77,6 +75,7 @@ export const Get_Projects_Service = async(user_id)=>{
                      app_logger.info("Redis cache error: " + redisErr.message)
 
         }
+
          
        
         return find_projects;
@@ -131,7 +130,7 @@ export const Delete_Project_Service = async(user_id , project_id)=>{
         }
 
          try {
-            await redis_client.del(`projects_${user_id}`);
+            await redisClient.del(`projects_${user_id}`);
             app_logger.info("Cache deleted for the user");
         } catch (redisErr) {
             logger.warn("Redis invalidation error: " + redisErr.message);
