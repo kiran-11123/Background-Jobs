@@ -68,7 +68,7 @@ export default function CreateProjectForm({isOpen ,onClose}:CreateProject){
          <div className="flex min-h-screen font-roboto items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 px-4 fixed inset-0 bg-black/40  z-50 overflow-auto">
   <div className="w-full max-w-md sm:max-w-lg bg-gradient-to-tr from-white/10 to-white/5 hover:to-white/15 backdrop-blur-xl border border-white/20 rounded-3xl p-10 shadow-2xl">
     
-    <div className="flex items-center justify-between gap-20 mb-10 font-poppins text-xl ">
+    <div className="flex items-center text-white justify-between gap-20 mb-10 font-poppins text-xl ">
         <h1>Create Project</h1>
 
         <button title="button" onClick={onClose} className="px-1 py-1 

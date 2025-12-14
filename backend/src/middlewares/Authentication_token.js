@@ -8,6 +8,7 @@ dotenv.config();
 const Authentication_token = (req,res,next)=>{
 
     const token = req.cookies?.token;
+    console.log("Token in middleware :" , token);  
 
 
     if(!token){

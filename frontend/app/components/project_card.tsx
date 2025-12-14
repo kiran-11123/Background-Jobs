@@ -3,10 +3,11 @@
 import { Plus } from "lucide-react"
 
 interface CardComponents {
+    id:string,
   title: string
 }
 
-export default function ProjectCard({ title }: CardComponents) {
+export default function ProjectCard({ id, title }: CardComponents) {
   return (
     <div
       className="

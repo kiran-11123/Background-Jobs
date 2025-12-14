@@ -1,16 +1,25 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import AuthGuard from "../components/AuthGuard"
 import ProjectCard from "../components/project_card"
 import { Menu , X } from "lucide-react"
 import { useRouter } from "next/navigation"
 import CreateProjectForm from "../components/create_project_form"
+import axios from "axios"
+const SERVER_NAME = process.env.NEXT_PUBLIC_SERVER_URL;
+
+interface Components {
+   _id:string,
+    title: string,
+
+}
 
 export default function Home(){
 
     const[isOpen , setIsOpen] = useState(false);
     const[model , setOpenModel] = useState(false);
+    const[data , setData] = useState([]);
     const router = useRouter();
 
     function logout(){
@@ -19,6 +28,38 @@ export default function Home(){
         router.replace("/");
 
     }
+
+
+    useEffect(()=>{
+
+      async function getProjects() {
+
+        try{
+
+          const response = await axios.post(`${SERVER_NAME}/project/get_projects` , {} , {
+            withCredentials : true
+          })
+
+          if(response.status === 200){
+               setData(response.data.projects);
+          }
+          else{
+            setData([]);
+          }
+
+        }
+        catch(er){
+            setData([]);
+
+        }
+        
+      }
+
+      getProjects();
+
+
+
+    },[data.length]);
 
       
     return(
@@ -62,7 +103,7 @@ export default function Home(){
                         Create
                       </button>
 
-                       <CreateProjectForm isOpen ={model} onClose={()=>setOpenModel(false)}  /> 
+                     
                 
                       <button className="
                         px-5 py-2 rounded-lg 
@@ -97,7 +138,7 @@ export default function Home(){
                         hover:border-white/40
                         hover:scale-105
                         transition-all duration-300
-                        shadow-sm hover:shadow-md">
+                        shadow-sm hover:shadow-md "   onClick={()=>setOpenModel(true)} >
                                         Create
                                     </button>
                                     <button  className="px-3 py-2 rounded-lg 
@@ -107,11 +148,14 @@ export default function Home(){
                         focus:ring-2 focus:ring-blue-400
                         hover:scale-105
                         transition-all duration-300 
-                        shadow-sm hover:shadow-lg">
+                        shadow-sm hover:shadow-lg" onClick={logout}>
                                         Logout
                                     </button>
                                 </div>
              )}
+
+
+               <CreateProjectForm isOpen ={model} onClose={()=>setOpenModel(false)}  /> 
 
           
                 
@@ -120,13 +164,9 @@ export default function Home(){
 
             <div className="grid grid-cols-1 sm:grid-cols-3 p-4 justify-center items-center md:grid-cols-4 gap-6 mt-5">
 
-                <ProjectCard title={"Project1"} />
-                <ProjectCard title={"Project1"} />
-                <ProjectCard title={"Project1"} />
-                <ProjectCard title={"Project1"} />
-                <ProjectCard title={"Project1"} />
-                <ProjectCard title={"Project1"} />
-                
+          {data.length > 0 ? data.map((project : Components) => ( 
+                  <ProjectCard key={project._id} id={project._id} title={project.title} />
+              )) : <p className="text-white">No projects found</p>}
 
             </div>
                
