@@ -4,9 +4,8 @@ import { get } from "http";
 import { use, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import {X,Menu} from 'lucide-react'
-import queueCard from "../../components/queue_card";
-import CreateQueueForm from "../../components/createQueueform";
-import ApiKeyForm from "@/app/components/api_key_form";
+import CreateQueueForm from "../../components/forms/createQueueform";
+import ApiKeyForm from "@/app/components/forms/api_key_form";
 interface Props {
   params: Promise<{ id: string }>;
 }

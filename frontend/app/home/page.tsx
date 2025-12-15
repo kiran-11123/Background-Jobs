@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from "react"
 import AuthGuard from "../components/AuthGuard"
-import ProjectCard from "../components/project_card"
+import ProjectCard from "../components/cards/project_card"
 import { Menu , X } from "lucide-react"
 import { useRouter } from "next/navigation"
-import CreateProjectForm from "../components/create_project_form"
+import CreateProjectForm from "../components/forms/create_project_form"
 import axios from "axios"
 const SERVER_NAME = process.env.NEXT_PUBLIC_SERVER_URL;
 
