@@ -6,14 +6,17 @@ import { useRouter } from "next/navigation";
 import {X,Menu} from 'lucide-react'
 import CreateQueueForm from "../../components/forms/createQueueform";
 import ApiKeyForm from "@/app/components/forms/api_key_form";
+import QueueCard from "@/app/components/cards/queue_card";
 interface Props {
   params: Promise<{ id: string }>;
 }
 
 interface queueData{
-  project_id : string,
-   id:string,
-   name:string
+  projectId : string,
+   _id:string,
+   name:string,
+   onDelete : (id:string) => void;
+   onClick : () => void;
 }
 
 export default function JobsPage({ params }: Props) {
@@ -24,6 +27,7 @@ export default function JobsPage({ params }: Props) {
   const[model , setOpenModel] = useState(false);
   const[APIModel , setOpenAPIModel] = useState(false);
   const[isOpen , setIsOpen] = useState(false);
+  const[message , SetMessage] = useState('');
 
   useEffect(() => {
 
@@ -60,6 +64,32 @@ export default function JobsPage({ params }: Props) {
 
   function logout(){
     router.replace("/");
+  }
+
+ async function handleDelete(_id:string , projectId:string){
+
+  try{
+
+    const response = await axios.delete(`${process.env.NEXT_PUBLIC_SERVER_URL}/queue/delete_queue`,{
+      params: { queueId: _id  , projectId: projectId },
+      withCredentials: true,
+    });
+
+    if(response.status === 200){
+      SetMessage('Queue deleted successfully');
+       setQueues((prevQueues) => prevQueues.filter((queue) => queue._id !== _id));
+       
+    }
+    else{
+      SetMessage('Error in deleting the queue');
+    }
+
+   
+  }
+  catch(er){
+    SetMessage('Error in deleting the queue');  
+  }
+      
   }
 
   function handleProjectCreated(queue:any){
@@ -169,7 +199,7 @@ export default function JobsPage({ params }: Props) {
                         hover:scale-105
                         transition-all duration-300
                         shadow-sm hover:shadow-md "   onClick={()=>setOpenAPIModel(true)} >
-                                        API KEY
+                                        API Key
                                     </button>
                                     <button  className="px-3 py-2 rounded-lg 
                                     font-roboto
@@ -197,10 +227,16 @@ export default function JobsPage({ params }: Props) {
           
         <div className="grid grid-cols-1 sm:grid-cols-3 p-4 justify-center items-center md:grid-cols-4 gap-6 mt-5">
       
-             
+              {data && data.length > 0 ? (
+                 data.map((project:queueData) => (
+                   <QueueCard key={project._id} _id={project._id}  projectId={project.projectId} name={project.name} onDelete={handleDelete}  onClick={() => router.push(`/jobs_page/${project._id}`)} />
+                 ))
+               ) : (
+                 <p className="text-black font-roboto text-xl text-center col-span-full">No Queues found for the project</p>
+               )}
+             </div>
       
                      
-        </div>
   
      
      </div>

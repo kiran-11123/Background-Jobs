@@ -5,7 +5,7 @@ const Queue_Schema = new mongoose.Schema({
      
     name :{type:String , required:true},
     user_id : {type:mongoose.Schema.Types.ObjectId , ref:'Users' , required:true},  
-    projectId : {type:String , required:true},
+     projectId: { type: mongoose.Schema.Types.ObjectId, ref: 'Projects', required: true },
 
     concurrency : {type:Number , default:5},
     retryLimit : {type:Number , default:3},

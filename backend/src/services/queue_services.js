@@ -3,17 +3,23 @@ import Jobs_model from '../models/jobs.js'
 import app_logger from '../utils/logger/App_logger.js'
 import mongoose from 'mongoose'
 import redisClient from '../utils/redis/redis-client.js'
+import { Console } from 'console'
 
-export const createQueueService = async(projectId , name)=>{
+export const createQueueService = async(projectId , name , user_id)=>{
     app_logger.info(`Entered into createQueueService to create the Queue`)     
     try{
 
         const queue_name  = name;
         const projectId_new= new mongoose.Types.ObjectId(projectId);
+        const userId_new = new mongoose.Types.ObjectId(user_id);
+    
 
+        console.log(name)
+        console.log(projectId_new)
 
-        const find_queue = await Queue_model.findOne({name :queue_name , projectId : projectId_new})
-
+        const find_queue = await Queue_model.findOne({name :queue_name , projectId : projectId_new , user_id :userId_new})
+        
+        console.log(find_queue)
         if(find_queue){
              throw new Error('Queue Already exists...')
         }
@@ -22,12 +28,14 @@ export const createQueueService = async(projectId , name)=>{
         const queue = await Queue_model.create({
              name :queue_name,
              projectId: projectId_new,
+             user_id : userId_new
              
         })
 
+        //create the bullMq queue dynamically
+        
 
-
-        getOrCreateQueue(queue_name);
+       // await getOrCreateQueue(queue_name);
         app_logger.info(`Created the bullMq queue dynamically`)
 
           try {

@@ -4,16 +4,19 @@ import { useState } from "react";
 import {Plus , Trash} from 'lucide-react'
 
 interface queueData{
-    project_id : string,
-   id:string,
-   name:string
+    projectId : string,
+   _id:string,
+   name:string,
+   onDelete : (id:string , projectId:string) => void;
+   onClick : () => void;
 }
 
 
-export default function QueueCard({project_id , id , name}:queueData){
+export default function QueueCard({projectId , _id , name, onDelete, onClick}:queueData){
       
     return(
          <div
+        onClick={onClick}
       className="
         group relative w-full max-w-sm h-52
         rounded-2xl p-5
@@ -65,7 +68,7 @@ export default function QueueCard({project_id , id , name}:queueData){
         "
        onClick={(e) => {
             e.stopPropagation(); // prevent triggering onClick for the card
-          
+             onDelete(_id , projectId );
           }}
       >
         <Trash className="h-5 w-5" />

@@ -9,6 +9,7 @@ export const CreateQueueController = async(req,res)=>{
          
         const projectId = req.body.projectId;
         const name = req.body.name;
+        const user_id = req.user.user_id;
 
 
         if(!projectId){
@@ -18,7 +19,7 @@ export const CreateQueueController = async(req,res)=>{
         }
 
 
-        const CreateQueue = await createQueueService(projectId , name);
+        const CreateQueue = await createQueueService(projectId , name ,user_id);
         
         
         app_logger.info(`Queue For the project is created successfully`)
@@ -31,7 +32,7 @@ export const CreateQueueController = async(req,res)=>{
     }
     catch(er){
 
-        app_logger.info(`Error occured while creating the Queue`)
+        app_logger.info(`Error occured while creating the Queue` , er.message)
 
         if(er.message === 'Queue Already exists...'){
              app_logger.info(`Queue with the name Already exists..`)
@@ -60,7 +61,7 @@ export const GetQueueContoller = async(req,res)=>{
         app_logger.info(`Queues for the project retrived successfully..`)
         return res.status(200).json({
             message : "Data fetched successfull...",
-            queues: GetQueues
+            queue: GetQueues
         })
 
     }
