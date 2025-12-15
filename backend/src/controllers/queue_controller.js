@@ -17,7 +17,8 @@ export const CreateQueueController = async(req,res)=>{
 
       
         return res.status(200).json({
-            message : "Queue Created Successfully.."
+            message : "Queue Created Successfully..",
+            queue: CreateQueue
         })
     }
     catch(er){

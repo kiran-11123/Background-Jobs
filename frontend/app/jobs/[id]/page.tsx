@@ -4,9 +4,9 @@ import { get } from "http";
 import { use, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import {X,Menu} from 'lucide-react'
-import queueCard from "@/app/components/queue_card";
-
-
+import queueCard from "../../components/queue_card";
+import CreateQueueForm from "../../components/createQueueform";
+import ApiKeyForm from "@/app/components/api_key_form";
 interface Props {
   params: Promise<{ id: string }>;
 }
@@ -19,8 +19,10 @@ interface queueData{
 export default function JobsPage({ params }: Props) {
   const router  = useRouter();
   const { id } = use(params); 
-  const [data, setQueues] = useState([]);
+  const [data, setQueues] =  useState<queueData[]>([]);
+  
   const[model , setOpenModel] = useState(false);
+  const[APIModel , setOpenAPIModel] = useState(false);
   const[isOpen , setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -60,6 +62,10 @@ export default function JobsPage({ params }: Props) {
     router.replace("/");
   }
 
+  function handleProjectCreated(queue:any){
+      setQueues((prevQueues) => [...prevQueues, queue]);
+  }
+
   return (
     <div className="  flex  flex-col justify-between w-full bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#e8e5e5] via-[#a3a3a3] to-[#e5e5e5] ">
         <div className="flex justify-between items-center mt-2 z-50  w-full bg-black text-white rounded-md px-6 py-4 font-bold shadow-xl ">
@@ -97,7 +103,25 @@ export default function JobsPage({ params }: Props) {
                         >
                         Create Queue
                       </button>
+                      
 
+                       <button className="
+                        px-5 py-2 rounded-lg 
+                        border border-white/20 
+                        bg-white/5 
+                        hover:bg-white/10 
+                        hover:border-white/40
+                        hover:scale-105
+                        cursor-pointer
+                        transition-all duration-300
+                        shadow-sm hover:shadow-md
+                        "
+                        onClick={()=>setOpenAPIModel(true)}
+                        >
+                        API KEY
+                      </button>
+
+                       
                      
                 
                       <button className="
@@ -136,6 +160,17 @@ export default function JobsPage({ params }: Props) {
                         shadow-sm hover:shadow-md "   onClick={()=>setOpenModel(true)} >
                                         Create
                                     </button>
+                         <button   className=" px-3 py-2 rounded-lg 
+                        border border-white/20 
+                        font-roboto
+                        bg-white/5 
+                        hover:bg-white/10 
+                        hover:border-white/40
+                        hover:scale-105
+                        transition-all duration-300
+                        shadow-sm hover:shadow-md "   onClick={()=>setOpenAPIModel(true)} >
+                                        API KEY
+                                    </button>
                                     <button  className="px-3 py-2 rounded-lg 
                                     font-roboto
                         bg-blue-600 
@@ -149,8 +184,15 @@ export default function JobsPage({ params }: Props) {
                                 </div>
              )}
 
+             <CreateQueueForm
+ isOpen ={model} onClose={()=>setOpenModel(false)} onQueueCreated={handleProjectCreated} />
 
-         {/* <CreateProjectForm isOpen ={model} onClose={()=>setOpenModel(false)} onProjectCreated={handleProjectCreated}  /> */}
+ <ApiKeyForm
+ isOpen ={APIModel} onClose={()=>setOpenAPIModel(false)}  />
+
+ 
+
+
 
           
         <div className="grid grid-cols-1 sm:grid-cols-3 p-4 justify-center items-center md:grid-cols-4 gap-6 mt-5">
