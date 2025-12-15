@@ -184,11 +184,11 @@ export default function JobsPage({ params }: Props) {
                                 </div>
              )}
 
-             <CreateQueueForm
+             <CreateQueueForm projectId={id}
  isOpen ={model} onClose={()=>setOpenModel(false)} onQueueCreated={handleProjectCreated} />
 
  {APIModel && (<ApiKeyForm
- isOpen ={APIModel} onClose={()=>setOpenAPIModel(false)} />)}
+  projectId={id} isOpen ={APIModel} onClose={()=>setOpenAPIModel(false)} />)}
 
  
 

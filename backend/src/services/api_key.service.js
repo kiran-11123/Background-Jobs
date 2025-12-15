@@ -38,19 +38,14 @@ export const Generate_API_KEY = async(user_id , project_id)=>{
 
 export const Get_API_KEY_service = async(user_id , project_id)=>{
     
-    app_logger.info(`Entered into  the the heroku_api_key service to get the api_key for project : ${project_id}`)
+    app_logger.info(`Entered into  the the api_key service to get the api_key for project : ${project_id}`)
     try{
 
+
+      
         const find_project = await project_model.findOne({user_id : user_id , _id :project_id})
 
-        if(!find_project){
-             throw new Error(`project Not Found`)
-
-        }
-
-        if(!find_project.api_key){
-             throw new Error(`API_KEY not found`)
-        }
+       
 
         return find_project.api_key ; 
 

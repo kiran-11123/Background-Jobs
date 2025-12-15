@@ -8,13 +8,13 @@ import {X , Trash} from 'lucide-react'
 
 
 interface ApiKeyFormProps {
-   queueId?: string;
+   projectId?: string;
    isOpen: boolean;
    onClose: () => void;
 }
 
 
-export default function ApiKeyForm({queueId ,  isOpen , onClose}:ApiKeyFormProps){
+export default function ApiKeyForm({projectId ,  isOpen , onClose}:ApiKeyFormProps){
 
     const[message , SetMessage] = useState('');
     const[apiKey , setApiKey] = useState('');
@@ -23,12 +23,12 @@ export default function ApiKeyForm({queueId ,  isOpen , onClose}:ApiKeyFormProps
     useEffect(()=>{
 
       async function fetchApiKey(){
-
+        console.log("Fetching API Key for project Id :" , projectId);
       try{
       const response = await axios.get(
   `${SERVER_NAME}/keys/get_key`,
   {
-    params: { queue_id: queueId },
+    params: { project_id: projectId },
     withCredentials: true,
   }
 );
@@ -73,7 +73,7 @@ export default function ApiKeyForm({queueId ,  isOpen , onClose}:ApiKeyFormProps
           try{
 
             const response = await axios.post(`${SERVER_NAME}/keys/generate_key` , {
-                queue_id : queueId
+                project_id : projectId
             } , {
                 withCredentials : true
             })

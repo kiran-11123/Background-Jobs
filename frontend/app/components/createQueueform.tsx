@@ -6,6 +6,7 @@ import axios from "axios";
 const SERVER_NAME = process.env.NEXT_PUBLIC_SERVER_URL;
 
 interface CreateQueue {
+     projectId: string;
   isOpen: boolean;
   onClose: () => void;
    onQueueCreated: (project: any) => void;

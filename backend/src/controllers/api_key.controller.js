@@ -50,10 +50,19 @@ export const Get_API_KEY_controller = async(req,res)=>{
     try{
 
         const user_id = req.user.user_id;
-        const project_id = req.params.project_id;
+        const { project_id } = req.query;
+
+         if (!project_id) {
+      return res.status(400).json({ message: "project_id is required" });
+    }
 
         const api_key = Get_API_KEY_service(user_id , project_id);
-
+          
+    if(!api_key){
+        return res.status(400).json({
+            message : "API_KEY not found for this project"
+        })
+    }
 
         return res.status(200).json({
             message:"API Key returned successfully",
@@ -63,18 +72,6 @@ export const Get_API_KEY_controller = async(req,res)=>{
     }
     catch(er){
 
-        if(er.message === 'project Not Found'){
-            app_logger.info(`project Not Found.`)
-             return res.status(400).json({
-                message : "project Not Found..."
-             })
-        }
-        else if(er.message === 'API_KEY not found'){
-            app_logger.info(`API_KEY not found for this project`)
-             return res.status(400).json({
-                message : "API_KEY not found for this project"
-             })
-        }
         
         app_logger.info(`Error occured while getting the api_key`)
         return res.status(500).json({
