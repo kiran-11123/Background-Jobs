@@ -35,7 +35,7 @@ export const createQueueService = async(projectId , name , user_id)=>{
         //create the bullMq queue dynamically
         
 
-       // await getOrCreateQueue(queue_name);
+        await getOrCreateQueue(queue_name);
         app_logger.info(`Created the bullMq queue dynamically`)
 
           try {
@@ -72,7 +72,7 @@ export const GetQueueService = async(projectId)=>{
 
         if(Cached_Data){
               app_logger.info(`Queues Data for this project is Fetched from the Cache`);
-              return Cached_Data;
+              return JSON.parse(Cached_Data);
         }
     }
     catch(redisErr){
@@ -153,6 +153,7 @@ export const DeleteQueueService = async(projectId , queue_id)=>{
 
         const new_queue_id  = new mongoose.Types.ObjectId(queue_id);
          const projectId_new = new mongoose.Types.ObjectId(projectId)
+         console.log("Project and queue id in service" , projectId_new , new_queue_id);
         const find_queue = await Queue_model.findOne({ _id: new_queue_id, projectId:projectId_new })
 
         if(!find_queue){
@@ -167,7 +168,7 @@ export const DeleteQueueService = async(projectId , queue_id)=>{
 
         
         try {
-            await redis_client.del(`queue_${projectId_new}`);
+            await redisClient.del(`queue_${projectId_new}`);
             app_logger.info("Cache deleted for the Queue");
         } catch (redisErr) {
             logger.warn("Redis invalidation error: " + redisErr.message);

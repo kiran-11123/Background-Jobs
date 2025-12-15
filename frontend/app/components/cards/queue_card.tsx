@@ -20,8 +20,11 @@ export default function QueueCard({projectId , _id , name, onDelete, onClick}:qu
       className="
         group relative w-full max-w-sm h-52
         rounded-2xl p-5
-        bg-gradient-to-br from-neutral-900/80 via-neutral-800/60 to-neutral-900/90
-        border border-white/10
+bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900
+border border-cyan-400/20 shadow-[0_0_40px_rgba(34,211,238,0.15)]
+
+
+
         shadow-lg backdrop-blur-xl
         transition-all duration-300
         hover:-translate-y-1 hover:shadow-2xl hover:border-white/20

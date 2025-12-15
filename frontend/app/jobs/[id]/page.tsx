@@ -40,10 +40,11 @@ export default function JobsPage({ params }: Props) {
         params: { projectId: id },
     withCredentials: true,
       } );
+      console.log("Response in fetching queues" , response.data);
 
       if(response.status === 200){
-          console.log("Queues for the project :" , response.data.queues);
-          setQueues(response.data.queues);
+        console.log("Queues fetched successfully" , response.data.queue);
+          setQueues(response.data.queue);
 
       }
       else{
@@ -224,21 +225,27 @@ export default function JobsPage({ params }: Props) {
 
 
 
+      <div className="grid grid-cols-1 sm:grid-cols-3 p-4 justify-center items-center md:grid-cols-4 gap-6 mt-5">
+      
           
-        <div className="grid grid-cols-1 sm:grid-cols-3 p-4 justify-center items-center md:grid-cols-4 gap-6 mt-5">
-      
-              {data && data.length > 0 ? (
-                 data.map((project:queueData) => (
-                   <QueueCard key={project._id} _id={project._id}  projectId={project.projectId} name={project.name} onDelete={handleDelete}  onClick={() => router.push(`/jobs_page/${project._id}`)} />
-                 ))
-               ) : (
-                 <p className="text-black font-roboto text-xl text-center col-span-full">No Queues found for the project</p>
-               )}
-             </div>
-      
-                     
-  
+  {data && data.length > 0 ? (
+    data.map((queue: queueData) => (
+      <QueueCard
+        key={queue._id}
+        _id={queue._id}
+        projectId={queue.projectId}
+        name={queue.name}
+        onDelete={handleDelete}
+        onClick={() => router.push(`/jobs_page/${queue._id}`)}
+      />
+    ))
+  ) : (
+    <p className="text-black font-roboto text-xl text-center col-span-full">
+      No Queues found for the project
+    </p>
+  )}
+</div>
+        </div>
      
-     </div>
   )
 }

@@ -116,8 +116,9 @@ export const DeleteQueueController = async(req,res)=>{
        
     try{
 
-        const queue = await req.body.queue_id;
-        const project = await req.body.projectId;
+        const queue = await req.query.queue_id;
+        const project = await req.query.projectId;
+        console.log("Queue and project id in controller" , queue , project);
 
         const data = await DeleteQueueService(project , queue);
 
