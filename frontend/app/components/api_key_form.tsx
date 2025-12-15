@@ -68,6 +68,11 @@ export default function ApiKeyForm({projectId ,  isOpen , onClose}:ApiKeyFormPro
         
     }
 
+    async function deleteAPI(){
+
+
+    }
+
     async function CreateAPIKey(e:any){
           e.preventDefault();
           try{
@@ -146,11 +151,11 @@ export default function ApiKeyForm({projectId ,  isOpen , onClose}:ApiKeyFormPro
   ) : null }
     <div className="flex justify-end mt-6">  
 
-      <button className="w-full py-2 rounded-2xl bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold text-lg sm:text-xl shadow-lg hover:shadow-xl hover:scale-105 transform transition-all duration-300">
+      <button  onClick={CreateAPIKey} className="cursor-pointer w-full py-2 rounded-2xl bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold text-lg sm:text-xl shadow-lg hover:shadow-xl hover:scale-105 transform transition-all duration-300">
         Generate API Key
       </button>
 
-      <button title="delete" className="ml-2 p-2 bg-red-500 rounded-md hover:bg-red-60authys-innerargin better">  <Trash  color="white" /> </button>
+      <button title="delete" onClick={deleteAPI} className="cursor-pointer ml-2 p-2 bg-red-500 rounded-md hover:bg-red-600">  <Trash  color="white" /> </button>
 
       </div>
 

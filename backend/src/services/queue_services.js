@@ -2,7 +2,7 @@ import Queue_model from '../models/queue.js'
 import Jobs_model from '../models/jobs.js'
 import app_logger from '../utils/logger/App_logger.js'
 import mongoose from 'mongoose'
-import { truncate } from 'fs'
+import redisClient from '../utils/redis/redis-client.js'
 
 export const createQueueService = async(projectId , data)=>{
     app_logger.info(`Entered into createQueueService to create the Queue`)     

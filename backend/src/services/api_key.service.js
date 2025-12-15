@@ -21,6 +21,11 @@ export const Generate_API_KEY = async(user_id , project_id)=>{
             }
 
             const key = generateApiKey();
+
+            await check_existing_api_key.updateOne({
+                $set : { api_key : key }
+            })
+            check_existing_api_key.save();
             
             app_logger.info(`API_KEY for the project is successfully Generated.`)
             return key;

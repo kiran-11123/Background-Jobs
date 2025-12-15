@@ -9,7 +9,12 @@ export const  Generate_API_KEY_controller = async(req,res)=>{
     try{
 
         const user_id = req.user.user_id;
-        const project_id = req.params.project_id;
+        const project_id = req.body.project_id  ;
+        console.log("Project ID in controller :" , project_id);
+
+         if (!project_id) {
+      return res.status(400).json({ message: "project_id is required" });
+    }
 
         const api_key = await Generate_API_KEY(user_id , project_id);
 
