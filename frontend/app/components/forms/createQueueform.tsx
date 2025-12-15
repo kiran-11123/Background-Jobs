@@ -12,7 +12,7 @@ interface CreateQueue {
    onQueueCreated: (project: any) => void;
 }
 
-export default  function createQueueForm({isOpen , onClose , onQueueCreated } : CreateQueue){
+export default  function createQueueForm({projectId,  isOpen , onClose , onQueueCreated } : CreateQueue){
 
     const[name,setQueueName] = useState('');
     const[message , SetMessage] = useState('')
@@ -25,9 +25,11 @@ export default  function createQueueForm({isOpen , onClose , onQueueCreated } : 
         e.preventDefault();
 
         try{
+          console.log(projectId);
 
             const response = await axios.post(`${SERVER_NAME}/queue/create` , {
-                name
+              projectId : projectId,
+              name : name ,
             } , {
                 withCredentials : true
             })

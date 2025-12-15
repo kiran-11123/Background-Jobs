@@ -200,7 +200,7 @@ export default function JobsPage({ params }: Props) {
              
       
                      
-               </div>
+        </div>
   
      
      </div>

@@ -4,13 +4,21 @@ import app_logger from '../utils/logger/App_logger.js';
 import { getOrCreateQueue } from '../utils/bullmq/queue.js';
 
 export const CreateQueueController = async(req,res)=>{
-    app_logger.info(`Entered into CreateQueueController for the projectId : ${req.projectId}`)
+    app_logger.info(`Entered into CreateQueueController for the projectId : ${req.body.projectId}`)
     try{
          
         const projectId = req.body.projectId;
-        const data = req.body.data;
+        const name = req.body.name;
 
-        const CreateQueue = await createQueueService(projectId , data);
+
+        if(!projectId){
+            return res.status(400).json({
+                message : "ProjectId not found.."
+            })
+        }
+
+
+        const CreateQueue = await createQueueService(projectId , name);
         
         
         app_logger.info(`Queue For the project is created successfully`)
