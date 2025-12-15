@@ -146,6 +146,21 @@ const [data, setData] = useState<Project[]>([]);
                         >
                         Create
                       </button>
+                      <button className="
+                        px-5 py-2 rounded-lg 
+                        border border-white/20 
+                        bg-white/5 
+                        hover:bg-white/10 
+                        hover:border-white/40
+                        hover:scale-105
+                        cursor-pointer
+                        transition-all duration-300
+                        shadow-sm hover:shadow-md
+                        "
+                        onClick={()=>router.push('/dashboard')} 
+                        >
+                        Dashboard
+                      </button>
 
                      
                 
@@ -184,6 +199,17 @@ const [data, setData] = useState<Project[]>([]);
                         transition-all duration-300
                         shadow-sm hover:shadow-md "   onClick={()=>setOpenModel(true)} >
                                         Create
+                                    </button>
+                                    <button   className=" px-3 py-2 rounded-lg 
+                        border border-white/20 
+                        font-roboto
+                        bg-white/5 
+                        hover:bg-white/10 
+                        hover:border-white/40
+                        hover:scale-105
+                        transition-all duration-300
+                        shadow-sm hover:shadow-md "   onClick={()=>router.push('/dashboard')} >
+                                        Dashboard
                                     </button>
                                     <button  className="px-3 py-2 rounded-lg 
                                     font-roboto

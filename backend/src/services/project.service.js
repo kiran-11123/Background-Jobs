@@ -1,6 +1,7 @@
 import app_logger from '../utils/logger/App_logger.js'
 import project_model from '../models/projects.js'
 import redisClient from '../utils/redis/redis-client.js'
+import Queue_model from '../models/queue.js'
 import mongoose from 'mongoose'
 export const Project_creation = async(user_id, title, description) => {
     app_logger.info(`Entered into Project_Creation service for user ${user_id}`);
@@ -122,6 +123,7 @@ export const Delete_Project_Service = async (user_id , project_id) => {
 
     // Delete the project
     const delete_Project_with_id = await project_model.deleteOne({ _id: project_id_new });
+    const delete_queues = await Queue_model.deleteMany({ projectId: project_id_new });
 
     if (delete_Project_with_id.deletedCount === 0) {
       app_logger.warn(`Project Not Found with projectId ${project_id} for Deletion`);
@@ -131,6 +133,10 @@ export const Delete_Project_Service = async (user_id , project_id) => {
     // Invalidate cache
     try {
       await redisClient.del(`projects_${user_id}`);
+      const queue_cache_keys = await redisClient.keys(`queue_${project_id_new}`);
+      if(queue_cache_keys.length > 0){
+        await redisClient.del(queue_cache_keys);
+      }
       app_logger.info("Cache deleted for the user");
     } catch (redisErr) {
       app_logger.warn("Redis invalidation error: " + redisErr.message);

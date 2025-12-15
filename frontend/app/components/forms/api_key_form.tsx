@@ -131,7 +131,7 @@ export default function ApiKeyForm({
               className="w-full px-4 py-2 bg-gray-800 text-white rounded-lg"
             />
           </div>
-          <button title="Copy API Key" onClick={handleCopy} className="bg-gray-300 p-2 rounded-md">
+          <button title="Copy API Key" onClick={handleCopy} className="bg-gray-300 p-2 xmb-1 rounded-md">
             <Copy size={16} />
           </button>
         </div>
