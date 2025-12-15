@@ -7,12 +7,12 @@ interface queueData{
     projectId : string,
    _id:string,
    name:string,
-   onDelete : (id:string , projectId:string) => void;
+   onDelete : (_id:string , projectId:string) => void;
    onClick : () => void;
 }
 
 
-export default function QueueCard({projectId , _id , name, onDelete, onClick}:queueData){
+export default function QueueCard({  _id, projectId, name, onDelete, onClick}:queueData){
       
     return(
          <div
