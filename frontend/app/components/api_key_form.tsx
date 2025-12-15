@@ -3,7 +3,8 @@
 const SERVER_NAME = process.env.NEXT_PUBLIC_SERVER_URL;
 import { useEffect, useState } from "react";
 import axios from "axios";
-import {X} from 'lucide-react'
+import { Copy } from "lucide-react";
+import {X , Trash} from 'lucide-react'
 
 
 interface ApiKeyFormProps {
@@ -13,22 +14,27 @@ interface ApiKeyFormProps {
 }
 
 
-export default function ApiKeyForm({isOpen , onClose}:ApiKeyFormProps){
+export default function ApiKeyForm({queueId ,  isOpen , onClose}:ApiKeyFormProps){
 
     const[message , SetMessage] = useState('');
     const[apiKey , setApiKey] = useState('');
+    const[copy, setCopied] = useState(false);
 
     useEffect(()=>{
 
       async function fetchApiKey(){
 
       try{
-        const response = await axios.get(`${SERVER_NAME}/queue/generate_api_key` , {
-            withCredentials : true
-        })
+      const response = await axios.get(
+  `${SERVER_NAME}/keys/get_key`,
+  {
+    params: { queue_id: queueId },
+    withCredentials: true,
+  }
+);
 
         if(response.status === 200){
-             setApiKey(response.data.apiKey);
+             setApiKey(response.data.api_key);
 
         }
         else{
@@ -50,18 +56,41 @@ export default function ApiKeyForm({isOpen , onClose}:ApiKeyFormProps){
          
     },[])
 
+    async function  handleCopy() {
+         try {
+            await navigator.clipboard.writeText(apiKey);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        } catch (err) {
+
+            console.error('Failed to copy text: ', err);
+        }
+        
+    }
+
     async function CreateAPIKey(e:any){
           e.preventDefault();
           try{
 
-            const response = await axios.post(`${SERVER_NAME}/queue/regenerate_api_key` , {
-                queueId : apiKey
+            const response = await axios.post(`${SERVER_NAME}/keys/generate_key` , {
+                queue_id : queueId
             } , {
                 withCredentials : true
             })
 
+            if(response.status === 200){
+                 setApiKey(response.data.api_key);
+                 SetMessage('API Key Generated Successfully');
+
+            }
+            else{
+                SetMessage(response.data.message);
+            }
+
           }
           catch(er){
+
+                SetMessage('Error in generating API Key');
              
           }
           finally{
@@ -77,7 +106,7 @@ export default function ApiKeyForm({isOpen , onClose}:ApiKeyFormProps){
   <div className="w-full max-w-md sm:max-w-lg bg-gradient-to-tr from-white/10 to-white/5 hover:to-white/15 backdrop-blur-xl border border-white/20 rounded-3xl p-10 shadow-2xl">
     
     <div className="flex items-center text-white justify-between gap-20 mb-10 font-poppins text-xl ">
-        <h1>Create Queue</h1>
+        <h1>API Key Management</h1>
 
         <button title="button" onClick={onClose} className="px-1 py-1 
           shadow-md
@@ -85,26 +114,46 @@ export default function ApiKeyForm({isOpen , onClose}:ApiKeyFormProps){
           hover:scale-110 hover:rotate-90  rounded-full bg-red-500 hover:bg-red-700 "><X/></button>
 
     </div>
-    
 
-    <form className="space-y-6" onSubmit={CreateAPIKey}>
-      <div className="flex flex-col">
-        <label className="text-lg sm:text-xl font-semibold mb-2 text-gray-200">Title</label>
-        <input
-          type="text"
-          required
-        
-          placeholder="Enter your title"
-          className="w-full px-5 py-3 rounded-2xl bg-white/20 border border-white/30 text-white placeholder-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-400 focus:border-blue-400 transition-all backdrop-blur-sm shadow-inner"
-        />
-      </div>
+  { apiKey.length>0 ? (  
+<form className="space-y-6" onSubmit={CreateAPIKey}>
+  <div className="flex flex-1 items-center justify-between gap-2">
+    <div className="flex flex-col flex-1">
+      <label htmlFor="apiKey" className="text-white font-medium">
+        API Key
+      </label>
+      <input
+        type="text"
+        id="apiKey"
+        value={apiKey}
+        readOnly
+        placeholder="Your API Key"
+        className="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+      />
+    </div>
 
-    
+    <button
+      type="button"
+      title="Copy"
+      onClick={handleCopy}
+      className="flex items-center p-2 mt-5 bg-gray-300 rounded-md hover:bg-gray-400 hover:opacity-80 transition-shadow shadow-md"
+    >
+      <Copy size={16} color="black" />
+    </button>
+  </div>
+</form>
 
-      <button className="w-full py-3 rounded-2xl bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold text-lg sm:text-xl shadow-lg hover:shadow-xl hover:scale-105 transform transition-all duration-300">
+  ) : null }
+    <div className="flex justify-end mt-6">  
+
+      <button className="w-full py-2 rounded-2xl bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold text-lg sm:text-xl shadow-lg hover:shadow-xl hover:scale-105 transform transition-all duration-300">
         Generate API Key
       </button>
-    </form>
+
+      <button title="delete" className="ml-2 p-2 bg-red-500 rounded-md hover:bg-red-60authys-innerargin better">  <Trash  color="white" /> </button>
+
+      </div>
+
 
     
 

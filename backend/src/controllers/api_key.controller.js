@@ -9,9 +9,9 @@ export const  Generate_API_KEY_controller = async(req,res)=>{
     try{
 
         const user_id = req.user.user_id;
-        const queue_id = req.params.queue_id;
+        const project_id = req.params.project_id;
 
-        const api_key = await Generate_API_KEY(user_id , queue_id);
+        const api_key = await Generate_API_KEY(user_id , project_id);
 
         app_logger.info(`API KEY Created  and returned  successfully`)
 
@@ -50,9 +50,9 @@ export const Get_API_KEY_controller = async(req,res)=>{
     try{
 
         const user_id = req.user.user_id;
-        const queue_id = req.params.queue_id;
+        const project_id = req.params.project_id;
 
-        const api_key = Get_API_KEY_service(user_id , queue_id);
+        const api_key = Get_API_KEY_service(user_id , project_id);
 
 
         return res.status(200).json({
@@ -63,16 +63,16 @@ export const Get_API_KEY_controller = async(req,res)=>{
     }
     catch(er){
 
-        if(er.message === 'queue Not Found'){
-            app_logger.info(`queue  Not Found.`)
+        if(er.message === 'project Not Found'){
+            app_logger.info(`project Not Found.`)
              return res.status(400).json({
-                message : "queue Not Found..."
+                message : "project Not Found..."
              })
         }
         else if(er.message === 'API_KEY not found'){
-            app_logger.info(`API_KEY not found for this queue`)
+            app_logger.info(`API_KEY not found for this project`)
              return res.status(400).json({
-                message : "API_KEY not found for this queue"
+                message : "API_KEY not found for this project"
              })
         }
         
@@ -89,11 +89,11 @@ export const Delete_api_key_controller = async(req,res)=>{
     try{
 
         const user_id = req.user_id;
-        const queue_id = req.params.queue_id;
+        const project_id = req.params.project_id;
 
-        const response  = await Delete_api_key_Service(user_id , queue_id);
+        const response  = await Delete_api_key_Service(user_id , project_id);
         
-        app_logger.info(`API_KEY deleted successfully for the project ${queue_id}`)
+        app_logger.info(`API_KEY deleted successfully for the project ${project_id}`)
         return res.status(200).json({
             message : "API_KEY deleted successfully."
         })

@@ -11,8 +11,7 @@ const Queue_Schema = new mongoose.Schema({
     retryLimit : {type:Number , default:3},
     rateLimit : {type:Number , default:null},
     status : {type:Number  , default:null},
-    api_key : {type:String  , default:null}
-,
+
 },{timestamps:true})
 
 
