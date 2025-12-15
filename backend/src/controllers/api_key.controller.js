@@ -61,14 +61,15 @@ export const Get_API_KEY_controller = async(req,res)=>{
       return res.status(400).json({ message: "project_id is required" });
     }
 
-        const api_key = Get_API_KEY_service(user_id , project_id);
+        const api_key = await Get_API_KEY_service(user_id , project_id);
           
     if(!api_key){
         return res.status(400).json({
             message : "API_KEY not found for this project"
         })
     }
-
+          
+    console.log("API Key in controller :" , api_key);   
         return res.status(200).json({
             message:"API Key returned successfully",
             api_key :api_key
@@ -90,8 +91,14 @@ export const Delete_api_key_controller = async(req,res)=>{
     app_logger.info(`Entered into Delete_api_key_controller to delete the API_KEY`)
     try{
 
-        const user_id = req.user_id;
-        const project_id = req.params.project_id;
+        const user_id = req.user.user_id;
+        const project_id = req.body.project_id;
+
+        if(!project_id){
+            return res.status(400).json({
+                message : "project_id is required"
+            })
+        }
 
         const response  = await Delete_api_key_Service(user_id , project_id);
         

@@ -11,6 +11,7 @@ interface Props {
 }
 
 interface queueData{
+  project_id : string,
    id:string,
    name:string
 }
