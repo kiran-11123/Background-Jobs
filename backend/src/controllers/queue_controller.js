@@ -41,10 +41,10 @@ export const CreateQueueController = async(req,res)=>{
 
 export const GetQueueContoller = async(req,res)=>{
     
-    app_logger.info(`Entered into the GetQueueController for the projectid ${req.projectId}`)
+    app_logger.info(`Entered into the GetQueueController for the projectid ${req.query.projectId}`)
     try{
 
-        const projectId  = req.body.projectId;
+        const { projectId } = req.query;;
 
         const GetQueues = await GetQueueService(projectId);
        

@@ -9,6 +9,7 @@ export const createQueueService = async(projectId , data)=>{
     try{
 
         const queue_name  = data.name;
+        const projectId_new= new mongoose.Types.ObjectId(projectId);
 
         const find_queue = await Queue_model.findOne({name :queue_name , projectId : projectId})
 
@@ -19,7 +20,7 @@ export const createQueueService = async(projectId , data)=>{
 
         const queue = await Queue_model.create({
              name :queue_name,
-             projectId,
+             projectId: projectId_new,
              concurrency : data.concurrency || 5,
              retryLimit : data.retryLimit || 3,
              rateLimit : data.rateLimit || null
@@ -29,6 +30,13 @@ export const createQueueService = async(projectId , data)=>{
 
         getOrCreateQueue(data.name);
         app_logger.info(`Created the bullMq queue dynamically`)
+
+          try {
+            await redisClient.del(`queue_${projectId_new}`);
+            app_logger.info(`Cache deleted for user ${user_id}`);
+        } catch (redisErr) {
+            app_logger.warn(`Redis invalidation error for user ${user_id}: ${redisErr.message}`);
+        }
 
         return queue;
 
