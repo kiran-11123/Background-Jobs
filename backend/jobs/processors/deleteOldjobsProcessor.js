@@ -3,16 +3,17 @@ import Jobs_model from "../../src/models/jobs.js";
 import mongoose from "mongoose";
 
 
-export const DeleteOldJobs = async(queueId)=>{
+export const DeleteOldJobs = async(queueId , days)=>{
       
     try{
 
         const queue_id =new mongoose.Types.ObjectId(queueId);
+        const days = days;
           
     //this will remove the jobs which are completed 30 days ago
         await Jobs_model.deleteMany({
             status:"completed",
-             completedAt: { $lt: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000) }
+             completedAt: { $lt: new Date(Date.now() - (days) * 24 * 60 * 60 * 1000) }
 
 
         })
