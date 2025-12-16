@@ -1,5 +1,12 @@
 "use client";
 
+
+
+import { useState } from "react";
+import { Trash} from 'lucide-react'
+import axios from "axios";
+
+
 interface JobsCardProps {
     
   queueId: string;
@@ -9,14 +16,17 @@ interface JobsCardProps {
   status: string;
   attempts: number;
   failedReason?: string;
+   onDelete?: (id: string , queueId:string) => void;
 }
 
 export function JobsCard({
   queueId,
+  _id,
   name,
   status,
   attempts,
   failedReason,
+  onDelete
 }: JobsCardProps) {
   const statusColor =
     status === "completed"
@@ -25,12 +35,15 @@ export function JobsCard({
       ? "bg-red-500/15 text-red-400"
       : "bg-yellow-500/15 text-yellow-400";
 
+
+    
+
   return (
     <div
       className="
         group relative w-full max-w-sm h-52
         rounded-2xl p-5
-       bg-white/30
+       bg-white/10
         border border-white/10
         shadow-lg backdrop-blur-xl
         transition-all duration-300
@@ -58,7 +71,33 @@ export function JobsCard({
             Attempts:{" "}
             <span className="font-semibold ">{attempts}</span>
           </span>
+
+         
         </div>
+       
+       <div className="flex justify-end">
+         <button
+        type="button"
+        title="Delete Project"
+        className="
+          absolute bottom-4 right-4
+          h-11 w-11 rounded-full
+          flex items-center justify-center
+          bg-red-500 text-white
+          shadow-md
+          transition-all duration-300
+          hover:scale-110 hover:bg-red-700
+        "
+       onClick={(e) => {
+            e.stopPropagation(); // prevent triggering onClick for the card
+           onDelete && onDelete(_id , queueId);
+          }}
+      >
+        <Trash className="h-5 w-5" />
+      </button>
+
+       </div>
+       
 
         {/* Failed Reason */}
         {failedReason && (

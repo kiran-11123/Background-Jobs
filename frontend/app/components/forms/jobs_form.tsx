@@ -6,7 +6,7 @@ import {X} from 'lucide-react'
 
 
 interface JobFormProps {
-  projectId?: string;
+  queueId: string;
   isOpen: boolean;
   onClose: () => void;
   AddNewJobs?: (job: any) => void;
@@ -15,11 +15,10 @@ interface JobFormProps {
 type JobType = "Email" | "Verification Code" | "Activity Summary" | "Delete Old Jobs"
 
 
-export default function JobsPageForm({ projectId ,  isOpen, onClose ,AddNewJobs}: JobFormProps) {
+export default function JobsPageForm({ queueId ,  isOpen, onClose ,AddNewJobs}: JobFormProps) {
      
 
-    
-    const[name ,Setname] = useState('');
+    const queue_id = queueId;
     const[message , SetMessage] = useState('');
     const[jobsName , setJobName] = useState('');
     const[selected , setSelected] =useState<JobType | "">("");
@@ -88,10 +87,45 @@ export default function JobsPageForm({ projectId ,  isOpen, onClose ,AddNewJobs}
     }
 
     const payload = {
-      projectId,
+      queueId: queueId,
       name: selected,
       job: buildPayload(),
     };
+
+    try{
+        console.log("Payload in creating job" , queue_id , jobsName , selected , payload);
+
+        const response  =await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/jobs/create-job`, {
+            queueId : queue_id,
+            name : jobsName,
+            type: selected,
+            payload : payload
+        } , {
+            withCredentials : true
+        });
+
+        if(response.status === 200){
+            
+            SetMessage(response.data.message || "Job created successfully.");
+            setTimeout(()=>{  
+                AddNewJobs && AddNewJobs(response.data.job);  
+            onClose();
+
+            },1000);
+        }
+        else{
+            SetMessage(response.data.message || "Error in creating job. Please try again.");
+        }
+
+    }
+    catch(er){
+       if (typeof er === "object" && er !== null && "response" in er) {
+                    SetMessage((er as any).response.data.message);
+                }
+                else{
+                    SetMessage('error in creating the job');
+        }
+    }
 
     }
 
@@ -180,9 +214,9 @@ export default function JobsPageForm({ projectId ,  isOpen, onClose ,AddNewJobs}
           {selected === "Verification Code" &&(
               <div className="space-y-3 rounded-xl bg-white/5 p-4">
                   <input
-                  type='email'
+                
                 placeholder="Enter the Email To send the Code"
-                value={emailSubject}
+                value={emailTo}
                 onChange={(e) => setEmailTo(e.target.value)}
                 className="w-full rounded bg-zinc-700 p-2 text-white"
                 required

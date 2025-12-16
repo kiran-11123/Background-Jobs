@@ -23,6 +23,8 @@ export default function JobsPage({ params }: Props) {
   const router  = useRouter();
   const { id } = use(params); 
   const [data, setQueues] =  useState<queueData[]>([]);
+
+  console.log("Project ID in Jobs Page main" , id);
   
   const[model , setOpenModel] = useState(false);
   const[APIModel , setOpenAPIModel] = useState(false);

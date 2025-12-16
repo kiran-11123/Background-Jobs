@@ -12,12 +12,25 @@ export const CreateJobcontroller = async(req,res)=>{
 
     try{
 
-        const data = req.body.data;
+        const queueId = req.body.queueId;
+        const data = {
+            queueId,
+            name: req.body.name,
+            type: req.body.type,
+            payload: req.body.payload,
+            delay: req.body.delay || 0,
+            priority: req.body.priority || 5,
+            attemptsLimit: req.body.attemptsLimit || 3
+        };
+        console.log("data", data);  
 
         const Create_Job = await CreateJobService(data);
 
+        app_logger.info(`Job created Successfully..`)
+
         return res.status(200).json({
-            message : "Job created Successfully.."
+            message : "Job created Successfully..",
+            job : Create_Job
         })
 
     }
@@ -166,9 +179,12 @@ export const DeleteJobController = async(req,res)=>{
     app_logger.info(`Entered into DeleteJobController`)
     try{
 
-        const jobId= req.body.jobId;
+        const jobId= req.query.id;
+        const queueId = req.query.queueId;
 
-        const Delete =await DeleteJobService(jobId);
+        const Delete =await DeleteJobService(jobId , queueId);
+
+        
         
         app_logger.info(`Job Deleted Successfully`)
         return res.status(200).json({

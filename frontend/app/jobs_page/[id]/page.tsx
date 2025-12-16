@@ -2,12 +2,12 @@
 import { JobsCard } from "@/app/components/cards/jobs_card"
 import {use, useEffect, useState } from "react"
 import axios from "axios"
-import { useRouter } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import {X,Menu} from 'lucide-react'
 import JobsPageForm from "@/app/components/forms/jobs_form"
 
 interface Props {
-    params: Promise<{ queue_id: string }>;
+  params: { id: string };
 }
 
 interface JobsCardProps {
@@ -18,12 +18,15 @@ interface JobsCardProps {
     status:string,
     attempts:number,
     failedReason:string
+    onDelete?: (id: string , queueId:string) => void;
 }
 
-export default function JobsPage({ params }: Props) {
+export default function JobsPage() {
 
     const[data , SetJobs] = useState<JobsCardProps[]>([]);
-    const { queue_id } = use(params);
+     const pathname = usePathname(); // e.g., "/jobs_page/123"
+const parts = pathname.split("/");
+const queueId = parts[2]; 
     const router = useRouter();
     const[model , setOpenModel] = useState(false);
     const[isOpen , setIsOpen] = useState(false);
@@ -37,7 +40,7 @@ useEffect(()=>{
     try{
 
         const response = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/jobs/get_allJobs`,{
-            params:{ queueId : queue_id },
+            params:{ queueId : queueId },
             withCredentials : true
         })
 
@@ -68,6 +71,29 @@ function logout(){
 
 function AddNewJobs(job:JobsCardProps){
      SetJobs((prev) => [...prev, job]);
+}
+
+async function handleDelete(id:string ,queueId:string){
+
+    try{
+       
+        const response = await axios.delete(`${process.env.NEXT_PUBLIC_SERVER_URL}/jobs/delete_job`,{
+            params: { jobId: id , queueId: queueId },
+            withCredentials : true
+        });
+
+        if(response.status === 200){
+            SetJobs((prevJobs) => prevJobs.filter((job) => job._id !== id));
+        }
+        else{
+            console.log("Error in deleting the job");
+        }
+    }
+    catch(er){
+        console.log("Error in deleting the job" , er);
+         
+    }
+     
 }
 
 function onClose(){
@@ -166,7 +192,7 @@ function onClose(){
                                 </div>
              )}
         
-            {model && <JobsPageForm isOpen={model} onClose={onClose}  AddNewJobs={AddNewJobs}/>}
+            {model && <JobsPageForm  queueId= {queueId} isOpen={model} onClose={onClose}  AddNewJobs={AddNewJobs}/>}
 
 
       
@@ -184,6 +210,7 @@ function onClose(){
                   status={jobs.status}
                   attempts={jobs.attempts}
                   failedReason={jobs.failedReason   }
+                   onDelete={handleDelete}
                     
                 />
               ))

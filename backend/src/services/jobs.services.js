@@ -13,9 +13,11 @@ export const CreateJobService = async(data)=>{
 
         const job  = await  Jobs_model.create({
              queueId : queue_id,
-             name :data.name ,
-             payload : data.payload || {},
-             delay : data.delay,
+             name :data.name,
+             type:data.type,
+             status : data.status || "waiting",
+             payload : data.payload.job.data || {},
+             delay : data.delay || 0,
                 priority: data.priority || 5,
         attemptsLimit: data.attemptsLimit || 3
         })
@@ -26,15 +28,27 @@ export const CreateJobService = async(data)=>{
        await bullQueue.add(
     data.name,                     // Job name
     {                              // Job data (this is what the worker receives as job.data)
-        dbJobId: job._id,          // MongoDB job reference
+        dbJobId: job._id,   
+        type: data.type,       // MongoDB job reference
         payload: data.payload || {} // Actual payload
     },
     {
+        starttsAt: Date.now() + (data.delay || 0), // Delay in milliseconds
+        status: "waiting",
         delay: data.delay || 0,
         priority: data.priority || 5,
         attempts: data.attemptsLimit || 3
     }
 );
+
+ try {
+            await redisClient.del(`Jobs_${queue_id}`);
+            app_logger.info(`Cache deleted for jobs Jobs_${queue_id}`);
+        } catch (redisErr) {
+            app_logger.warn(`Redis invalidation error for user : ${redisErr.message}`);
+        }
+
+
          return job;
 
 
@@ -56,7 +70,7 @@ export const GetJobsService = async(queueId)=>{
     try{
         if(Cached_Data){
               app_logger.info(`Jobs Data Fetched from the Cache`);
-              return Cached_Data;
+              return JSON.parse(Cached_Data);
         }
     }
 
@@ -142,15 +156,23 @@ export const  retryJobService = async(jobId)=>{
     }
 }
 
-export const UpdateJobService = async(jobId , data)=>{
+export const UpdateJobService = async(jobId , queue_id , data)=>{
      app_logger.info(`Entered into UpdateJobService`) 
     try{
-        
+         
+        const new_queue_id = new mongoose.Types.ObjectId(queue_id)
           const new_jobId = new mongoose.Types.ObjectId(jobId)
         const find_job = await Jobs_model.findOne({_id :new_jobId })
 
         
     if (!job) throw new Error("Job not found");
+
+     try {
+            await redisClient.del(`Jobs_${new_queue_id}`);
+            app_logger.info(`Cache deleted for jobs Jobs_${new_queue_id}`);
+        } catch (redisErr) {
+            app_logger.warn(`Redis invalidation error for user : ${redisErr.message}`);
+        }
 
          return await Job_model.findByIdAndUpdate(
         jobId,
@@ -170,13 +192,14 @@ export const UpdateJobService = async(jobId , data)=>{
     }
 }
 
-export const DeleteJobService = async(jobId)=>{
+export const DeleteJobService = async(jobId , queue_id)=>{
      app_logger.info(`Entered into DeleteJobService`)
 
 
      try{
-
+            const new_queue_id = new mongoose.Types.ObjectId(queue_id)
         const new_job_id = new mongoose.Types.ObjectId(jobId);
+        console.log("new_job_id", new_job_id);  
 
         const find_job = await Jobs_model.findOne({_id : new_job_id});
 
@@ -185,6 +208,16 @@ export const DeleteJobService = async(jobId)=>{
         }
 
 
+         try {
+            await redisClient.del(`Jobs_${new_queue_id}`);
+            app_logger.info(`Cache deleted for jobs Jobs_${new_queue_id}`);
+        } catch (redisErr) {
+            app_logger.warn(`Redis invalidation error for user : ${redisErr.message}`);
+        }
+
+        
+
+    
      return await Job_model.findByIdAndDelete(new_job_id);
 
 

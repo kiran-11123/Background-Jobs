@@ -12,6 +12,10 @@ const Jobs_Schema  = new mongoose.Schema({
         type: String, 
         required: true 
     },
+    type:{
+        type: String,
+        required: true
+    },
 
     payload: { 
         type: Object, 
