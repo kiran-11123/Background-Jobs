@@ -174,7 +174,7 @@ export const UpdateJobService = async(jobId , queue_id , data)=>{
             app_logger.warn(`Redis invalidation error for user : ${redisErr.message}`);
         }
 
-         return await Job_model.findByIdAndUpdate(
+         return await Jobs_model.findByIdAndUpdate(
         jobId,
         {
             priority: data.priority,
@@ -218,7 +218,7 @@ export const DeleteJobService = async(jobId , queue_id)=>{
         
 
     
-     return await Job_model.findByIdAndDelete(new_job_id);
+     return await Jobs_model.findByIdAndDelete(new_job_id);
 
 
      }
@@ -242,11 +242,11 @@ export const JobCountSummaryService = async(queueId)=>{
         }
 
        return {
-        waiting: await Job_model.countDocuments({ queueId : new_queue_id, status: "waiting" }),
-        delayed: await Job_model.countDocuments({ queueId : new_queue_id, status: "delayed" }),
-        inProgress: await Job_model.countDocuments({ qqueueId : new_queue_id, status: "in-progress" }),
-        completed: await Job_model.countDocuments({ queueId : new_queue_id, status: "completed" }),
-        failed: await Job_model.countDocuments({ queueId : new_queue_id, status: "failed" })
+        waiting: await Jobs_model.countDocuments({ queueId : new_queue_id, status: "waiting" }),
+        delayed: await Jobs_model.countDocuments({ queueId : new_queue_id, status: "delayed" }),
+        inProgress: await Jobs_model.countDocuments({ queueId : new_queue_id, status: "in-progress" }),
+        completed: await Jobs_model.countDocuments({ queueId : new_queue_id, status: "completed" }),
+        failed: await Jobs_model.countDocuments({ queueId : new_queue_id, status: "failed" })
     };
      }
      catch(er){

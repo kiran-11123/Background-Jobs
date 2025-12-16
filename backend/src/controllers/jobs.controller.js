@@ -179,12 +179,14 @@ export const DeleteJobController = async(req,res)=>{
     app_logger.info(`Entered into DeleteJobController`)
     try{
 
-        const jobId= req.query.id;
+        const jobId= req.query.jobId;
         const queueId = req.query.queueId;
+        console.log("jobId in controller", jobId);  
+        console.log("queueId in controller", queueId);
 
         const Delete =await DeleteJobService(jobId , queueId);
 
-        
+
         
         app_logger.info(`Job Deleted Successfully`)
         return res.status(200).json({

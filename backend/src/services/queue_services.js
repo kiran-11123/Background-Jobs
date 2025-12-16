@@ -3,8 +3,6 @@ import Jobs_model from '../models/jobs.js'
 import app_logger from '../utils/logger/App_logger.js'
 import mongoose from 'mongoose'
 import redisClient from '../utils/redis/redis-client.js'
-import { Console } from 'console'
-
 export const createQueueService = async(projectId , name , user_id)=>{
     app_logger.info(`Entered into createQueueService to create the Queue`)     
     try{
@@ -175,6 +173,7 @@ export const DeleteQueueService = async(projectId , queue_id)=>{
         try {
             
             await redisClient.del(`queue_${projectId_new}`);
+            await redisClient.del(`jobs_${new_queue_id}`);
             app_logger.info("Cache deleted for the Queue");
         } catch (redisErr) {
             logger.warn("Redis invalidation error: " + redisErr.message);

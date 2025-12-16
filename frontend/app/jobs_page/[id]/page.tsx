@@ -75,6 +75,8 @@ function AddNewJobs(job:JobsCardProps){
 
 async function handleDelete(id:string ,queueId:string){
 
+   
+
     try{
        
         const response = await axios.delete(`${process.env.NEXT_PUBLIC_SERVER_URL}/jobs/delete_job`,{
