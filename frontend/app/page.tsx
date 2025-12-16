@@ -22,7 +22,7 @@ export default function Home() {
 <div className="h-screen flex flex-col items-center bg-gradient-to-b from-black via-neutral-900 to-black text-white">
 
   <main className='flex-grow'>
-  <div className="px-6 py-5 sm:px-10 sm:py-7 w-full max-w-sm sm:max-w-4xl 
+  <div className="px-6 py-2 sm:px-10 sm:py-7 w-full max-w-sm sm:max-w-4xl 
                   rounded-xl mt-5 flex items-center justify-between
                   bg-black/40 backdrop-blur-md border border-white/20 shadow-xl">
                   

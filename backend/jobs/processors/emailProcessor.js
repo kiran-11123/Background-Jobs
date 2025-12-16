@@ -1,7 +1,7 @@
-import jobs_logger from '../../../src/utils/logger/jobs_logger.js'
+import jobs_logger from '../../src/utils/logger/jobs_logger.js'
 import dotenv from 'dotenv'
 dotenv.config({ path: "../../.env" });
-import transporter from '../../../src/utils/Nodemailer.js';
+import transporter from '../../src/utils/Nodemailer.js';
 
 
 export  const EmailProcessor = async( data)=>{

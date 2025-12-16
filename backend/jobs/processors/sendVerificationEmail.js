@@ -1,6 +1,6 @@
-import app_logger from "../../../src/utils/logger/App_logger.js"
-import jobs_logger from "../../../src/utils/logger/jobs_logger.js"
-import transporter from "../../../src/utils/Nodemailer.js"
+import app_logger from "../../src/utils/logger/App_logger.js"
+import jobs_logger from "../../src/utils/logger/jobs_logger.js"
+import transporter from "../../src/utils/Nodemailer.js"
 
 
 export const SendVerificationCode = async(data)=>{

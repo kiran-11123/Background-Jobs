@@ -1,5 +1,5 @@
-import jobs_logger from "../../../src/utils/logger/jobs_logger.js";
-import Jobs_model from "../../../src/models/jobs.js";
+import jobs_logger from "../../src/utils/logger/jobs_logger.js";
+import Jobs_model from "../../src/models/jobs.js";
 import mongoose from "mongoose";
 
 

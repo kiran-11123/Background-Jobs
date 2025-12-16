@@ -1,6 +1,6 @@
-import { EmailProcessor } from "./processors/userEngagementJobs.js/emailProcessor.js";
-import { DeleteOldJobs } from "./processors/userEngagementJobs.js/deleteOldjobsProcessor.js";
-import { SendVerificationCode } from "./processors/userEngagementJobs.js/sendVerificationEmail.js";
+import { EmailProcessor } from "./processors/emailProcessor.js";
+import { DeleteOldJobs } from "./processors/deleteOldjobsProcessor.js";
+import { SendVerificationCode } from "./processors/sendVerificationEmail.js";
 
 
 export const jobProcessors = {

@@ -1,4 +1,4 @@
-import jobs_logger from "../../../src/utils/logger/jobs_logger.js";
+import jobs_logger from "../../src/utils/logger/jobs_logger.js";
 export async function sendActivitySummary(payload) {
   const { userId, period } = payload;
 
