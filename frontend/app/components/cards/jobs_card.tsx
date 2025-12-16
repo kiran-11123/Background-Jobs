@@ -1,7 +1,10 @@
 "use client";
 
 interface JobsCardProps {
+    
   queueId: string;
+  _id: string;
+  projectId: string;
   name: string;
   status: string;
   attempts: number;
