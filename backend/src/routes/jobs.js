@@ -9,7 +9,7 @@ const Job_Router = express.Router();
 
 
 Job_Router.post("/create-job" ,Authentication_token ,  CreateJobcontroller);
-Job_Router.post("/get_allJobs" ,Authentication_token , GetJobsContoller);
+Job_Router.get("/get_allJobs" ,Authentication_token , GetJobsContoller);
 Job_Router.post("/get_job" ,Authentication_token ,  GetJobsContollerForId );
 Job_Router.post("/update_job" , Authentication_token , UpdateJobContoller);
 Job_Router.post("/retry_job" ,Authentication_token , retryJobController);

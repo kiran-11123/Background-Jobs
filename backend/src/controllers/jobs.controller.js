@@ -35,13 +35,13 @@ export const GetJobsContoller = async(req,res)=>{
      app_logger.info(`Entered into GetJobsContoller`) 
     try{
 
-        const queueId = req.body.queueId;
+        const queueId = req.query.queueId;
 
         const data= await GetJobsService(queueId);
 
         return res.status(200).json({
             message : "Jobs Feteched successfully",
-            job_data : data
+            jobs : data
         })
 
     }

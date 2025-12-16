@@ -9,12 +9,13 @@ interface JobFormProps {
   projectId?: string;
   isOpen: boolean;
   onClose: () => void;
+  AddNewJobs?: (job: any) => void;
 }
 
 type JobType = "Email" | "Verification Code" | "Activity Summary" | "Delete Old Jobs"
 
 
-export default function JobsPageForm({ projectId ,  isOpen, onClose }: JobFormProps) {
+export default function JobsPageForm({ projectId ,  isOpen, onClose ,AddNewJobs}: JobFormProps) {
      
 
     

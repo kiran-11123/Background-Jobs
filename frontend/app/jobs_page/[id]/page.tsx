@@ -1,10 +1,14 @@
 "use client"
 import { JobsCard } from "@/app/components/cards/jobs_card"
-import { useEffect, useState } from "react"
+import {use, useEffect, useState } from "react"
 import axios from "axios"
 import { useRouter } from "next/navigation"
 import {X,Menu} from 'lucide-react'
 import JobsPageForm from "@/app/components/forms/jobs_form"
+
+interface Props {
+    params: Promise<{ queue_id: string }>;
+}
 
 interface JobsCardProps {
     queueId:string,
@@ -16,9 +20,10 @@ interface JobsCardProps {
     failedReason:string
 }
 
-export default function JobsPage() {
+export default function JobsPage({ params }: Props) {
 
-    const[data , SetJobs] = useState([]);
+    const[data , SetJobs] = useState<JobsCardProps[]>([]);
+    const { queue_id } = use(params);
     const router = useRouter();
     const[model , setOpenModel] = useState(false);
     const[isOpen , setIsOpen] = useState(false);
@@ -32,10 +37,12 @@ useEffect(()=>{
     try{
 
         const response = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/jobs/get_allJobs`,{
+            params:{ queueId : queue_id },
             withCredentials : true
         })
 
         if(response.status==200){
+           
             SetJobs(response.data.jobs);
         }
         else{
@@ -57,6 +64,10 @@ function logout(){
     //logout logic
     router.replace("/");
 
+}
+
+function AddNewJobs(job:JobsCardProps){
+     SetJobs((prev) => [...prev, job]);
 }
 
 function onClose(){
@@ -155,7 +166,7 @@ function onClose(){
                                 </div>
              )}
         
-            {model && <JobsPageForm isOpen={model} onClose={onClose} />}
+            {model && <JobsPageForm isOpen={model} onClose={onClose}  AddNewJobs={AddNewJobs}/>}
 
 
       
