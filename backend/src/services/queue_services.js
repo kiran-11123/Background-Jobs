@@ -35,12 +35,12 @@ export const createQueueService = async(projectId , name , user_id)=>{
         //create the bullMq queue dynamically
         
 
-     /*   try {
+        try {
   await getOrCreateQueue(queue_name);
   app_logger.info(`BullMQ queue created`);
 } catch (err) {
   app_logger.warn(`BullMQ queue creation failed: ${err.message}`);
-}   */
+}   
         app_logger.info(`Created the bullMq queue dynamically`)
 
           try {
@@ -173,6 +173,7 @@ export const DeleteQueueService = async(projectId , queue_id)=>{
 
         
         try {
+            
             await redisClient.del(`queue_${projectId_new}`);
             app_logger.info("Cache deleted for the Queue");
         } catch (redisErr) {

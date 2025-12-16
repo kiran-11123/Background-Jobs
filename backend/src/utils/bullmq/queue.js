@@ -45,6 +45,22 @@ catch(er){
 
 }
 
+export const deleteBullQueue = async (queueName) => {
+  const queue = new Queue(queueName, {
+    connection: redisConnection,
+  });
+
+  try {
+    await queue.pause();
+    await queue.obliterate({ force: true });
+  } finally {
+    await queue.close();
+  }
+};
+
+
+
+
 function createWorker(queueName) {
   redis_logger.info(`Entered into createWorker for queue: ${queueName}`);
 

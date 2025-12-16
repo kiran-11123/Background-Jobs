@@ -9,8 +9,8 @@ const Queue_Schema = new mongoose.Schema({
 
     concurrency : {type:Number , default:5},
     retryLimit : {type:Number , default:3},
-    rateLimit : {type:Number , default:null},
-    status : {type:Number  , default:null},
+    rateLimit : {type:Number , default:1000}, // jobs per second
+    status : {type:Number  , default:2} // 0 - Disabled , 1 - Enabled , 2 - Pending
 
 },{timestamps:true})
 
