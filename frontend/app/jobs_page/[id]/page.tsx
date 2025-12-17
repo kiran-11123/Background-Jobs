@@ -18,7 +18,8 @@ interface JobsCardProps {
     status:string,
     attempts:number,
     failedReason:string
-    onDelete?: (id: string , queueId:string) => void;
+    onDelete?: (id: string , queueId:string) => void,
+    type:string
 }
 
 export default function JobsPage() {
@@ -213,6 +214,7 @@ function onClose(){
                   attempts={jobs.attempts}
                   failedReason={jobs.failedReason   }
                    onDelete={handleDelete}
+                   type={jobs.type}
                     
                 />
               ))

@@ -173,11 +173,16 @@ export const DeleteQueueService = async(projectId , queue_id)=>{
         try {
             
             await redisClient.del(`queue_${projectId_new}`);
-            await redisClient.del(`jobs_${new_queue_id}`);
+           await redisClient.del(`Jobs_${new_queue_id}`);
+
             app_logger.info("Cache deleted for the Queue");
         } catch (redisErr) {
-            logger.warn("Redis invalidation error: " + redisErr.message);
+            app_logger.warn("Redis invalidation error: " + redisErr.message);
         }   
+return {
+  success: true,
+  queueId: new_queue_id
+};
 
 
     }

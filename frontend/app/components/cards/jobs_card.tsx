@@ -17,6 +17,7 @@ interface JobsCardProps {
   attempts: number;
   failedReason?: string;
    onDelete?: (id: string , queueId:string) => void;
+   type: string;
 }
 
 export function JobsCard({
@@ -26,7 +27,8 @@ export function JobsCard({
   status,
   attempts,
   failedReason,
-  onDelete
+  onDelete,
+  type
 }: JobsCardProps) {
   const statusColor =
     status === "completed"
@@ -56,7 +58,7 @@ export function JobsCard({
           <h1 className="font-roboto font-semibold text-lg  truncate">
             {name}
           </h1>
-          <p className="text-xs">Queue ID: {queueId}</p>
+          <p className="text-xs">Type: {type}</p>
         </div>
 
         {/* Status Row */}

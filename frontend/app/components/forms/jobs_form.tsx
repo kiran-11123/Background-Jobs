@@ -3,6 +3,7 @@
 import { useState } from "react"
 import axios from "axios"
 import {X} from 'lucide-react'
+import { title } from "process";
 
 
 interface JobFormProps {
@@ -35,6 +36,13 @@ export default function JobsPageForm({ queueId ,  isOpen, onClose ,AddNewJobs}: 
         switch(selected){
 
             case("Email"):
+                if(emailSubject.trim()===''){
+                  SetMessage('Email Subject Should have more than 0 characters')
+                  return
+                }
+                if(emailBody.trim()===''){
+                  SetMessage('Email Body Should have more than 0 characters')
+                }
                 return{
                      type:"email",
                      data :{
@@ -45,6 +53,10 @@ export default function JobsPageForm({ queueId ,  isOpen, onClose ,AddNewJobs}: 
                      }
                 }
             case("Activity Summary"):
+                if(title.trim()===''){
+                    SetMessage('Title Should be more than 0 characters')
+                    return 
+                }
                 return{
                       type: "summary",
                   data: {
@@ -59,6 +71,15 @@ export default function JobsPageForm({ queueId ,  isOpen, onClose ,AddNewJobs}: 
                     }
                 }
             case("Delete Old Jobs"):
+
+                if(title.trim()===''){
+                    SetMessage('Title Should be more than 0 characters')
+                    return
+                }
+                if(expiryDays.trim()===''){
+                   SetMessage('Expiry Days should give')
+                   return 
+                }
                 return{
                      type:"delete",
                      data:{
@@ -187,6 +208,7 @@ export default function JobsPageForm({ queueId ,  isOpen, onClose ,AddNewJobs}: 
           {selected === "Email" && (
             <div className="space-y-3 rounded-xl bg-white/5 p-4">
               <input
+                type="email"
                 placeholder="Recipient Email"
                 value={emailTo}
                 onChange={(e) => setEmailTo(e.target.value)}
