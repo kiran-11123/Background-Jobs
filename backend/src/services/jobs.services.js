@@ -66,7 +66,7 @@ export const GetJobsService = async(queueId)=>{
 
         const queue_id = new mongoose.Types.ObjectId(queueId)
 
-        const Cached_Data  = await redisClient.get(`Jobs_${queue_id}`)
+     /*   const Cached_Data  = await redisClient.get(`Jobs_${queue_id}`)
     try{
         if(Cached_Data){
               app_logger.info(`Jobs Data Fetched from the Cache`);
@@ -76,7 +76,13 @@ export const GetJobsService = async(queueId)=>{
 
     catch(redisErr){
          app_logger.info("Redis cache error: " + redisErr.message)
-    }
+    }   */
+    try {
+            await redisClient.del(`Jobs_${queue_id}`);
+            app_logger.info(`Cache deleted for jobs Jobs_${queue_id}`);
+        } catch (redisErr) {
+            app_logger.warn(`Redis invalidation error for user : ${redisErr.message}`);
+        }
         const find_jobs = await Jobs_model.find({
             queueId : queue_id
         })
@@ -88,7 +94,7 @@ export const GetJobsService = async(queueId)=>{
         
         try{
 
-            await redisClient.setEx(`Jobs_${queue_id}` , 3600 , JSON.stringify(find_jobs) );
+            await redisClient.setEx(`Jobs_${queue_id}` , 100 , JSON.stringify(find_jobs) );
             app_logger.info(`jobs are added into the cache..`)
 
         }

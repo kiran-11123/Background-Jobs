@@ -7,9 +7,10 @@ import {X,Menu} from 'lucide-react'
 import JobsPageForm from "@/app/components/forms/jobs_form"
 import {  io } from "socket.io-client";
 
+/*
+const socket = io("http://localhost:5000");
 
-const socket = io("http://localhost:3000");
-
+*/
 interface Props {
   params: { id: string };
 }
@@ -37,39 +38,46 @@ const queueId = parts[2];
     const[isOpen , setIsOpen] = useState(false);
 
 
-    
-useEffect(()=>{
-  
-    async function GetJobs() {
-        
-    try{
+  useEffect(() => {
+  let isMounted = true;
 
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/jobs/get_allJobs`,{
-            params:{ queueId : queueId },
-            withCredentials : true
-        })
-
-        if(response.status==200){
-           
-            SetJobs(response.data.jobs);
+  const fetchJobs = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/jobs/get_allJobs`,
+        {
+          params: { queueId },
+          withCredentials: true,
         }
-        else{
-            SetJobs([]);
-        }
+      );
 
-    }
-    catch(er){
+      if (response.status === 200 && isMounted) {
+        SetJobs(response.data.jobs);
+      } else if (isMounted) {
         SetJobs([]);
-
+      }
+    } catch (err) {
+      if (isMounted) SetJobs([]);
     }
-}
+  };
 
- GetJobs();
+  // Initial fetch
+  fetchJobs();
 
-},[])
+  // Poll every 5 seconds (adjust as needed)
+  const interval = setInterval(fetchJobs, 5000);
 
+  // Cleanup on unmount
+  return () => {
+    isMounted = false;
+    clearInterval(interval);
+  };
+}, [queueId]);
+
+/*
 useEffect(() => {
   socket.on("job-update", (updateData: any) => {
+    console.log("Received job update via socket:", updateData);
     SetJobs(prevJobs =>
       prevJobs.map(job =>
         job._id === updateData.jobId
@@ -84,6 +92,7 @@ useEffect(() => {
   };
 }, []);
 
+*/
 
 function logout(){
     //logout logic

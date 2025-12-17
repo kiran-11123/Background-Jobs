@@ -83,7 +83,7 @@ function createWorker(queueName) {
           // Mark job in progress
           dbJob.status = "in-progress";
           await dbJob.save();
-          emitJobUpdate(dbJob);
+          redis_logger.info(`Job ${job.id} marked as in-progress in DB`);
 
           const { type, payload } = job.data;
 
@@ -106,8 +106,7 @@ function createWorker(queueName) {
         dbJob.progress = 100;
         dbJob.completedAt = new Date();
         await dbJob.save();
-        console.log("Job completed and DB updated" , dbJob);
-        emitJobUpdate(dbJob);
+     
 
         redis_logger.info(`Job ${job.id} completed successfully`);
 
@@ -118,7 +117,7 @@ function createWorker(queueName) {
           dbJob.failedReason = err.message;
           dbJob.status = "failed";
           await dbJob.save();
-          emitJobUpdate(dbJob);
+              
 
         redis_logger.error(`Job ${job.id} failed: ${err.message}`);
 

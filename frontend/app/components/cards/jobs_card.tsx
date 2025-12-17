@@ -69,10 +69,7 @@ export function JobsCard({
             {status.toUpperCase()}
           </span>
 
-          <span className="text-sm">
-            Attempts:{" "}
-            <span className="font-semibold ">{attempts}</span>
-          </span>
+         
 
          
         </div>
