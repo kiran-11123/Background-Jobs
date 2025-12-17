@@ -1,6 +1,6 @@
 import jobs_logger from "../../src/utils/logger/jobs_logger.js";
 export async function sendActivitySummary(payload) {
-  const { userId, period } = payload;
+  const { period } = payload;
 
   try {
     app_logger.info(`Generating ${period} activity summary for user: ${userId}`);

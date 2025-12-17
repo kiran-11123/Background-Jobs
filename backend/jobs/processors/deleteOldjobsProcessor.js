@@ -12,6 +12,7 @@ export const DeleteOldJobs = async(queueId , days)=>{
           
     //this will remove the jobs which are completed 30 days ago
         await Jobs_model.deleteMany({
+            queueId:queue_id,
             status:"completed",
              completedAt: { $lt: new Date(Date.now() - (days) * 24 * 60 * 60 * 1000) }
 

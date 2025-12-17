@@ -4,11 +4,12 @@ dotenv.config({ path: "../../.env" });
 import transporter from '../../src/utils/Nodemailer.js';
 
 
-export  const EmailProcessor = async( data)=>{
+
+export  const EmailProcessor = async(data)=>{
     jobs_logger.info(`Entered into the EmailProcessor job..`)
         try{
            
-        const username = data.username ;
+        
         const toemail = data.email
       const subject = data.subject;
 
