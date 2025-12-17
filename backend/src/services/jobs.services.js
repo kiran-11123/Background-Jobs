@@ -205,7 +205,6 @@ export const DeleteJobService = async(jobId , queue_id)=>{
      try{
             const new_queue_id = new mongoose.Types.ObjectId(queue_id)
         const new_job_id = new mongoose.Types.ObjectId(jobId);
-        console.log("new_job_id", new_job_id);  
 
         const find_job = await Jobs_model.findOne({_id : new_job_id});
 

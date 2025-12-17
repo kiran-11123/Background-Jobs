@@ -83,8 +83,8 @@ export default function JobsPageForm({ queueId ,  isOpen, onClose ,AddNewJobs}: 
                 return{
                      type:"DeleteJobs",
                      data:{
-                      queueId : queueId,
-                        days:Number (expiryDays)
+                        queueId : queueId,
+                        days:expiryDays
                      }
                 }
 

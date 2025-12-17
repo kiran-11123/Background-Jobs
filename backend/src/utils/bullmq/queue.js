@@ -79,51 +79,51 @@ function createWorker(queueName) {
           throw new Error(`DB Job not found for jobId: ${job.data.dbJobId}`);
         }
 
-        try {
-          // Mark job in progress
-          dbJob.status = "in-progress";
-          await dbJob.save();
-          redis_logger.info(`Job ${job.id} marked as in-progress in DB`);
+    try {
+  // Mark job in-progress
+  dbJob.status = "in-progress";
+  dbJob.startedAt = new Date();
+  dbJob.progress = 0;
 
-          const { type, payload } = job.data;
+  // Update attempts made so far
+  dbJob.attempts = job.attemptsMade + 1; // current attempt
+  await dbJob.save();
 
-          // Validate processor
-          if (!jobProcessors[type]) {
-            throw new Error(`No processor defined for job type: ${type}`);
-          }
+  redis_logger.info(`Job ${job.id} marked as in-progress in DB`);
 
-          // Run actual job logic
-          const result = await jobProcessors[type](payload);
+  // Run actual job logic
+  const { type, payload } = job.data;
+  if (!jobProcessors[type]) {
+    throw new Error(`No processor defined for job type: ${type}`);
+  }
 
-        if (!result?.success) {
-          throw new Error(result?.message || "Job failed");
-        }
-          
-          if (result.progress) {
-          dbJob.progress = result.progress;
-        }
-         dbJob.status = "completed";
-        dbJob.progress = 100;
-        dbJob.completedAt = new Date();
-        await dbJob.save();
-     
+  const result = await jobProcessors[type](payload);
 
-        redis_logger.info(`Job ${job.id} completed successfully`);
+  if (!result?.success) {
+    throw new Error(result?.message || "Job failed");
+  }
 
-        return result;
+  // Update progress and mark completed
+  dbJob.progress = 100;
+  dbJob.status = "completed";
+  dbJob.completedAt = new Date();
+  dbJob.attempts = job.attemptsMade + 1; // final attempt
+  await dbJob.save();
 
-         
-        } catch (err) {
-          dbJob.failedReason = err.message;
-          dbJob.status = "failed";
-          await dbJob.save();
-              
+  redis_logger.info(`Job ${job.id} completed successfully`);
+  return result;
 
-        redis_logger.error(`Job ${job.id} failed: ${err.message}`);
+} catch (err) {
+  // Mark failed
+  dbJob.status = "failed";
+  dbJob.failedReason = err.message;
+  dbJob.attempts = job.attemptsMade + 1; // failed attempt
+  await dbJob.save();
 
-        // 🔥 REQUIRED
-        throw err;
-        }
+  redis_logger.error(`Job ${job.id} failed: ${err.message}`);
+  throw err; // Let BullMQ handle retries
+}
+
       },
       { connection,
       attempts: 3,

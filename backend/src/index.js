@@ -15,13 +15,13 @@ import Job_Router from './routes/jobs.js';
 import { initSocket } from './utils/websocket.js';
 import http from 'http';
 
-const server = http.createServer();
+//const server = http.createServer();
 
 dotenv.config();
 const app = express();
 ConnectDB();
 const PORT = process.env.PORT || 5000;
-initSocket(server);
+//initSocket(server);
 
 
 const CorsOptions = {
