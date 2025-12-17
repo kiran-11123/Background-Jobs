@@ -233,7 +233,7 @@ function onClose(){
                   name={jobs.name}
                   status={jobs.status}
                   attempts={jobs.attempts}
-                  failedReason={jobs.failedReason   }
+                  failedReason={jobs.failedReason  }
                    onDelete={handleDelete}
                    type={jobs.type}
                     

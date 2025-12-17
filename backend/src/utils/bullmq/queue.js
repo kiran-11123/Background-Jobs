@@ -3,7 +3,7 @@ import IORedis from 'ioredis'
 import redis_logger from '../logger/redis_logger.js';
 import Jobs_model from '../../models/jobs.js';
 import { jobProcessors } from '../../../jobs/processors.js';
-import { emitJobUpdate } from "./socket";
+import {emitJobUpdate}  from '../websocket.js';
 
 export const connection =  new IORedis(process.env.REDIS_URL || "redis://localhost:6379", { maxRetriesPerRequest: null})
 
@@ -106,6 +106,7 @@ function createWorker(queueName) {
         dbJob.progress = 100;
         dbJob.completedAt = new Date();
         await dbJob.save();
+        console.log("Job completed and DB updated" , dbJob);
         emitJobUpdate(dbJob);
 
         redis_logger.info(`Job ${job.id} completed successfully`);

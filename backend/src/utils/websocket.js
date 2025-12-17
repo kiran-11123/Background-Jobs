@@ -19,9 +19,8 @@ export function initSocket(server) {
 
 export function emitJobUpdate(payload) {
   if (io) {
-    io.emit(payload);
+    io.emit("job-update", payload); // <--- event name + data
   } else {
     console.error("Socket.io not initialized.");
   }
-
 }
