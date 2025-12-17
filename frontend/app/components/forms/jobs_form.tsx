@@ -13,7 +13,7 @@ interface JobFormProps {
   AddNewJobs?: (job: any) => void;
 }
 
-type JobType = "Email" | "Verification Code" | "Activity Summary" | "Delete Old Jobs"
+type JobType = "sendEmail" | "sendCode" | "Activity" | "DeleteJobs"
 
 
 export default function JobsPageForm({ queueId ,  isOpen, onClose ,AddNewJobs}: JobFormProps) {
@@ -35,7 +35,7 @@ export default function JobsPageForm({ queueId ,  isOpen, onClose ,AddNewJobs}: 
 
         switch(selected){
 
-            case("Email"):
+            case("sendEmail"):
                 if(emailSubject.trim()===''){
                   SetMessage('Email Subject Should have more than 0 characters')
                   return
@@ -44,7 +44,7 @@ export default function JobsPageForm({ queueId ,  isOpen, onClose ,AddNewJobs}: 
                   SetMessage('Email Body Should have more than 0 characters')
                 }
                 return{
-                     type:"email",
+                     type:"sendEmail",
                      data :{
                         email:emailTo,
                         subject:emailSubject,
@@ -52,7 +52,7 @@ export default function JobsPageForm({ queueId ,  isOpen, onClose ,AddNewJobs}: 
 
                      }
                 }
-            case("Activity Summary"):
+            case("Activity"):
                 if(title.trim()===''){
                     SetMessage('Title Should be more than 0 characters')
                     return 
@@ -63,14 +63,14 @@ export default function JobsPageForm({ queueId ,  isOpen, onClose ,AddNewJobs}: 
             range: "last_24_hours",
           },  
                 }
-            case("Verification Code"):
+            case("sendCode"):
                 return{
-                    type:"Verification", 
+                    type:"sendCode", 
                     data:{
                         email : emailTo
                     }
                 }
-            case("Delete Old Jobs"):
+            case("DeleteJobs"):
 
                 if(title.trim()===''){
                     SetMessage('Title Should be more than 0 characters')
@@ -81,7 +81,7 @@ export default function JobsPageForm({ queueId ,  isOpen, onClose ,AddNewJobs}: 
                    return 
                 }
                 return{
-                     type:"delete",
+                     type:"DeleteJobs",
                      data:{
                       queueId : queueId,
                         days:Number (expiryDays)
@@ -184,10 +184,10 @@ export default function JobsPageForm({ queueId ,  isOpen, onClose ,AddNewJobs}: 
               <option value="" disabled>
                 Select Job Type
               </option>
-              <option>Email</option>
-              <option>Verification Code</option>
-              <option>Activity Summary</option>
-              <option>Delete Old Jobs</option>
+              <option>sendEmail</option>
+              <option>sendCode</option>
+              <option>Activity</option>
+              <option>DeleteJobs</option>
             </select>
           </div>
 
@@ -206,7 +206,7 @@ export default function JobsPageForm({ queueId ,  isOpen, onClose ,AddNewJobs}: 
         
 
           {/* 🔹 Dynamic Fields */}
-          {selected === "Email" && (
+          {selected === "sendEmail" && (
             <div className="space-y-3 rounded-xl bg-white/5 p-4">
               <input
                 type="email"
@@ -234,7 +234,7 @@ export default function JobsPageForm({ queueId ,  isOpen, onClose ,AddNewJobs}: 
             </div>
           )}
 
-          {selected === "Verification Code" &&(
+          {selected === "sendCode" &&(
               <div className="space-y-3 rounded-xl bg-white/5 p-4">
                   <input
                 
@@ -248,7 +248,7 @@ export default function JobsPageForm({ queueId ,  isOpen, onClose ,AddNewJobs}: 
               </div>
           )}
 
-          {selected === "Delete Old Jobs" && (
+          {selected === "DeleteJobs" && (
             <div className="rounded-xl bg-white/5 p-4">
               <input
                
@@ -279,12 +279,12 @@ export default function JobsPageForm({ queueId ,  isOpen, onClose ,AddNewJobs}: 
   <div className="flex justify-end ">
    
   </div>
-  {selected === 'Email' && 
+  {selected === 'sendEmail' && 
   ( <div className="mb-10"> <h2 className="text-white text-lg mb-2 ">Email Job:</h2> 
   <p className="text-gray-300 max-w-md">
      This job will send an email to the specified recipient with the provided subject and body content. </p> </div> )}
     
-{selected==='Activity Summary' &&(
+{selected==='Activity' &&(
      <div  className="mb-10" >  
 
         <h2 className="text-gray-300 max-w-md">
@@ -293,7 +293,7 @@ export default function JobsPageForm({ queueId ,  isOpen, onClose ,AddNewJobs}: 
 
         </div>
 )}
-{selected==='Delete Old Jobs' &&(
+{selected==='DeleteJobs' &&(
      <div  className="mb-10">  
 
         <h2 className="text-gray-300 max-w-md">
@@ -303,7 +303,7 @@ export default function JobsPageForm({ queueId ,  isOpen, onClose ,AddNewJobs}: 
         </div>
 )}
 
-{selected==='Verification Code' &&(
+{selected==='sendCode' &&(
      <div  className="mb-10">  
 
         <h2 className="text-gray-300 max-w-md">

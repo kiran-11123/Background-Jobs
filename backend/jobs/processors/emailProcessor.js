@@ -10,10 +10,11 @@ export  const EmailProcessor = async(data)=>{
         try{
            
         
-        const toemail = data.email
-      const subject = data.subject;
+        const toemail = data.job.data.email;
+      
+      const subject = data.job.data.subject;
 
-      const message =data.message;
+      const message = data.job.data.message;
 
         let mailoptions = {
             from: "eventnest.official.main@gmail.com",
@@ -23,9 +24,7 @@ export  const EmailProcessor = async(data)=>{
             html: `
     <div style="font-family: Arial, sans-serif; padding: 20px; border: 2px solid #4CAF50; border-radius: 10px; max-width: 600px; margin: auto; background-color: #f9f9f9;">
 
-      <h1 style="color: #4CAF50; text-align: center; margin-bottom: 20px;">
-        Notes Shared By ${username}
-      </h1>
+     
 
       <p style="font-size: 15px; color:#444; text-align:center; margin-bottom: 15px;">
         Here is the note content:
@@ -59,7 +58,7 @@ export  const EmailProcessor = async(data)=>{
 
     
 
-            return {success:true  ,message : "Email Sent"}
+      return {success:true  ,message : "Email Sent"}
 
         }
         catch(er){

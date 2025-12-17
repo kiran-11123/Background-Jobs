@@ -8,7 +8,7 @@ export const SendVerificationCode = async(data)=>{
     jobs_logger.info("Entered into the SendVerificationCode jobs")
     try{
           
-        const email  = data.email;
+        const email  = data.job.data.email;
          let code = Math.floor(Math.random()*900000 + 100000);
 
           let mailoptions = {

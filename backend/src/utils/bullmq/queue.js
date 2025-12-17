@@ -4,7 +4,7 @@ import redis_logger from '../logger/redis_logger.js';
 import Jobs_model from '../../models/jobs.js';
 import { jobProcessors } from '../../../jobs/processors.js';
 
-export const connection =  new IORedis(process.env.REDIS_URL || "redis://localhost:6379")
+export const connection =  new IORedis(process.env.REDIS_URL || "redis://localhost:6379", { maxRetriesPerRequest: null})
 
 //store all queues in the map
 
