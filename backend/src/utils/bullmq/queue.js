@@ -3,6 +3,7 @@ import IORedis from 'ioredis'
 import redis_logger from '../logger/redis_logger.js';
 import Jobs_model from '../../models/jobs.js';
 import { jobProcessors } from '../../../jobs/processors.js';
+import { emitJobUpdate } from "./socket";
 
 export const connection =  new IORedis(process.env.REDIS_URL || "redis://localhost:6379", { maxRetriesPerRequest: null})
 
@@ -73,14 +74,16 @@ function createWorker(queueName) {
         const dbJob = await Jobs_model.findById(job.data.dbJobId);
 
         if (!dbJob) {
-          redis_logger.error(`DB Job not found for jobId: ${job.data.dbJobId}`);
-          return;
+                    redis_logger.error(`DB Job not found for jobId: ${job.data.dbJobId}`);
+
+          throw new Error(`DB Job not found for jobId: ${job.data.dbJobId}`);
         }
 
         try {
           // Mark job in progress
           dbJob.status = "in-progress";
           await dbJob.save();
+          emitJobUpdate(dbJob);
 
           const { type, payload } = job.data;
 
@@ -90,49 +93,44 @@ function createWorker(queueName) {
           }
 
           // Run actual job logic
-          await jobProcessors[type](payload);
+          const result = await jobProcessors[type](payload);
 
-          // Mark as completed
-          dbJob.status = "completed";
-          dbJob.progress = 100;
-          dbJob.completedAt = new Date();
-          await dbJob.save();
+        if (!result?.success) {
+          throw new Error(result?.message || "Job failed");
+        }
+          
+          if (result.progress) {
+          dbJob.progress = result.progress;
+        }
+         dbJob.status = "completed";
+        dbJob.progress = 100;
+        dbJob.completedAt = new Date();
+        await dbJob.save();
+        emitJobUpdate(dbJob);
 
-          redis_logger.info(`Job ${job.id} Completed Successfully`);
+        redis_logger.info(`Job ${job.id} completed successfully`);
 
-          return { success: true };
+        return result;
+
+         
         } catch (err) {
-          redis_logger.error(`Error occurred while processing job ${job.id}: ${err.message}`);
-
-          // Handle retry logic
-          dbJob.attempts += 1;
           dbJob.failedReason = err.message;
+          dbJob.status = "failed";
+          await dbJob.save();
+          emitJobUpdate(dbJob);
 
-          if (dbJob.attempts < dbJob.attemptsLimit) {
-            dbJob.status = "waiting";
-            await dbJob.save();
+        redis_logger.error(`Job ${job.id} failed: ${err.message}`);
 
-            // Requeue the job manually
-            await job.queue.add(
-              job.name,
-              job.data,
-              {
-                delay: 5000,
-                attempts: dbJob.attemptsLimit - dbJob.attempts
-              }
-            );
-
-            redis_logger.info(`Job ${job.id} rescheduled (attempt ${dbJob.attempts})`);
-          } else {
-            dbJob.status = "failed";
-            await dbJob.save();
-            redis_logger.error(`Job ${job.id} permanently failed after max attempts`);
-          }
-
-          throw err; // Allows BullMQ to mark it as failed internally
+        // 🔥 REQUIRED
+        throw err;
         }
       },
-      { connection }
+      { connection,
+      attempts: 3,
+      backoff: {
+        type: "exponential",
+        delay: 5000,
+      }, }
     );
 
     redis_logger.info(`Worker started for queue: ${queueName}`);

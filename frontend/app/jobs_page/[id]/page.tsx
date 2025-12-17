@@ -5,6 +5,10 @@ import axios from "axios"
 import { usePathname, useRouter } from "next/navigation"
 import {X,Menu} from 'lucide-react'
 import JobsPageForm from "@/app/components/forms/jobs_form"
+import {  io } from "socket.io-client";
+
+
+const socket = io("http://localhost:3000");
 
 interface Props {
   params: { id: string };
@@ -63,6 +67,23 @@ useEffect(()=>{
  GetJobs();
 
 },[])
+
+useEffect(() => {
+  socket.on("job-update", (updateData: any) => {
+    SetJobs(prevJobs =>
+      prevJobs.map(job =>
+        job._id === updateData.jobId
+          ? { ...job, ...updateData } 
+          : job
+      )
+    );
+  });
+
+  return () => {
+    socket.off("job-update");
+  };
+}, []);
+
 
 function logout(){
     //logout logic

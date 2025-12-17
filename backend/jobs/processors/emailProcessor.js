@@ -9,12 +9,17 @@ export  const EmailProcessor = async(data)=>{
     jobs_logger.info(`Entered into the EmailProcessor job..`)
         try{
            
-        
+       
         const toemail = data.job.data.email;
       
       const subject = data.job.data.subject;
 
       const message = data.job.data.message;
+
+      if(!toemail || !subject || !message){
+        jobs_logger.info(`Insufficient data provided to send email..`)
+        return {success:false , message : "Insufficient data provided to send email.."}
+      }
 
         let mailoptions = {
             from: "eventnest.official.main@gmail.com",
@@ -53,7 +58,7 @@ export  const EmailProcessor = async(data)=>{
 
         await transporter.sendMail(mailoptions);
 
-           jobs_logger.info(`Mail sent to ${email} by ${username}`);
+        jobs_logger.info(`Mail sent to ${toemail}`);
 
 
     
