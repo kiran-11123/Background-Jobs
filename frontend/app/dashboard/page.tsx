@@ -1,5 +1,6 @@
 "use client";
 
+import axios from "axios";
 import { X, Menu } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState , useEffect } from "react";
@@ -7,6 +8,33 @@ import { useState , useEffect } from "react";
 export default function Dashboard() {
   const router = useRouter();
   const[isOpen , setIsOpen] = useState(false);
+  const[data , setData]=useState([]);
+
+  useEffect(()=>{
+
+    async function FetchData(){
+         try{
+
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_SERVER_URL}/dashboard/get-data`,{
+                withCredentials:true
+            })
+            if(response.status===200){
+                setData(response.data.data);
+            }
+            else{
+                setData([])
+            }
+
+         }
+         catch(er){
+            console.log(`Error while fetching the dashboard data  ${er}`)
+
+         }
+    }
+
+    FetchData();
+
+ } ,[])
 
   return (
   

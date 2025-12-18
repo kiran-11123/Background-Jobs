@@ -13,6 +13,7 @@ import API_KEY_ROUTER from './routes/api_key.js';
 import Queue_Router from './routes/queue.js';
 import Job_Router from './routes/jobs.js';
 import { initSocket } from './utils/websocket.js';
+import Dashboard_Router from './routes/dashboard.js';
 import http from 'http';
 
 //const server = http.createServer();
@@ -49,6 +50,7 @@ app.use("/api/project" , Project_Router)
 app.use("/api/keys" , API_KEY_ROUTER)
 app.use("/api/queue" , Queue_Router);
 app.use("/api/jobs" , Job_Router);
+app.use("/api/dashboard" , Dashboard_Router)
 
 
 
