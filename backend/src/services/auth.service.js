@@ -1,8 +1,11 @@
-import issueJWT from '../utils/jwt.js';
+import {issueJWT , resetIssueJWT} from '../utils/jwt.js';
 import bcrypt from 'bcryptjs';
 import app_logger from '../utils/logger/App_logger.js';
 import user_model from '../models/users.js';
 import transporter from '../utils/Nodemailer.js';
+import dotenv from 'dotenv';
+dotenv.config();
+
 
 // ---------------------- SIGN-UP SERVICE ----------------------
 export const SignUpService = async (email, username, password) => {
@@ -64,8 +67,11 @@ export const SignInService = async (email, password) => {
 
         // Generate JWT
         const token = issueJWT(user);
+        const refreshToken = resetIssueJWT(user);
 
-        return { user, token };
+        app_logger.info(`User signed in successfully: ${user._id}`);
+
+        return { user, token, refreshToken };
     }
     catch (er) {
         app_logger.error(`SignInService Error for ${email}: ${er.message}`);

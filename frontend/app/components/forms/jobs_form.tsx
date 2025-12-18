@@ -237,7 +237,7 @@ export default function JobsPageForm({ queueId ,  isOpen, onClose ,AddNewJobs}: 
           {selected === "sendCode" &&(
               <div className="space-y-3 rounded-xl bg-white/5 p-4">
                   <input
-                
+                type="email"
                 placeholder="Enter the Email To send the Code"
                 value={emailTo}
                 onChange={(e) => setEmailTo(e.target.value)}
