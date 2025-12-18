@@ -16,7 +16,13 @@ export const DashBoardService = async()=>{
         const find_jobs_completed = await Jobs_model.find({status :"completed"})
          
         app_logger.info(`Data Fetched successfully for the DashBoard from DashBoard Service`)
-        return (find_projects , find_queues , find_jobs , find_jobs_completed);
+        
+       return {
+      totalProjects: find_projects.length,
+      totalQueues: find_queues.length,
+      totalJobs: find_jobs.length,
+      totalJobsCompleted: find_jobs_completed.length
+    };
 
         
     }
