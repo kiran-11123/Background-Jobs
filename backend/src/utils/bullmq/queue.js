@@ -5,6 +5,7 @@ import Jobs_model from '../../models/jobs.js';
 import { jobProcessors } from '../../../jobs/processors.js';
 import {emitJobUpdate}  from '../websocket.js';
 
+
 export const connection =  new IORedis(process.env.REDIS_URL || "redis://localhost:6379", { maxRetriesPerRequest: null})
 
 //store all queues in the map
