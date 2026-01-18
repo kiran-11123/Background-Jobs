@@ -4,7 +4,8 @@ import app_logger from "../utils/logger/App_logger.js";
 export const DashBoardController = async (req, res) => {
   app_logger.info(`Entered into the DashBoard Controller`);
   try {
-    const stats = await DashBoardService();
+    const user_id = req.user.user_id;
+    const stats = await DashBoardService(user_id);
     app_logger.info(`Data Fetched successfully for the Dashboard`);
 
     return res.status(200).json({

@@ -5,15 +5,15 @@ import Jobs_model from "../models/jobs.js";
 import app_logger from "../utils/logger/App_logger.js";
 
 
-export const DashBoardService = async()=>{
+export const DashBoardService = async(user_id)=>{
         
     try{
 
-        const find_projects = await project_model.find();
-        const find_queues = await Queue_model.find();
-        const find_jobs = await Jobs_model.find();
+        const find_projects = await project_model.find({userId : user_id});
+        const find_queues = await Queue_model.find({userId : user_id});
+        const find_jobs = await Jobs_model.find({userId : user_id});
 
-        const find_jobs_completed = await Jobs_model.find({status :"completed"})
+        const find_jobs_completed = await Jobs_model.find({status :"completed", userId : user_id})
          
         app_logger.info(`Data Fetched successfully for the DashBoard from DashBoard Service`)
         
