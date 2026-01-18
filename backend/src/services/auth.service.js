@@ -4,6 +4,7 @@ import app_logger from '../utils/logger/App_logger.js';
 import user_model from '../models/users.js';
 import transporter from '../utils/Nodemailer.js';
 
+
 // ---------------------- SIGN-UP SERVICE ----------------------
 export const SignUpService = async (email, username, password) => {
     try {
@@ -53,13 +54,13 @@ export const SignInService = async (email, password) => {
         // Check email
         const user = await user_model.findOne({ email });
         if (!user) {
-            throw new Error("Email Not found");   // EXACT message used in controller
+            throw new Error("Email or Password didn't match");   // EXACT message used in controller
         }
 
         // Check password
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
-            throw new Error("Password is Wrong for the email");  // EXACT message used in controller
+            throw new Error("Email or Password didn't match");  // EXACT message used in controller
         }
 
         // Generate JWT
@@ -74,10 +75,11 @@ export const SignInService = async (email, password) => {
 };
 
 export const ResetPassword = async (email) => {
+
   app_logger.info(`Entered into the ResetPassword Service`);
 
   try {
-    // 1️⃣ Check if user exists
+   
     const find_user = await user_model.findOne({ email });
     if (!find_user) {
       throw new Error(`User Not Found`);
@@ -90,13 +92,15 @@ export const ResetPassword = async (email) => {
     const expiry = new Date(Date.now() + 15 * 60 * 1000);
 
     // 4️⃣ Update user record with OTP + expiry
-    find_user.resetPasswordToken = code;
+
+    const updated_code = await bcrypt.hash(code.toString(),10);
+    find_user.resetPasswordToken = updated_code;
     find_user.resetPasswordExpiry = expiry;
 
     await find_user.save();
 
     // 5️⃣ Send reset email (can be async or queued)
-    await transporter.sendEmail({
+    await transporter.sendMail({
       to: email,
       subject: "Password Reset Code",
       html: `
@@ -134,7 +138,7 @@ export const VerifyCodeService = async(email , code)=>{
              throw new Error(`Code Time Expired`)
         }
 
-        if(find_user.resetPasswordToken !== code){
+        if(!(await bcrypt.compare(code.toString() , find_user.resetPasswordToken))){
             throw new Error(`Code is wrong`)
         }
 

@@ -87,9 +87,8 @@ export const ResetPasswordController = async(req,res)=>{
     
     app_logger.info(`Entered into the ResetPasswordController `)
     try{
-
+          
         const email = req.body.email;
-        const user_id = req.user.user_id;
 
         const code  = await ResetPassword(email);
         
