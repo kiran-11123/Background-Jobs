@@ -13,7 +13,7 @@ interface JobFormProps {
   AddNewJobs?: (job: any) => void;
 }
 
-type JobType = "sendEmail" | "sendCode" | "Activity" | "DeleteJobs"
+type JobType = "sendEmail" | "sendCode" | "FileDownload" | "DeleteJobs"
 
 
 export default function JobsPageForm({ queueId ,  isOpen, onClose ,AddNewJobs}: JobFormProps) {
@@ -27,6 +27,15 @@ export default function JobsPageForm({ queueId ,  isOpen, onClose ,AddNewJobs}: 
     const[emailTo , setEmailTo] = useState('');
     const[emailSubject , setEmailSubject]=useState('');
     const[emailBody , setEmailBody] = useState('');
+
+    const[FileTitle , setFileTitle] = useState('');
+     const [file, setFile] = useState<File | null>(null);
+
+
+     
+  
+
+    
 
 
     const[expiryDays , SetExpiryDays] = useState('');
@@ -52,15 +61,15 @@ export default function JobsPageForm({ queueId ,  isOpen, onClose ,AddNewJobs}: 
 
                      }
                 }
-            case("Activity"):
+            case("FileDownload"):
                 if(title.trim()===''){
-                    SetMessage('Title Should be more than 0 characters')
+                    SetMessage('File Title should be more than 0 characters')
                     return 
                 }
                 return{
-                      type: "summary",
+                      type: "FileDownload",
                   data: {
-            range: "last_24_hours",
+                file_data : file
           },  
                 }
             case("sendCode"):
@@ -186,7 +195,7 @@ export default function JobsPageForm({ queueId ,  isOpen, onClose ,AddNewJobs}: 
               </option>
               <option>sendEmail</option>
               <option>sendCode</option>
-              <option>Activity</option>
+              <option>FileDownload</option>
               <option>DeleteJobs</option>
             </select>
           </div>
@@ -232,6 +241,30 @@ export default function JobsPageForm({ queueId ,  isOpen, onClose ,AddNewJobs}: 
                 required
               />
             </div>
+          )}
+
+
+          {selected ==="FileDownload" &&(
+
+            <div className="space-y-3 rounded-xl bg-white/5 p-4">
+         
+               
+
+
+    <input
+    title="file download"
+     className="text-white"
+      type="file"
+      onChange={(e) => {
+        if (e.target.files && e.target.files[0]) {
+          setFile(e.target.files[0]);
+        }
+      }}
+    />
+                
+               
+            </div>
+              
           )}
 
           {selected === "sendCode" &&(
@@ -284,15 +317,12 @@ export default function JobsPageForm({ queueId ,  isOpen, onClose ,AddNewJobs}: 
   <p className="text-gray-300 max-w-md">
      This job will send an email to the specified recipient with the provided subject and body content. </p> </div> )}
     
-{selected==='Activity' &&(
-     <div  className="mb-10" >  
 
-        <h2 className="text-gray-300 max-w-md">
-            This Job will send the activiy summary of the application 
-        </h2>
+    {selected === 'FileDownload' && (
+         <div className="mb-10"> <h2 className="text-white text-lg mb-2 ">DownloadFile Job:</h2> 
+         <p className="text-gray-300 max-w-md"> This job will download the file which you selected</p> </div>
+    )}
 
-        </div>
-)}
 {selected==='DeleteJobs' &&(
      <div  className="mb-10">  
 
